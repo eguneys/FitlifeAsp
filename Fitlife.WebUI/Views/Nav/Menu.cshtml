@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Fitlife.WebUI.Models.NavViewModel>
+
+@foreach (var navlink in Model)
+{
+    <li class='@(navlink.Link == ViewBag.SelectedNav ? "active" : ViewBag.SelectedNav)'>
+    @Html.RouteLink(navlink.Name, new
+{
+    controller = navlink.Controller,
+action = navlink.Action
+})
+</li>
+}

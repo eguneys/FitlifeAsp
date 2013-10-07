@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Fitlife.Domain.Entities.User>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+@foreach (var p in Model)
+{
+    Html.RenderPartial("UserSummary", p);
+}

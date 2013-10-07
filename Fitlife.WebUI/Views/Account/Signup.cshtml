@@ -1,0 +1,39 @@
+﻿@model Fitlife.Domain.Entities.User
+
+@{
+    ViewBag.Title = "Signup";
+}
+       <div class="container" style='max-width:300px;'>
+            <div class="your-logo">
+                <h3><a href="index.html">Your Logo</a></h3>     
+            </div>
+            @using (Html.BeginForm())
+            {
+                <legend><h4>Registration</h4></legend>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <a href="" class="btn btn-primary btn-block"><i class="icon-facebook"></i> Facebook Connect</a>
+                    </div>  
+                    <div class="span6">
+                        <a href="" class="btn btn-info btn-block"><i class="icon-twitter"></i> Twitter Connect</a>
+                    </div>    
+                </div>
+                @Html.TextBoxFor(x => x.Name, new { @class = "input-block-level", @placeholder = "Full Name" })
+                @Html.TextBoxFor(x => x.Email, new { @class = "input-block-level", @placeholder = "Email address" })
+                @Html.PasswordFor(x => x.Password, new { @class = "input-block-level", @placeholder = "Password" })
+                @Html.PasswordFor(x => x.PasswordConfirmation, new { @class = "input-block-level", @placeholder = "Retype Password" })
+                <div class="row-fluid">
+                    <div class="span8">
+                        <label class="checkbox">
+                            <input type="checkbox" value="remember-me"> I agree with <a href="">terms and conditions</a>.
+                        </label> 
+                    </div> 
+                    <div class="span4">
+                        <button class="btn btn-warning btn-block" type="submit">Register</button>
+                    </div>    
+                </div>
+            }
+            <div class="bottom-text">
+                 <p>Already have an account? <a href="login.html">Log In</a></p>
+            </div>
+        </div> <!-- /container -->

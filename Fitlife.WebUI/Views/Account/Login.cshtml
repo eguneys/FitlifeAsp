@@ -1,0 +1,35 @@
+﻿@model Fitlife.Domain.Entities.User
+
+@{
+    ViewBag.Title = "Login";
+}
+
+       <div class="container" style='max-width: 300px;'>
+            <div class="your-logo">
+                <h3><a href="index.html">Your Logo</a></h3>     
+            </div>
+            @using (Html.BeginForm())
+            {
+                <legend><h4>Log In</h4></legend>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <a href="" class="btn btn-primary btn-block"><i class="icon-facebook"></i> Facebook Connect</a>
+                    </div>  
+                    <div class="span6">
+                        <a href="" class="btn btn-info btn-block"><i class="icon-twitter"></i> Twitter Connect</a>
+                    </div>    
+                </div>
+                @Html.TextBoxFor(x => x.Email, new { @class = "input-block-level", @placeholder = "Email address" })
+                @Html.PasswordFor(x => x.Password, new { @class = "input-block-level", @placeholder = "Password" })
+                <div class="row-fluid">
+                    <div class="span8">
+                    </div> 
+                    <div class="span4">
+                        <button class="btn btn-warning btn-block" type="submit">Log In</button>
+                    </div>    
+                </div>
+            }
+            <div class="bottom-text">
+                 <p>Don't have an account? <a href="register.html">Sign Up</a></p>
+            </div>
+        </div> <!-- /container -->
