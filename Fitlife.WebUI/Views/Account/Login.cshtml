@@ -10,6 +10,7 @@
             </div>
             @using (Html.BeginForm())
             {
+                Html.RenderPartial("ValidationSummary", @ViewData.ModelState);
                 <legend><h4>Log In</h4></legend>
                 <div class="row-fluid">
                     <div class="span6">
@@ -30,6 +31,10 @@
                 </div>
             }
             <div class="bottom-text">
-                 <p>Don't have an account? <a href="register.html">Sign Up</a></p>
+                 <p>Don't have an account? @Html.RouteLink("Signup", new
+{
+    controller = "Account",
+    action = "Signup"
+})</p>
             </div>
         </div> <!-- /container -->

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Fitlife.WebUI.Filters;
 
 namespace Fitlife.WebUI.Controllers
 {
@@ -14,12 +15,7 @@ namespace Fitlife.WebUI.Controllers
 
             return View();
         }
-
-        public ActionResult Progress()
-        {
-            return View();
-        }
-
+        
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";

@@ -17,10 +17,9 @@ namespace Fitlife.WebUI
                 "",
                 new { controller = "Home", action = "Index"}
                 );
-
             routes.MapRoute(null,
-                "{action}",
-                new { controller = "Home", action = "{action}" });
+                "{controller}",
+                new { controller = "{controller}", action = "Index" });
 
             routes.MapRoute(null, "{controller}/{action}");
         }

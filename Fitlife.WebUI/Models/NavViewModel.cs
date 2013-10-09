@@ -11,6 +11,8 @@ namespace Fitlife.WebUI.Models
         public string Link { get; set; }
         public string Controller { get; set; }
         public string Action { get; set; }
+
+        public bool AllowAnonymous { get; set; }
         
     }
 }

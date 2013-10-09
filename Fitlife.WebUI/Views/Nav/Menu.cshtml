@@ -2,6 +2,7 @@
 
 @foreach (var navlink in Model)
 {
+    if (!navlink.AllowAnonymous && !User.Identity.IsAuthenticated) { continue; }
     <li class='@(navlink.Link == ViewBag.SelectedNav ? "active" : ViewBag.SelectedNav)'>
     @Html.RouteLink(navlink.Name, new
 {

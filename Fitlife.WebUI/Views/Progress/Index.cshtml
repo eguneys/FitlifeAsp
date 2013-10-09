@@ -1,0 +1,120 @@
+﻿@model Fitlife.WebUI.Models.BodyPhotoViewModel
+
+@{
+    ViewBag.Title = "Progress";
+    ViewBag.Subtitle = "Stay Motivated";
+}
+
+@{Html.RenderPartial("SuperPageHeader");}
+
+
+
+
+            <section class="our-services container">
+                <ul class="nav nav-tabs" id="myTab">
+                   
+                    <li><a href="#pane-nutrition" data-toggle='tab'>Nutrition</a></li>                    
+                    <li><a href="#pane-activity" data-toggle='tab'>Activity</a></li>
+                    <li><a href="#pane-social" data-toggle='tab'>Social</a></li>
+                </ul>
+                <div class="tab-content tap-package">
+                    <div class="tab-pane" id="pane-photoline">
+                        <div class="row-fluid">
+                        <div>
+                        
+                        </div>
+                        </div>
+                    </div><!--/#pane-select-service -->                 
+                    </div>
+             
+                    <div class="tab-pane" id="pane-nutrition">
+                        <div class="row-fluid">
+                        <div>
+                        
+                        </div>
+                        </div>
+                    </div><!--/#pane-select-service -->                 
+                    </div>
+
+                    
+             
+                    <div class="tab-pane" id="pane-activity">
+                        <div class="row-fluid">
+                        <div>
+                        
+                        </div>
+                        </div>
+                    </div><!--/#pane-select-service -->                 
+                    </div>
+
+
+
+             
+                    <div class="tab-pane" id="pane-social">
+                        <div class="row-fluid">
+                        <div>
+                        
+                        </div>
+                        </div>
+                    </div><!--/#pane-select-service -->                 
+                    </div>
+
+                    </section>
+
+                    
+                        <div class="container">
+                <hr class="main-divider">
+            </div><!--/.main-divider -->
+
+
+                    
+                                <section class="portfolio container">
+                <div class="row">
+                    <div class="span10">
+                                        <h3 class='text-center'>PhotoLine</h3>
+                        <div id="filters">
+				            <ul class="portfolio-filter unstyled inline">
+                            
+		                        <li><a href="#" data-filter="*" class="selected">All</a></li>
+                                <li>|</li>
+                                @foreach (var muscleGroup in Model.PhotosByMuscleGroup) {
+                                <li><a href='#' data-filter='.@(muscleGroup.First().MuscleGroup.ToLower())'>@muscleGroup.First().MuscleGroup</a></li>
+                                }        
+
+				            </ul>
+			            </div>
+                    </div>
+                    <div class="span2">
+                        <a class="pull-right post-type" href="images/img_1.jpg" rel="prettyPhoto[pp_gal]"><i class="icon-picture"></i></a>
+                    </div>     
+                </div>
+                <div class="row p-items">
+                @foreach (var muscleGroup in Model.PhotosByMuscleGroup)
+                {
+                foreach (var muscle in muscleGroup)
+                {
+                    <div class="span3 @muscle.MuscleGroup">   
+                        <div class="item-container">                                   
+                            <div class="item-pic">
+                                <a href="@muscle.PhotoSource" rel="prettyPhoto[pp_gal]">
+                                    <img src="@muscle.PhotoSource">
+                                    <span class="overlay"></span>
+                                    <span class="item-zoom"><i class="icon-plus"></i></span>
+                                </a>
+                            </div> 
+                            <div class="item-content">  
+                                <h5><a href="">The Dogs</a></h5> 
+                                <p>Animal / Outside</p>                           
+                            </div>
+                        </div>  
+                    </div><!--/ item -->
+                }
+                }
+                </div>                    
+            </section><!--/.portfolio -->
+<div class='container'>
+            <input id='fileupload' type='file' name='image' data-url='https://api.imgur.com/3/upload' />
+</div>
+            @section scripts{
+            @Scripts.Render("~/bundles/BlueImp")
+            }

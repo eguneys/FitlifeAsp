@@ -6,11 +6,10 @@ using Fitlife.Domain.Entities;
 
 namespace Fitlife.Domain.Abstract
 {
-    public interface IUserRepository
+    public interface IBodyPhotoRepository
     {
-        IQueryable<User> Users { get; }
+        IQueryable<BodyPhoto> Photos { get; }
 
-        void SaveUser(User u);
-        bool ValidateUser(User u);
+        void SaveBodyPhoto(BodyPhoto photo);
     }
 }

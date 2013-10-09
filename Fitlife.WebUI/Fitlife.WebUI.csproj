@@ -171,11 +171,16 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NavController.cs" />
+    <Compile Include="Controllers\NutritionController.cs" />
+    <Compile Include="Controllers\ProgressApiController.cs" />
+    <Compile Include="Controllers\ProgressController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\CustomAuthAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Models\BodyPhotoViewModel.cs" />
     <Compile Include="Models\NavViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -265,6 +270,9 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\BlueImp\jquery.fileupload.js" />
+    <Content Include="Scripts\BlueImp\jquery.ui.widget.js" />
+    <Content Include="Scripts\BlueImp\main.js" />
     <Content Include="Scripts\Boldex\base.js" />
     <Content Include="Scripts\Boldex\bootstrap-carousel.js" />
     <Content Include="Scripts\Boldex\bootstrap.min.js" />
@@ -294,6 +302,10 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\moment+langs.js" />
+    <Content Include="Scripts\moment+langs.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -327,7 +339,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Filters\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -348,6 +359,17 @@
     <Content Include="Views\Nav\Signin.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Signup.cshtml" />
+    <Content Include="Views\Shared\ValidationSummary.cshtml" />
+    <Content Include="Views\Nutrition\Index.cshtml" />
+    <Content Include="Views\Progress\Index.cshtml" />
+    <Content Include="Views\Shared\SuperPageHeader.cshtml" />
+    <Content Include="Views\Nutrition\DailyCalorieLimit.cshtml" />
+    <Content Include="Views\Nutrition\DailyFoodGroupTargets.cshtml" />
+    <Content Include="Views\Nutrition\DailyLimits.cshtml" />
+    <Content Include="Views\Nutrition\DailySummary.cshtml" />
+    <Content Include="Views\Nutrition\FoodSelection.cshtml" />
+    <Content Include="Views\Nutrition\FoodDetails.cshtml" />
+    <Content Include="Views\Nutrition\Meals.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fitlife.Domain\Fitlife.Domain.csproj">

@@ -45,9 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IBodyPhotoRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Concrete\EFBodyPhotoRepository.cs" />
     <Compile Include="Concrete\EFDBContext.cs" />
     <Compile Include="Concrete\EFUserRepository.cs" />
+    <Compile Include="Entities\BodyPhoto.cs" />
     <Compile Include="Entities\NutrDef.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

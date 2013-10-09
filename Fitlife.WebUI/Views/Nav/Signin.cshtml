@@ -1,14 +1,27 @@
-﻿<li>
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <li class="dropdown">
+    <a class='dropdown-toggle' data-toggle='dropdown' data-target='#' href='#'> 
+    <i class='icon-person'></i> Account    </a>
+    <ul class='dropdown-menu'>
+    
+    <li>
+    @Html.RouteLink("Signout", new
+{
+    controller = "Account",
+    action = "Logout"
+})
+</li>
+</ul>
+</li>
+}
+else
+{    
+<li>
     @Html.RouteLink("Signin", new
 {
     controller = "Account",
     action = "Login"
 })
 </li>
-<li>
-    @Html.RouteLink("Signup", new
-{
-    controller = "Account",
-    action = "Signup"
-})
-</li>
+}    

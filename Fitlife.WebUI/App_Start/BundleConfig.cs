@@ -23,6 +23,9 @@ namespace Fitlife.WebUI
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/moment").Include(
+                "~/Scripts/moment.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/Boldex").Include(
                 "~/Scripts/Boldex/bootstrap.min.js",
                 "~/Scripts/Boldex/bootstrap-carousel.js",
@@ -34,6 +37,10 @@ namespace Fitlife.WebUI
                 "~/Scripts/Boldex/bootstrap-carousel.js",
                 "~/Scripts/Boldex/jquery.isotope.js",
                 "~/Scripts/Boldex/base.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/BlueImp").Include(
+                "~/Scripts/BlueImp/*.js"
+));
 
             bundles.Add(new StyleBundle("~/Content/fontawesome").Include(
                 "~/Content/font-awesome.min.css"

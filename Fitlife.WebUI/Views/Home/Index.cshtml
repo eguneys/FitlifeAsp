@@ -2,16 +2,20 @@
     ViewBag.Title = "Home Page";
 }
 @section featured {
-
 }
-
-            <section class="welcome container">
+<section class="welcome container">
                 <div class="content">
-                    <h3>Hello, We create awesome websites!</h3> 
-                    <p>This intro text can be modified and is a good way to say hello to the visitors.</p>     
+                    <h3>Simple Activity and Nutrition Tracker</h3> 
+                    <p>Track, View, Share your Activity and Nutrition</p>
+                    @Html.RouteLink("Get Started!", new
+                    {
+                        controller = "Account",
+                        action = "Signup"
+                    }, new { @class = "btn btn-large btn-success" })
                 </div>
-            </section><!--/.welcome -->
-            <section class="slider container">
+            </section>
+<!--/.welcome -->
+<section class="slider container">
                 <div id="myCarousel" class="carousel slide">
                     <ol class="carousel-indicators">
                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -21,25 +25,25 @@
                     <!-- Carousel items -->
                     <div class="carousel-inner">
                         <div class="active item">
-                            <img src="images/slides/slide_1.jpg">
+                            <img src="http://i.imgur.com/LsXFH3h.jpg">
                             <div class="carousel-caption">
-                                <h4>Responsive Design</h4>
+                                <h4>Track Nutrition</h4>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                 <a href="" class="btn btn-danger btn-mini">Learn More</a>
                             </div>
                         </div>
                         <div class="item">
-                            <img src="images/slides/slide_2.jpg">
+                            <img src="http://i.imgur.com/Un6gkFR.jpg">
                             <div class="carousel-caption">
-                                <h4>HTML5 & CSS3</h4>
+                                <h4>View Progress</h4>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultricies massa ac tortor interdum consequat. Cras ipsum libero, luctus commodo.</p>
                                 <a href="" class="btn btn-danger btn-mini">Learn More</a>
                             </div>
                         </div>
                         <div class="item">
-                            <img src="images/slides/slide_3.jpg">
+                            <img src="http://i.imgur.com/k1LT3GK.jpg">
                             <div class="carousel-caption">
-                                <h4>Even more innovation</h4>
+                                <h4>Stav Motivated</h4>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fermentum lacinia lacus non mollis. Phasellus.</p>
                                 <a href="" class="btn btn-danger btn-mini">Learn More</a>
                             </div>
@@ -49,8 +53,9 @@
                     <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
                     <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
                 </div>         
-            </section><!--/.slider -->
-            <section class="services container">
+            </section>
+<!--/.slider -->
+<section class="services container">
                 <div class="row">
                     <div class="span3">
                         <a href="" class="well">
@@ -81,11 +86,13 @@
                         </a>     
                     </div> 
                 </div>                    
-            </section><!--/.services -->
-            <div class="container">
-                <hr class="main-divider">
-            </div><!--/.main-divider -->
-            <section class="works container">
+            </section>
+<!--/.services -->
+<div class="container">
+    <hr class="main-divider">
+</div>
+<!--/.main-divider -->
+<section class="works container">
                 <div class="row">
                     <div class="span3 left-box">
                         <h4 class="section-header"><span>//</span> Recent Works</h4>
@@ -160,11 +167,13 @@
                         </div>  
                     </div>
                 </div>       
-            </section><!--/.works -->
-            <div class="container">
-                <hr class="main-divider">   
-            </div><!--/.main-divider -->
-            <section class="posts container">
+            </section>
+<!--/.works -->
+<div class="container">
+    <hr class="main-divider">
+</div>
+<!--/.main-divider -->
+<section class="posts container">
                 <div class="row">
                     <div class="span3 left-box">
                         <h4 class="section-header"><span>//</span> Recent Posts</h4>
@@ -237,11 +246,13 @@
                         </div>
                     </div>     
                 </div>        
-            </section><!--/.posts --> 
-            <div class="container">
-                <hr class="main-divider">   
-            </div><!--/.main-divider -->
-            <section class="our-clients container">
+            </section>
+<!--/.posts -->
+<div class="container">
+    <hr class="main-divider">
+</div>
+<!--/.main-divider -->
+<section class="our-clients container">
                 <div class="row">
                     <div class="span3 left-box">
                         <h4 class="section-header"><span>//</span> Our Clients</h4>
@@ -296,4 +307,5 @@
                         </div> 
                     </div>
                 </div>         
-            </section><!--/.our-clients -->
+            </section>
+<!--/.our-clients -->

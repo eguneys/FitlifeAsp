@@ -1,0 +1,14 @@
+﻿@model ModelStateDictionary
+
+@if (!Model.IsValid)
+{
+    <ul class='unstyled'>
+    @foreach (var modelError in
+    Model.SelectMany(keyValuePair => keyValuePair.Value.Errors))
+    {
+        <li class='alert'>
+        @modelError.ErrorMessage
+        </li>
+    }
+    </ul>
+}

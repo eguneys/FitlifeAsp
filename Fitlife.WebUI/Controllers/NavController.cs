@@ -21,19 +21,29 @@ namespace Fitlife.WebUI.Controllers
                     Name = "Home",
                     Link = "Index",
                     Controller = "Home",
-                    Action = "Index"
+                    Action = "Index",
+                    AllowAnonymous = true
                 },
                 new NavViewModel () {
                     Name = "Progress",
                     Link = "Progress",
-                    Controller = "Home",
-                    Action = "Progress"
+                    Controller = "Progress",
+                    Action = "Index",
+                    AllowAnonymous = false
+                },
+                new NavViewModel () {
+                                        Name= "Nutrition",
+                                        Link = "Nutrition",
+                                        Controller = "Nutrition",
+                                        Action = "Index",
+                                        AllowAnonymous = false
                 },
                 new NavViewModel () {
                     Name = "About",
                     Link = "About",
                     Controller = "Home",
-                    Action = "About"
+                    Action = "About",
+                    AllowAnonymous = true
                 }
             };
 

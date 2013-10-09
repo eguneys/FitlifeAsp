@@ -34,6 +34,10 @@
                 </div>
             }
             <div class="bottom-text">
-                 <p>Already have an account? <a href="login.html">Log In</a></p>
+                 <p>Already have an account? @Html.RouteLink("Log in", new
+{
+    controller = "Account",
+    action = "Login"
+})</p>
             </div>
         </div> <!-- /container -->

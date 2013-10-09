@@ -4,11 +4,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Fitlife.Domain.Entities;
+using Fitlife.WebUI.Filters;
+using System.Web.Security;
+using Fitlife.Domain.Abstract;
 
 namespace Fitlife.WebUI.Controllers
 {
     public class AccountController : Controller
     {
+
+        private IUserRepository uRepository;
+
+        public AccountController(IUserRepository repository)
+        {
+            uRepository = repository;
+        }
 
         public ViewResult Login()
         {
@@ -16,10 +26,25 @@ namespace Fitlife.WebUI.Controllers
         }
 
         [HttpPost]
-        public ViewResult Login(User user)
+        public ActionResult Login(User user)
         {
-            Session["Key"] = "asdklfj";
-            return View(user);
+            if (ModelState.IsValid)
+            {
+                if (uRepository.ValidateUser(user))
+                {
+                    FormsAuthentication.SetAuthCookie(user.Name, false);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    TempData["message"] = string.Format("Invalid username or password");
+                    return View(user);
+                }
+            }
+            else
+            {
+                return View(user);
+            }
         }
 
         public ViewResult Signup()
@@ -28,9 +53,24 @@ namespace Fitlife.WebUI.Controllers
         }
 
         [HttpPost]
-        public ViewResult Signup(User user)
+        public ActionResult Signup(User user)
         {
-            return View(user);
+            if (ModelState.IsValid)
+            {
+                uRepository.SaveUser(user);
+                TempData["message"] = string.Format("Registration successfull");
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View(user);
+            }
+        }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
