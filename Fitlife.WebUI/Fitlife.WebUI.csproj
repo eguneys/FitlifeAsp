@@ -171,6 +171,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NavController.cs" />
+    <Compile Include="Controllers\NutritionApi2Controller.cs" />
     <Compile Include="Controllers\NutritionApiController.cs" />
     <Compile Include="Controllers\NutritionController.cs" />
     <Compile Include="Controllers\ProgressApiController.cs" />

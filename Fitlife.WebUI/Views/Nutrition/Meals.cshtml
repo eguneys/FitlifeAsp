@@ -10,14 +10,14 @@
                  <span class='label label-primary pull-right'> 0 Calories </span></a></h4>
                  <div class='collapse in' data-bind="attr: { id: 'collapse' + name }">
                  <div class='well small'>
-                 <ul class='list-group list-group-flush' style='padding-bottom: 10px;' data-bind='foreach: foods'>
+                 <ul class='list-group unstyled list-group-flush' style='padding-bottom: 10px;' data-bind='foreach: foods'>
                  <li>
-                 <p> Description 
-                 <span class='label label-default pull-right>0 Calories <br /> 0 Empty Calories </span>
+                 <p data-bind='text: food.Description'>
+                 <span class='label label-default pull-right'>0 Calories <br /> 0 Empty Calories </span>
                  </p>
-                 <small> Description</small>
+                 <small>  </small>
                  <br />
-                 <div class='btn-group pull-right>
+                 <div class='btn-group pull-right'>
                  <a class='btn btn-link btn-small'>
                  <i class='icon-edit'></i> Edit
                  </a>
@@ -30,6 +30,7 @@
                  </div>
                  <div class='clearfix'></div>
                  </li>
+
                  </ul>
                  </div>
                  </div>

@@ -98,16 +98,25 @@ self.foodSelectionInputChanged = function () {
 
 self.selectFood = function (food) {
     $.getJSON("api/NutritionApi/?foodCode=" + food.FoodCode, function (data) {
-        console.log(data);
-        self.selectedFood(new Food(data));
+        $.getJSON("api/NutritionApi2/?foodCode=" + food.FoodCode, function (nutvals) {
+            var food = new Food(data);
+            food.nutrients = nutvals;
+            console.log(food);
+            self.selectedFood(food);
+        });
+
     });
 }
 
 
 self.addFood = function () {
-    self.selectedFood().selectedmeals().forEach(function (item) {
-        foodTracker().meals()[foodTracker().mealTimes.indexOf(item)].foods.push(item);
+    ko.utils.arrayForEach(self.selectedFood().selectedmeals(), function (item) {
+        self.foodTracker().meals()[self.foodTracker().mealTimes.indexOf(item)].foods.push(self.selectedFood());
     });
+}
+
+self.removeFood = function (food) {
+
 }
 };
 
