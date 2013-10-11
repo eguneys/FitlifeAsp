@@ -1,25 +1,45 @@
-﻿function FoodTracker() {
+﻿function Meal(name) {
     var self = this;
-    var mealTimes = [
+    self.name = name;
+    self.foods = ko.observableArray();
+}
+
+function FoodTracker() {
+    var self = this;
+
+    self.mealTimes = [
     "breakfast",
     "lunch",
     "dinner",
     "snacks"];
 
-    var meals = ko.observableArray([
+    self.mealAmounts = [
+    1,2,3,4,5
+    ];
+
+    self.meals = ko.observableArray([
+    new Meal(self.mealTimes[0]),
+    new Meal(self.mealTimes[1]),
+    new Meal(self.mealTimes[2]),
+    new Meal(self.mealTimes[3])
     ]);
 }
 
 
-function Food(description, amount, unit, time) {
+function Food(data) {
+    if (data == null) {
+        data = { MainFood: '', Portions: '', Weights: ''}
+    }
     var self = this;
-    self.description = ko.observable(description);
-    self.amount = ko.observable(amount);
-    self.unit = ko.observable(unit);
-    self.time = ko.observable(time);
+    self.selectedamount = 1;
+    self.selectedunit = null;
+    self.selectedmeals = ko.observableArray();
 
-    self.nutrients = ko.observableArray();
-    self.foodGroups = ko.observableArray();
+    self.food = data.MainFood;
+    self.portiondescs = data.Portions;
+    self.foodweights = data.Weights;
+    self.nutrients = [];
+    self.foodgroups = [];
 }
 
 
@@ -36,10 +56,15 @@ function NutritionViewModel() {
 
     self.foodSelectionInput = ko.observable();
     self.foods = ko.observableArray();
-    self.foodGroups = ko.observableArray();
-    self.foodGroupSelection = ko.observable(self.foodGroups()[0]);
+    self.foodGroups = [
+    new FoodGroup("All Foods"),
+    new FoodGroup("Dairy")
+    ];
+    self.foodGroupSelection = ko.observable(self.foodGroups[0]);
 
     self.selectedFood = ko.observable(new Food());
+
+    self.foodTracker = ko.observable(new FoodTracker());
 
 self.selectFoodGroup = function (fg) {
     self.foodGroupSelection(fg);
@@ -65,13 +90,25 @@ self.foodSelectionInputChanged = function () {
         $.getJSON("api/NutritionApi/?name=" + newval, function (data) {
             self.foods.removeAll();
             data.$values.forEach(function (item) { self.foods.push(item); });
-            console.log(self.foods());
         });
 
 
     }, 1000);
 }
 
+self.selectFood = function (food) {
+    $.getJSON("api/NutritionApi/?foodCode=" + food.FoodCode, function (data) {
+        console.log(data);
+        self.selectedFood(new Food(data));
+    });
+}
+
+
+self.addFood = function () {
+    self.selectedFood().selectedmeals().forEach(function (item) {
+        foodTracker().meals()[foodTracker().mealTimes.indexOf(item)].foods.push(item);
+    });
+}
 };
 
 

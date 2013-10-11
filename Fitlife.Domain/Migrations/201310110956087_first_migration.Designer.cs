@@ -5,13 +5,13 @@ namespace Fitlife.Domain.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class foodweightsidadded : IMigrationMetadata
+    public sealed partial class first_migration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(foodweightsidadded));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(first_migration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201310102111176_food-weights-idadded"; }
+            get { return "201310110956087_first_migration"; }
         }
         
         string IMigrationMetadata.Source

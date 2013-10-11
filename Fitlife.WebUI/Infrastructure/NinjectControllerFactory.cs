@@ -29,6 +29,7 @@ namespace Fitlife.WebUI.Infrastructure
         {
             ninjectKernel.Bind<IUserRepository>().To<EFUserRepository>();
             ninjectKernel.Bind<IBodyPhotoRepository>().To<EFBodyPhotoRepository>();
+            ninjectKernel.Bind<IFoodRepository>().To<EFFoodRepository>();
         }
     }
 }

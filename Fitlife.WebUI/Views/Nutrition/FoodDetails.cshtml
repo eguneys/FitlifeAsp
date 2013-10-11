@@ -1,20 +1,26 @@
 ﻿            <h4>
                 Food Details</h4>
-<h3 > Description </h3>
+                <div data-bind='with: selectedFood().food'>
+                <h3 data-bind='text: Description'>  </h3>
+</div>
 <hr />
 <h4>Choose amount:</h4>
 <form>
-<select></select>
-<select></select>
+<select data-bind='options: foodTracker().mealAmounts, value: selectedFood().selectedamount'></select>
+<select data-bind="options: selectedFood().portiondescs.$values, optionsText: 'Description', value: selectedFood().selectedunit"></select>
 </form>
 <h4>Choose meal time:</h4>
 <form>
+<ul class='list inline unstyled' data-bind='foreach: foodTracker().mealTimes'>
+<li>
 <label class='checkbox-inline'>
-<input(type="checkbox" />
+<input type="checkbox" data-bind="value: $data, checked: $root.selectedFood().selectedmeals" ></input><span data-bind='text: $data'></span>
 </label>
+</li>
+</ul>
 <br />
 <div class='btn-group pull-right' style='margin-top: 10px'>
-<button class='btn btn-primary'>
+<button class='btn btn-primary' data-bind='click: $root.addFood'>
 Add
 <span class='icon-plus'></span>
 </button>
@@ -47,7 +53,7 @@ Clear
 </thead>
 <tbody>
 <tr>
-<td> Description </td>
+<td data-bind='text: selectedFood().Description'>  </td>
 <td> Amount</td>
 <td> target</td>
 </tr>

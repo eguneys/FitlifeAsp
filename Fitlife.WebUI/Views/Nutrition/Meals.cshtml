@@ -1,16 +1,16 @@
-﻿            <h4>
+﻿            <h4 class='text-info text-center'>
                 Meals
                 
-                <span class='label label-primary pull-right'> 0 Calories </span>
+                <span class='label label-info pull-right'> 0 Calories </span>
                 </h4>
                 <div class='scrollDiv'>
-                <div class='well'>
-                <h4><a class='accordion-toggle' data-toggle='collapse' data-parent='accordion2' href='#collapseDinner'>
-                Dinner
-                 <span class='label label-default pull-right'> 0 Calories </span></a></h4>
-                 <div class='collapse in' id='collapseDinner'>
-                 <div id='contentDinner'>
-                 <ul class='list-group list-group-flush' style='padding-bottom: 10px;'>
+                <div class='well-small' data-bind='foreach: foodTracker().meals'>
+                <h4><a class='btn btn-block accordion-toggle' data-toggle='collapse' data-parent='accordion2' data-bind="attr: { href: '#collapse' + name}">
+                <span class='text-info' data-bind='text: name'></span>
+                 <span class='label label-primary pull-right'> 0 Calories </span></a></h4>
+                 <div class='collapse in' data-bind="attr: { id: 'collapse' + name }">
+                 <div class='well small'>
+                 <ul class='list-group list-group-flush' style='padding-bottom: 10px;' data-bind='foreach: foods'>
                  <li>
                  <p> Description 
                  <span class='label label-default pull-right>0 Calories <br /> 0 Empty Calories </span>
@@ -33,5 +33,5 @@
                  </ul>
                  </div>
                  </div>
-                </div>
+                </div> <!-- dinner -->
                 </div>

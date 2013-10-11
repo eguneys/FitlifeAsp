@@ -32,7 +32,7 @@
         <div class='span4'>
         @{Html.RenderPartial("FoodSelection");}
         </div>
-        <div class='span4'>
+        <div class='span4' data-bind="visible: selectedFood().food != ''">
         @{Html.RenderPartial("FoodDetails");}
         </div>
         <div class='span4'>

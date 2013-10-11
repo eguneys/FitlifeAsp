@@ -44,12 +44,11 @@ namespace Fitlife.Domain.Helpers
             return result;
         }
 
-        public static void buildFood(EFDBContext context)
+
+        public static void buildFoodWeights(string basePath)
         {
-            string basePath = "E:/Documents/Web Projects/fitstarter/";
-
-
             // TODO BULK LOad this
+            var bulkCopyThis = new List<FoodWeights>();
             List<List<string>> foodweights = GetLines(basePath + "FoodWeights.txt", RequiredFieldMap["FoodWeights.txt"]);
             int counter = 0;
             foodweights.ForEach(line =>
@@ -60,15 +59,64 @@ namespace Fitlife.Domain.Helpers
                     PortionCode = int.Parse(line[1]),
                     PortionWeight = decimal.Parse(line[2])
                 };
-                context.FoodWeights.Add(newVal);
+//                context.FoodWeights.Add(newVal);
 
-                if (++counter == 10000)
-                {
-                    counter = 0;
-                    context.SaveChanges();
-                }
+                //if (++counter == 10000)
+                //{
+                //    counter = 0;
+                //    context.SaveChanges();
+                //}
+
+                bulkCopyThis.Add(newVal);
             });
 
+            
+            string connectionString = GetConnectionString();
+
+            var bulkCopy = new SqlBulkCopy(connectionString);
+
+            bulkCopy.DestinationTableName = "FoodWeights";
+
+            bulkCopy.WriteToServer(bulkCopyThis.AsDataReader());
+
+        }
+
+        public static void buildMainFoods(string basePath)
+        {
+            List<List<string>> MainFoodDesc = GetLines(basePath + "MainFoodDesc.txt", RequiredFieldMap["MainFoodDesc.txt"]);
+            List<MainFoodDes> bulkCopyThis = new List<MainFoodDes>();
+
+            MainFoodDesc.ForEach(line =>
+            {
+                MainFoodDes newVal = new MainFoodDes()
+                {
+                    FoodCode = int.Parse(line[0]),
+                    Description = line[1]
+                };
+
+
+//                context.MainFoodDes.Add(newVal);
+                bulkCopyThis.Add(newVal);
+            });
+
+
+
+            
+            string connectionString = GetConnectionString();
+
+            var bulkCopy = new SqlBulkCopy(connectionString);
+
+            bulkCopy.DestinationTableName = "MainFoodDes";
+
+            bulkCopy.WriteToServer(bulkCopyThis.AsDataReader());
+        }
+
+        public static void buildFood(EFDBContext context)
+        {
+            string basePath = "E:/Documents/Web Projects/fitstarter/";
+
+            buildFoodWeights(basePath);
+            
             /*******************************************************/
             /*******************************************************/
             /*******************************************************/
@@ -117,25 +165,8 @@ namespace Fitlife.Domain.Helpers
             /*******************************************************/
             /*******************************************************/
             /*******************************************************/
-            Debug.WriteLine("here");
-            List<List<string>> MainFoodDesc = GetLines(basePath + "MainFoodDesc.txt", RequiredFieldMap["MainFoodDesc.txt"]);
 
-            MainFoodDesc.ForEach(line =>
-            {
-                MainFoodDes newVal = new MainFoodDes()
-                {
-                    FoodCode = int.Parse(line[0]),
-                    Description = line[1]
-                };
-
-
-                context.MainFoodDes.Add(newVal);
-
-            });
-
-
-
-            context.SaveChanges();
+            buildMainFoods(basePath);
 
 
             /*******************************************************/

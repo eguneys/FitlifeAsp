@@ -4,26 +4,39 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Fitlife.Domain.Abstract;
+using Fitlife.Domain.Entities;
+using Fitlife.Domain.Concrete;
 
 namespace Fitlife.WebUI.Controllers
 {
     public class NutritionApiController : ApiController
     {
-        public IEnumerable<string> GetAllFoods()
+        IFoodRepository repository;
+
+        public NutritionApiController()
         {
-            return new List<string>()
-            {
-                "Hello", "World"
-            };
+            repository = EFFoodRepository.getRepository();
+        }
+
+        public NutritionApiController(IFoodRepository repo)
+        {
+            repository = repo;
+        }
+        public IEnumerable<MainFoodDes> GetAllFoods()
+        {
+            return repository.Foods;
         }
         
 
-        public IEnumerable<string> GetFood(string name)
+        public IEnumerable<MainFoodDes> GetFood(string name)
         {
-            return new List<string>()
-            {
-                "Hello", "World", name
-            };
+            return repository.Foods.Where(x => x.Description.Contains(name));
+        }
+
+        public Food GetFood(int foodCode)
+        {
+            return repository.GetFood(foodCode);
         }
     }
 }

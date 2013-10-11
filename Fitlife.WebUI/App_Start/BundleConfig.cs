@@ -56,6 +56,10 @@ namespace Fitlife.WebUI
                                 "~/Scripts/KnockoutApp/*.js"
                 ));
 
+            bundles.Add(new StyleBundle("~/Content/Site").Include(
+                                "~/Content/Site2.css"
+                ));
+
             bundles.Add(new StyleBundle("~/Content/fontawesome").Include(
                 "~/Content/font-awesome.min.css"
                 ));

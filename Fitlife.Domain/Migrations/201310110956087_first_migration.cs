@@ -3,7 +3,7 @@ namespace Fitlife.Domain.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class firstmigration : DbMigration
+    public partial class first_migration : DbMigration
     {
         public override void Up()
         {
@@ -38,7 +38,7 @@ namespace Fitlife.Domain.Migrations
                 "dbo.MainFoodDes",
                 c => new
                     {
-                        FoodCode = c.Int(nullable: false, identity: true),
+                        FoodCode = c.Int(nullable: false),
                         Description = c.String(),
                     })
                 .PrimaryKey(t => t.FoodCode);
@@ -57,20 +57,22 @@ namespace Fitlife.Domain.Migrations
                 "dbo.FoodWeights",
                 c => new
                     {
+                        FoodWeightsID = c.Int(nullable: false, identity: true),
                         FoodCode = c.Int(nullable: false),
                         PortionCode = c.Int(nullable: false),
                         PortionWeight = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
-                .PrimaryKey(t => new { t.FoodCode, t.PortionCode });
+                .PrimaryKey(t => t.FoodWeightsID);
             
             CreateTable(
                 "dbo.PortionDescriptions",
                 c => new
                     {
-                        PortionCode = c.Int(nullable: false, identity: true),
+                        PortionID = c.Int(nullable: false, identity: true),
+                        PortionCode = c.Int(nullable: false),
                         Description = c.String(),
                     })
-                .PrimaryKey(t => t.PortionCode);
+                .PrimaryKey(t => t.PortionID);
             
             CreateTable(
                 "dbo.NutrDescs",

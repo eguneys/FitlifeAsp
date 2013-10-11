@@ -9,7 +9,7 @@ namespace Fitlife.Domain.Entities
 {
     public class MainFoodDes
     {
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int FoodCode { get; set; }
         public string Description { get; set; }
     }
@@ -36,6 +36,7 @@ namespace Fitlife.Domain.Entities
     public class PortionDescriptions
     {
         [Key]
+        public int PortionID { get; set; }
         public int PortionCode { get; set; }
         public string Description { get; set; }
     }
@@ -46,5 +47,15 @@ namespace Fitlife.Domain.Entities
         public string Description { get;set; }
         public string Tagname { get; set; }
         public string Unit { get; set; }
+    }
+
+
+    public class Food
+    {
+        public MainFoodDes MainFood { get; set; }
+        public List<FoodWeights> Weights { get; set; }
+        public List<PortionDescriptions> Portions { get; set; }
+
+        public List<FNDDSNutVal> NutVals { get; set; }
     }
 }
