@@ -171,6 +171,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NavController.cs" />
+    <Compile Include="Controllers\NutritionApiController.cs" />
     <Compile Include="Controllers\NutritionController.cs" />
     <Compile Include="Controllers\ProgressApiController.cs" />
     <Compile Include="Controllers\ProgressController.cs" />
@@ -287,6 +288,14 @@
     <Content Include="Scripts\Boldex\uitotop\easing.js" />
     <Content Include="Scripts\Boldex\uitotop\jquery.ui.totop.js" />
     <Content Include="Scripts\Boldex\uitotop\jquery.ui.totop.min.js" />
+    <Content Include="Scripts\Controllers\ProgressController.js" />
+    <Content Include="Scripts\ember-1.0.0.debug.js" />
+    <Content Include="Scripts\ember-1.0.0.js" />
+    <Content Include="Scripts\ember-1.0.0.min.js" />
+    <Content Include="Scripts\EmberApp\application.js" />
+    <Content Include="Scripts\EmberApp\router.js" />
+    <Content Include="Scripts\handlebars.js" />
+    <Content Include="Scripts\handlebars.runtime.js" />
     <Content Include="Scripts\jquery-1.9.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -299,8 +308,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-2.1.0.debug.js" />
-    <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\knockout-2.3.0.debug.js" />
+    <Content Include="Scripts\knockout-2.3.0.js" />
+    <Content Include="Scripts\KnockoutApp\NutritionController.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\moment+langs.js" />
     <Content Include="Scripts\moment+langs.min.js" />

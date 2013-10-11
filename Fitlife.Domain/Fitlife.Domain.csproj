@@ -53,11 +53,30 @@
     <Compile Include="Entities\BodyPhoto.cs" />
     <Compile Include="Entities\NutrDef.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Helpers\EntityDataReader.cs" />
+    <Compile Include="Helpers\FoodBuilder.cs" />
+    <Compile Include="Migrations\201310101922141_first-migration.cs" />
+    <Compile Include="Migrations\201310101922141_first-migration.Designer.cs">
+      <DependentUpon>201310101922141_first-migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310102111176_food-weights-idadded.cs" />
+    <Compile Include="Migrations\201310102111176_food-weights-idadded.Designer.cs">
+      <DependentUpon>201310102111176_food-weights-idadded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201310101922141_first-migration.resx">
+      <DependentUpon>201310101922141_first-migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310102111176_food-weights-idadded.resx">
+      <DependentUpon>201310102111176_food-weights-idadded.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

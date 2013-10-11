@@ -1,0 +1,1 @@
+﻿window.Fitlife = Ember.Application.create();

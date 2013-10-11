@@ -42,6 +42,20 @@ namespace Fitlife.WebUI
                 "~/Scripts/BlueImp/*.js"
 ));
 
+            bundles.Add(new ScriptBundle("~/bundles/Controllers").Include(
+                                "~/Scripts/Controllers/*.js"
+                ));
+                //bundles.Add(new ScriptBundle("~/bundles/EmberApp").Include(
+                //    "~/Scripts/handlebars.js",
+                //    "~/Scripts/ember-{version}.js",
+                //"~/Scripts/EmberApp/*.js"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/knockoutapp").Include(
+                                "~/Scripts/knockout-{version}.js",
+                                "~/Scripts/KnockoutApp/*.js"
+                ));
+
             bundles.Add(new StyleBundle("~/Content/fontawesome").Include(
                 "~/Content/font-awesome.min.css"
                 ));

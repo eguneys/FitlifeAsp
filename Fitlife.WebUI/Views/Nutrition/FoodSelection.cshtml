@@ -2,26 +2,28 @@
                 Food Selection</h4>
 
                 <div class='btn-group'>
-                <button class='btn'> All Foods
+                <button class='btn' data-bind='text: foodGroupSelection().name'>
                 </button>
                 <button class='btn dropdown-toggle' data-toggle='dropdown'>
                 <span class='caret'></span>
                 </button>
-                <ul class='dropdown-menu'>
-                <li><a > All Foods </a></li>
+                <ul class='dropdown-menu' data-bind='foreach: foodGroups'>
+                <li><a data-bind='text: name, click: $root.selectFoodGroup'>  </a> </li>
                 </ul>
                 </div>
 
                 <div class='input-append'>
                 <div class='input-append'>
-                <input class=' span4 form-control' type='text' placeholder='Enter food' />
+                <input id='inputfoodselection' class=' form-control' type='text' placeholder='Enter food' 
+                data-bind='value: foodSelectionInput, event: { keyup: foodSelectionInputChanged}'/>
                 <span class='input-group-btn'>
                 <button class='btn btn-primary' type='button'> Go !</button>
                 </span>
                 </div>
                 </div>
                 <hr />
-                <div class='scrollDiv>
-                <div class='list-group'>
-                </div>
+                <div class='scrollDiv'>
+                <ul id='listfoodselection' class='list-group unstyled' data-bind="foreach: { data: foods, as: 'food'}">
+                                <li><a data-bind='text: food'> </a></li>
+                </ul>
                 </div>
