@@ -7,9 +7,13 @@ using System.Web.Http;
 using Fitlife.Domain.Entities;
 using Fitlife.Domain.Abstract;
 using Fitlife.Domain.Concrete;
+using System.Web;
+using System.Web.Http.Filters;
+using Fitlife.WebUI.Filters;
 
 namespace Fitlife.WebUI.Controllers
 {
+    
     public class ProgressApiController : ApiController
     {
         IBodyPhotoRepository repo = EFBodyPhotoRepository.getRepository();
@@ -24,6 +28,7 @@ namespace Fitlife.WebUI.Controllers
         }
         public IEnumerable<BodyPhoto> GetAllBodyPhotos()
         {
+            
             return repo.Photos;
         }
 

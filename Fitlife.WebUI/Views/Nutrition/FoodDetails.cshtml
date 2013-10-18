@@ -7,7 +7,7 @@
 <h4>Choose amount:</h4>
 <form>
 <select data-bind='options: foodTracker().mealAmounts, value: selectedFood().selectedamount'></select>
-<select data-bind="options: selectedFood().portiondescs.$values, optionsText: 'Description', value: selectedFood().selectedunit"></select>
+<select data-bind="options: selectedFood().portiondescs, optionsText: 'Description', value: selectedFood().selectedunit"></select>
 </form>
 <h4>Choose meal time:</h4>
 <form>
@@ -29,6 +29,7 @@ Clear
 <span class='icon-remove'></span>
 </button>
 </div>
+    <div class="clearfix"></div>
 </form>
 <hr />
 <ul class='nav nav-tabs'>
@@ -49,12 +50,13 @@ Clear
 </th>
 <th><strong>Amount</strong></th>
 <th><strong> % of Daily Target</strong></th>
+    <th></th>
 </tr>
 </thead>
-<tbody>
+<tbody data-bind="foreach: selectedFood().nutrients">
 <tr>
-<td data-bind='text: selectedFood().Description'>  </td>
-<td> Amount</td>
+<td data-bind='text: $parent.nutr($data.NutrientCode).Description'>  </td>
+<td data-bind="text: $parent.nutritionAmount($data)"> </td>
 <td> target</td>
 </tr>
 </tbody>

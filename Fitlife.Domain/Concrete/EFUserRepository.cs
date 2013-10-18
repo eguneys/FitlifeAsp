@@ -9,6 +9,10 @@ namespace Fitlife.Domain.Concrete
 {
     public class EFUserRepository : IUserRepository
     {
+
+        private static IUserRepository repo = new EFUserRepository();
+        public static IUserRepository getRepository() { return repo; }
+
         private EFDBContext context = new EFDBContext();
 
         public IQueryable<User> Users

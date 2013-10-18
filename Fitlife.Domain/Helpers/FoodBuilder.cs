@@ -113,7 +113,7 @@ namespace Fitlife.Domain.Helpers
 
         public static void buildFood(EFDBContext context)
         {
-            string basePath = "E:/Documents/Web Projects/fitstarter/";
+            string basePath = "C:/Users/matizmabel/Documents/Visual Studio 2012/Projects/FitlifeAsp/Fitlife.WebUI/App_Data/";
 
             buildFoodWeights(basePath);
             
@@ -202,7 +202,7 @@ namespace Fitlife.Domain.Helpers
 
         private static string GetConnectionString()
         {
-            return "Data Source=.\\SQLSERVEREXPRESS;Initial Catalog=Fitlife.Domain.Concrete.EFDBContext;Integrated Security=True;User ID=eguneys;Password=ipek214";
+            return "Data Source=CASPER;Initial Catalog=Fitlife.Domain.Concrete.EFDBContext;Integrated Security=True;User ID=eguneys;Password=ipek214";
         }
     }
 }

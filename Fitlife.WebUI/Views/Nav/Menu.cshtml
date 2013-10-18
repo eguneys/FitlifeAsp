@@ -4,10 +4,10 @@
 {
     if (!navlink.AllowAnonymous && !User.Identity.IsAuthenticated) { continue; }
     <li class='@(navlink.Link == ViewBag.SelectedNav ? "active" : ViewBag.SelectedNav)'>
-    @Html.RouteLink(navlink.Name, new
-{
-    controller = navlink.Controller,
-action = navlink.Action
-})
+    
+        <a href="@Url.Action(navlink.Action, navlink.Controller)">
+            <i class="@navlink.Icon"></i>
+            @navlink.Name
+        </a>
 </li>
 }

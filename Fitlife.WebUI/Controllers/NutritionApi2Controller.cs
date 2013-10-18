@@ -32,5 +32,6 @@ namespace Fitlife.WebUI.Controllers
         {
             return repository.NutVals.Where(x => x.FoodCode == foodCode);
         }
+
     }
 }

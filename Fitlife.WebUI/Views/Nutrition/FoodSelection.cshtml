@@ -28,6 +28,15 @@
                                 <li><a data-bind='text: food.Description, click: $root.selectFood' class='btn-link'> </a></li>
                 </ul>
                 </div>
-                
+                <div class="pagination pagination-large">
+                    <ul>
+                        <li data-bind="attr: { 'class': foodPagination().hasPrevious }"><a class="btn-link" data-bind="click: foodPagination().pageLeft">&laquo;</a></li>
+                        <!-- ko foreach: { data: foodPagination().itemsWatch, as: 'page' } -->
+                        <li data-bind="attr: {'class': isCurrentPage}"><a class="btn-link" data-bind="text: page.number + 1, click: function ()  { $parent.foodPagination().goPage(page) }"></a></li>
+                        <!-- /ko -->
+                        <li data-bind="attr: {'class': foodPagination().hasNext}"><a class="btn-link" data-bind="click: foodPagination().pageRight">&raquo;</a></li>
+                    </ul>
+
+                </div>
                 </div>
                 </div>

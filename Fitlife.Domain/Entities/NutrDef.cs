@@ -43,6 +43,8 @@ namespace Fitlife.Domain.Entities
 
     public class NutrDesc {
         [Key]
+        public int NutrientID { get; set; }
+
         public int NutrientCode { get; set; }
         public string Description { get;set; }
         public string Tagname { get; set; }

@@ -15,16 +15,17 @@
                  <p data-bind='text: food.Description'>
                  <span class='label label-default pull-right'>0 Calories <br /> 0 Empty Calories </span>
                  </p>
-                 <small>  </small>
+                 <small data-bind="text: selectedamount">  </small>
+                     <small data-bind="text: selectedunit.Description"></small>
                  <br />
                  <div class='btn-group pull-right'>
-                 <a class='btn btn-link btn-small'>
+                 <a class='btn btn-link btn-small' data-bind="click: $root.editFood">
                  <i class='icon-edit'></i> Edit
                  </a>
                                   <a class='btn btn-link btn-small'>
                  <i class='icon-bookmark'></i> Favorite
                  </a>
-                                  <a class='btn btn-link btn-small'>
+                                  <a class='btn btn-link btn-small'  data-bind="click: $root.removeFood">
                  <i class='icon-remove'></i>  Remove
                  </a>
                  </div>

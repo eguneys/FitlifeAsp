@@ -6,7 +6,8 @@
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
 
-        @Styles.Render("~/Content/bootstrap/base") 
+        @Styles.Render("~/Content/themes/base/css")
+        @Styles.Render("~/Content/bootstrap/base")
         @Styles.Render("~/Content/fontawesome")
         @Styles.Render("~/Content/css")
         @Styles.Render("~/Content/Boldex")
@@ -143,6 +144,8 @@
         </div><!--/.wrapper --> 
         @RenderSection("featured", required: false)
         @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jqueryui")
         @Scripts.Render("~/bundles/bootstrap")
         @Scripts.Render("~/bundles/moment")
         @Scripts.Render("~/bundles/Boldex")

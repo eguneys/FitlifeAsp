@@ -1,0 +1,29 @@
+﻿<ul class="nav nav-list" id="sidenav">
+    <li class>
+        @Html.RouteLink("Feed", new {
+                      controller="Social",
+                      action = "Feed"
+                  })
+    </li>
+    <li>
+        @Html.RouteLink("People", new {
+       controller="Social",
+       action = "People"
+   })
+    </li>
+    <li>
+        @Html.RouteLink("Friends", new
+   {
+       controller="Social",
+       action = "Friends"
+   })</li>
+    <li class="nav-header">Profile </li>
+    <li class="divider"></li>
+    <li>
+        @Html.RouteLink("Settings", new {
+              controller="Social",
+              action = "Settings"
+   })       
+
+    </li>
+</ul>

@@ -11,6 +11,11 @@ namespace Fitlife.Domain.Concrete
     {
         public DbSet<User> Users { get; set; }
         public DbSet<BodyPhoto> Photos { get; set; }
+        public DbSet<BlogItem> BlogItems { get; set; }
+        public DbSet<BlogComment> BlogComments { get; set; }
+        public DbSet<BlogLike> BlogLikes { get; set; }
+
+
 
         public DbSet<MainFoodDes> MainFoodDes { get; set; }
         public DbSet<FNDDSNutVal> FNDDSNutVals { get; set; }
@@ -23,6 +28,16 @@ namespace Fitlife.Domain.Concrete
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<BodyPhoto>().ToTable("BodyPhoto");
+
+            modelBuilder.Entity<BlogComment>()
+                .HasRequired(c => c.User)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<BlogLike>()
+                .HasRequired(c => c.User)
+                .WithMany()
+                .WillCascadeOnDelete(false);
         }
 
 

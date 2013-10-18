@@ -15,6 +15,7 @@ namespace Fitlife.Domain.Entities
         public virtual User User { get; set; }
         public DateTime Date { get; set; }
         public string PhotoSource { get; set; }
+        public string PhotoDescription { get; set; }
 
         public string MuscleGroup { get; set; }
     }

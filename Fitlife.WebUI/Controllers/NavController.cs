@@ -22,6 +22,7 @@ namespace Fitlife.WebUI.Controllers
                     Link = "Index",
                     Controller = "Home",
                     Action = "Index",
+                    Icon = "icon-home",
                     AllowAnonymous = true
                 },
                 new NavViewModel () {
@@ -29,6 +30,7 @@ namespace Fitlife.WebUI.Controllers
                     Link = "Progress",
                     Controller = "Progress",
                     Action = "Index",
+                    Icon = "icon-rocket",
                     AllowAnonymous = false
                 },
                 new NavViewModel () {
@@ -36,15 +38,24 @@ namespace Fitlife.WebUI.Controllers
                                         Link = "Nutrition",
                                         Controller = "Nutrition",
                                         Action = "Index",
+                                        Icon = "icon-lemon",
                                         AllowAnonymous = false
                 },
                 new NavViewModel () {
-                    Name = "About",
-                    Link = "About",
-                    Controller = "Home",
-                    Action = "About",
-                    AllowAnonymous = true
-                }
+                                        Name = "Social",
+                                        Link = "Social",
+                                        Controller = "Social",
+                                        Action = "Index",
+                                        Icon = "icon-comment",
+                                        AllowAnonymous = false
+                },
+                //new NavViewModel () {
+                //    Name = "About",
+                //    Link = "About",
+                //    Controller = "Home",
+                //    Action = "About",
+                //    AllowAnonymous = true
+                //}
             };
 
             return PartialView(navigations);

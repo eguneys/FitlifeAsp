@@ -45,21 +45,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IBlogItemRepository.cs" />
     <Compile Include="Abstract\IBodyPhotoRepository.cs" />
     <Compile Include="Abstract\IFoodRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Concrete\EFBlogItemRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Concrete\EFBodyPhotoRepository.cs" />
     <Compile Include="Concrete\EFDBContext.cs" />
     <Compile Include="Concrete\EFFoodRepository.cs" />
     <Compile Include="Concrete\EFUserRepository.cs" />
+    <Compile Include="Entities\BlogItem.cs" />
     <Compile Include="Entities\BodyPhoto.cs" />
     <Compile Include="Entities\NutrDef.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Helpers\EntityDataReader.cs" />
     <Compile Include="Helpers\FoodBuilder.cs" />
-    <Compile Include="Migrations\201310110956087_first_migration.cs" />
-    <Compile Include="Migrations\201310110956087_first_migration.Designer.cs">
-      <DependentUpon>201310110956087_first_migration.cs</DependentUpon>
+    <Compile Include="Migrations\201310181413495_first.cs" />
+    <Compile Include="Migrations\201310181413495_first.Designer.cs">
+      <DependentUpon>201310181413495_first.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,8 +74,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201310110956087_first_migration.resx">
-      <DependentUpon>201310110956087_first_migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201310181413495_first.resx">
+      <DependentUpon>201310181413495_first.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

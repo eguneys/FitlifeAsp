@@ -11,7 +11,8 @@ namespace Fitlife.WebUI.Filters
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            return httpContext.User.Identity.IsAuthenticated;
+            return httpContext.User.Identity.IsAuthenticated && httpContext.Session["user"] != null;
         }
     }
+
 }
