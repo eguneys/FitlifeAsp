@@ -13,6 +13,7 @@ namespace Fitlife.Domain.Abstract
         IQueryable<PortionDescriptions> PortionDescriptions { get; }
         IQueryable<FoodWeights> FoodWeights { get; }
         IQueryable<FNDDSNutVal> NutVals { get; }
+        IQueryable<FPED> FPEDs { get; }
 
         Food GetFood(int foodCode);
     }

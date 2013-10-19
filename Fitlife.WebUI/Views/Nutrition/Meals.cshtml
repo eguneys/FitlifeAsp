@@ -1,22 +1,22 @@
 ﻿            <h4 class='text-info text-center'>
                 Meals
                 
-                <span class='label label-info pull-right'> 0 Calories </span>
+                <span class='label label-info pull-right'> <span data-bind="text: foodTracker().Calories"></span> Calories </span>
                 </h4>
                 <div class='scrollDiv'>
                 <div class='well-small' data-bind='foreach: foodTracker().meals'>
                 <h4><a class='btn btn-block accordion-toggle' data-toggle='collapse' data-parent='accordion2' data-bind="attr: { href: '#collapse' + name}">
                 <span class='text-info' data-bind='text: name'></span>
-                 <span class='label label-primary pull-right'> 0 Calories </span></a></h4>
+                 <span class='label label-primary pull-right'> <span data-bind="text: Calories"></span> Calories </span></a></h4>
                  <div class='collapse in' data-bind="attr: { id: 'collapse' + name }">
                  <div class='well small'>
                  <ul class='list-group unstyled list-group-flush' style='padding-bottom: 10px;' data-bind='foreach: foods'>
                  <li>
-                 <p data-bind='text: food.Description'>
-                 <span class='label label-default pull-right'>0 Calories <br /> 0 Empty Calories </span>
-                 </p>
+                 <p data-bind='text: food.Description'></p>
+                 <span class='label label-default pull-right'><span data-bind="text: nutrval('ENERC_KCAL')"></span> Calories <br /> 0 Empty Calories </span>
+                     <div class="clearfix"></div>
                  <small data-bind="text: selectedamount">  </small>
-                     <small data-bind="text: selectedunit.Description"></small>
+                     <small data-bind="text: selectedunit().Description"></small>
                  <br />
                  <div class='btn-group pull-right'>
                  <a class='btn btn-link btn-small' data-bind="click: $root.editFood">

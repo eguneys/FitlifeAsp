@@ -65,6 +65,14 @@ function Meal(name) {
     var self = this;
     self.name = name;
     self.foods = ko.observableArray();
+
+    self.Calories = ko.computed(function () {
+        var total = 0;
+        ko.utils.arrayForEach(self.foods(), function (item) {
+            total += item.nutrval("ENERC_KCAL");
+        });
+        return total;
+    });
 }
 
 function FoodTracker() {
@@ -86,6 +94,62 @@ function FoodTracker() {
     new Meal(self.mealTimes[2]),
     new Meal(self.mealTimes[3])
     ]);
+
+    self.trackDate = ko.observable(new Date());
+
+    self.Calories = ko.computed(function () {
+        var total = 0;
+        ko.utils.arrayForEach(self.meals(), function (item) {
+            total += item.Calories();
+        });
+        return total;
+    });
+
+    self.TotalNutr = function (n) {
+        return ko.computed(function () {
+            var total = 0;
+            ko.utils.arrayForEach(self.meals(), function (item) {
+                ko.utils.arrayForEach(item.foods(), function (food) {
+                    total += food.nutrval(n);
+                });
+            });
+            return total;
+        });
+    };
+
+
+    self.PercentNutr = function (n) {
+        return ko.computed(function () {
+            return (self.TotalNutr(n)() / self.Limits[n].val) * 100;
+        });
+    };
+
+    self.TotalFPED = function (fg) {
+        return ko.computed(function () {
+            var total = 0;
+            ko.utils.arrayForEach(self.meals(), function (item) {
+                ko.utils.arrayForEach(item.foods(), function (food) {
+                    total += parseFloat(food.fped(fg)).toFixed(1) - 0;
+                });
+            });
+            return total;
+        });
+    };
+
+    self.PercentFPED = function (fg) {
+        return ko.computed(function () {
+            return (self.TotalFPED(fg)() / self.Limits[fg].val) * 100;
+        });
+    };
+
+    self.Limits = {
+        OILS: { val: 30, unit: 'g' },
+        SOLID_FATS: { val: 10, unit: 'g' },
+        NA: { val: 230, unit: 'mg' },
+        ENERC_KCAL: { val: 2300, unit: 'kcal' }
+    };
+
+
 }
 
 
@@ -96,6 +160,7 @@ function Food(data) {
     var self = this;
 
     self.parentmeal = null;
+    self.data = data;
 
     self.selectedamount = ko.observable(1);
     self.selectedunit = ko.observable();
@@ -106,6 +171,24 @@ function Food(data) {
     self.foodweights = data.Weights.$values;
     self.nutrients = [];
     self.foodgroups = [];
+    self.fpeds = [];
+
+    self.fped = function (fg) {
+        return parseFloat(self.fpeds[fg]).toFixed(2) / 100 * self.selectedamount() * self.portionweight();
+    };
+
+    self.nutrval = function (tag) {
+        code = globalNutrDefs.nutrient(tag);
+        if (!code) return 0;
+        return globalNutrDefs.nutritionAmount(self.nutrient(code.NutrientCode).NutrientValue, self.portionweight(), self.selectedamount());
+    };
+
+    self.nutrient = function (code) {
+        value = self.nutrients.filter(function (item) {
+            return item.NutrientCode == code;
+        })[0];
+        return value;
+    };
 
     self.portionweight = ko.computed(function () {
         if (self.foodweights == null || self.selectedunit() == null) return 0;
@@ -113,6 +196,23 @@ function Food(data) {
             return item.PortionCode == self.selectedunit().PortionCode;
         })[0].PortionWeight;
     });
+
+    self.clone = function () {
+        var food = new Food(self.data);
+
+        food.parentmeal = self.parentmeal;
+        
+        food.selectedamount(self.selectedamount());
+        food.selectedunit(self.selectedunit());
+
+        food.food = self.food;
+        food.portiondescs = self.portiondescs;
+        food.foodweights = self.foodweights;
+        food.nutrients = self.nutrients;
+        food.foodgroups = self.foodgroups;
+        food.fpeds = self.fpeds;
+        return food;
+    }
 }
 
 
@@ -123,26 +223,37 @@ function FoodGroup(name) {
     self.amount = ko.observable();
 }
 
-function NutrDefs(defs) {
+function NutrDefs() {
     var self = this;
+    
+    $.getJSON("api/NutritionApi2", function (nutdefs) {
+        nutdefs.$values.forEach(function (item) {
+            self.by_tag[item.Tagname] = item;
+            self.by_id[item.NutrientCode] = item;
+        });
+    });
+
     self.by_tag = {};
     self.by_id = {};
 
-    defs.forEach(function (item) {
-        self.by_tag[item.Tagname] = item;
-        self.by_id[item.NutrientCode] = item;
-    });
+
+    self.nutrient = function (name) {
+        var result = self.by_id[name];
+        if (result == undefined) result = self.by_tag[name];
+        return result;
+    }
+
+    self.nutritionAmount = function (nutr_val, weight, amount) {
+        if (nutr_val == null) return 0;
+//        var nutrdef = self.nutrient(nutr_val.NutrientCode);
+        return Math.round((nutr_val / 100) * weight * amount);
+    };
 }
 
 function NutritionViewModel() {
 
     var self = this;
-
-    $.getJSON("api/NutritionApi2", function (nutdefs) {
-        self.nutrdefs = new NutrDefs(nutdefs.$values);
-        console.log(self.nutrdefs);
-    });
-
+    
     self.foodSelectionInput = ko.observable();
     self.foods = ko.observableArray();
     self.foodGroups = [
@@ -157,19 +268,14 @@ function NutritionViewModel() {
 
     self.foodPagination = ko.observable(new Pagination(self));
 
-
-    self.nutr = function (nutr_no) {
-        return self.nutrdefs.by_id[nutr_no];
+    self.selectedFoodNutr = function (nutrient) {
+        return globalNutrDefs.nutrient(nutrient.NutrientCode);
     }
 
-    self.nutrient = function (name) {
-        return self.nutrdefs.by_tag[name];
-    }
-
-    self.nutritionAmount = function (nutr_val) {
-        if (nutr_val == null) return 0;
-        var nutrdef = self.nutr(nutr_val.NutrientCode);
-        return Math.round((nutr_val.NutrientValue / 100) * self.selectedFood().portionweight() * self.selectedFood().selectedamount());
+    self.selectedFoodNutrVal = function (nutrient) {
+        value = globalNutrDefs.nutritionAmount(nutrient.NutrientValue, self.selectedFood().portionweight(), self.selectedFood().selectedamount());
+        unit = globalNutrDefs.nutrient(nutrient.NutrientCode).Unit;
+        return value + " " + unit;
     };
 
 
@@ -215,9 +321,15 @@ self.foodSelectionInputChanged = function () {
 self.selectFood = function (food) {
     $.getJSON("api/NutritionApi/?foodCode=" + food.FoodCode, function (data) {
         $.getJSON("api/NutritionApi2/?foodCode=" + food.FoodCode, function (nutvals) {
-            var food = new Food(data);
-            food.nutrients = nutvals.$values;
-            self.selectedFood(food);
+            $.getJSON("api/NutritionApi4/?foodCode=" + food.FoodCode, function (fpeds) {
+                var food = new Food(data);
+                food.nutrients = nutvals.$values;
+                food.fpeds = fpeds;
+
+                self.selectedFood(food);
+                
+
+            });
         });
 
     });
@@ -229,7 +341,7 @@ self.addFood = function () {
         var meal = self.foodTracker().meals()[self.foodTracker().mealTimes.indexOf(item)];
         self.selectedFood().parentmeal = meal;
         // deep copy selected food into meals
-        meal.foods.push(jQuery.extend(true, {}, self.selectedFood()));
+        meal.foods.push(self.selectedFood().clone());
     });
 }
 
@@ -241,6 +353,8 @@ self.editFood = function (food) {
     self.selectedFood(food);
 }
 };
+
+var globalNutrDefs = new NutrDefs();
 
 if (document.getElementById('NutritionViewContent') != null)
     ko.applyBindings(new NutritionViewModel(), document.getElementById('NutritionViewContent'));

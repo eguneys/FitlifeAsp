@@ -18,7 +18,7 @@ namespace Fitlife.Domain.Helpers
             {"FoodWeights.txt", new List<int>() {0, 3, 6}},
             {"NutDesc.txt", new List<int>() { 0, 1, 2, 3}},
             {"FoodPortionDesc.txt", new List<int>() {0, 3}},
-            {"MainFoodDesc.txt", new List<int>() {0, 3}},
+            {"MainFoodDesc.txt", new List<int>() {0, 3}}
         };
 
 
@@ -111,10 +111,8 @@ namespace Fitlife.Domain.Helpers
             bulkCopy.WriteToServer(bulkCopyThis.AsDataReader());
         }
 
-        public static void buildFood(EFDBContext context)
+        public static void buildFood(EFDBContext context, string basePath)
         {
-            string basePath = "C:/Users/matizmabel/Documents/Visual Studio 2012/Projects/FitlifeAsp/Fitlife.WebUI/App_Data/";
-
             buildFoodWeights(basePath);
             
             /*******************************************************/

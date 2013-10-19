@@ -51,6 +51,16 @@ namespace Fitlife.Domain.Entities
         public string Unit { get; set; }
     }
 
+    //public class FPED
+    //{
+    //    [Key]
+    //    public int FPEDID { get; set; }
+
+    //    public int FoodCode { get; set; }
+    //    public int ModCode { get; set; }
+    //    public string Description { get; set; }
+    //    public string[] FoodGroups { get; set; }
+    //}
 
     public class Food
     {

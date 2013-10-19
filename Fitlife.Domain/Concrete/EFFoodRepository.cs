@@ -39,6 +39,10 @@ namespace Fitlife.Domain.Concrete
             get { return context.FNDDSNutVals; }
         }
 
+        public IQueryable<Entities.FPED> FPEDs
+        {
+            get { return context.FPEDs; }
+        }
 
         public Food GetFood(int foodCode)
         {

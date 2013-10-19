@@ -42,6 +42,12 @@ namespace Fitlife.WebUI
                 "~/Scripts/BlueImp/*.js"
 ));
 
+            bundles.Add(new ScriptBundle("~/bundles/KnockoutKendo").Include(
+                "~/Scripts/KendoUI/kendo.web.min.js",
+                "~/Scripts/KendoUI/kendo-binding.js",
+                "~/Scripts/KendoUI/knockout-kendo.min.js"
+                ));
+
             bundles.Add(new ScriptBundle("~/bundles/Controllers").Include(
                                 "~/Scripts/Controllers/*.js"
                 ));
@@ -53,6 +59,8 @@ namespace Fitlife.WebUI
 
             bundles.Add(new ScriptBundle("~/bundles/knockoutapp").Include(
                                 "~/Scripts/knockout-{version}.js",
+                                "~/Scripts/KendoUI/kendo.web.min.js",
+                                "~/Scripts/KendoUI/knockout-kendo.min.js",
                                 "~/Scripts/KnockoutApp/*.js"
                 ));
 
@@ -71,6 +79,11 @@ namespace Fitlife.WebUI
                 "~/Content/Boldex/prettyPhoto.css",
                 "~/Content/Boldex/base.css"
                                ));
+
+            bundles.Add(new StyleBundle("~/Content/KendoUI").Include(
+                                "~/Content/KendoUI/kendo.common.min.css",
+                                "~/Content/KendoUI/kendo.default.min.css"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

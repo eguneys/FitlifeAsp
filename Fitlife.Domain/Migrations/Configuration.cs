@@ -29,8 +29,11 @@ namespace Fitlife.Domain.Migrations
             //
             // Run update-database -verbose to do migration
             // Update-database -TargetMigration:0 reset migrations
+
+            string basePath = "C:/Users/matizmabel/Documents/Visual Studio 2012/Projects/FitlifeAsp/Fitlife.WebUI/App_Data/";
            
-           FoodBuilder.buildFood(context);
+           FoodBuilder.buildFood(context, basePath);
+          // FpedBuilder.buildFPEDs(basePath);
         }
     }
 }
