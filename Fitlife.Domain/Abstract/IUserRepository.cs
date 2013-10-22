@@ -12,5 +12,6 @@ namespace Fitlife.Domain.Abstract
 
         void SaveUser(User u);
         bool ValidateUser(User u);
+        bool ValidateUser(string username, string pass);
     }
 }

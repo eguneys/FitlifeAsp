@@ -7,23 +7,21 @@
                                     Allowance</p>
                             </dt>
                             <dd>
-                                <p class='text-left'>
-                                    2000</p>
+                                <p class='text-left' data-bind="text: 2600"></p>
+
                             </dd>
                             <dt>
                                 <p class='text-left text-muted'>
                                     Eaten</p>
                             </dt>
                             <dd>
-                                <p class='text-left'>
-                                    1000</p>
+                                <p class='text-left' data-bind="text: foodTracker().Calories"></p>
                             </dd>
                             <dt>
                                 <p class='text-left text-muted'>
                                     Remaining</p>
                             </dt>
                             <dd>
-                                <p class='text-left'>
-                                    1000</p>
+                                <p class='text-left' data-bind="text: 2600 - foodTracker().Calories()"></p>
                             </dd>
                         </dl>

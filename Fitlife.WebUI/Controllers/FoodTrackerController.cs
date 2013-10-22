@@ -10,15 +10,19 @@ using System.Web;
 using System.Web.Http;
 using Fitlife.Domain.Entities;
 using Fitlife.Domain.Concrete;
+using Fitlife.Domain.Abstract;
 
 namespace Fitlife.WebUI.Controllers
 {
+    [Authorize]
     public class FoodTrackerController : ApiController
     {
         private EFFoodTrackerRepository trackerRepository;
+        private IUserRepository userRepository;
 
         public FoodTrackerController() {
             trackerRepository = EFFoodTrackerRepository.getRepository();
+            userRepository = EFUserRepository.getRepository();
         }
 
         // GET api/FoodTracker
@@ -27,14 +31,21 @@ namespace Fitlife.WebUI.Controllers
             return trackerRepository.FoodTrackers.AsEnumerable();
         }
 
-        public IEnumerable<FoodTracker> GetFoodTrackers(DateTime date, int userID)
+        public IEnumerable<FoodTracker> GetFoodTrackers(DateTime date)
         {
-            return trackerRepository.FoodTrackers.Where(x => x.TrackDate == date && x.UserID == userID);
+            
+            string name = User.Identity.Name;
+            Domain.Entities.User user = userRepository.Users.Where(x => x.Name == name).FirstOrDefault();
+
+            return trackerRepository.FoodTrackers.Where(x => x.TrackDate == date && x.UserID == user.UserID);
         }
 
-        public IEnumerable<Food> GetFoodTrackers(DateTime date, int userID, int populated)
+        public IEnumerable<Food> GetFoodTrackers(DateTime date, int populated)
         {
-            return trackerRepository.FoodTrackersPopulated(date, userID);
+            string name = User.Identity.Name;
+            Domain.Entities.User user = userRepository.Users.Where(x => x.Name == name).FirstOrDefault();
+
+            return trackerRepository.FoodTrackersPopulated(date, user.UserID);
         }
 
         // GET api/FoodTracker/5
@@ -54,6 +65,12 @@ namespace Fitlife.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+
+            string name = User.Identity.Name;
+            Domain.Entities.User user = userRepository.Users.Where(x => x.Name == name).FirstOrDefault();
+
+            foodtracker.UserID = user.UserID;
+
                 trackerRepository.SaveFoodTracker(foodtracker);
                 return Request.CreateResponse(HttpStatusCode.OK);
             }

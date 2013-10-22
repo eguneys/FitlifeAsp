@@ -169,6 +169,7 @@
     <Compile Include="Controllers\FoodTrackerController.cs" />
     <Compile Include="Controllers\NutritionApi3Controller.cs" />
     <Compile Include="Controllers\NutritionApi4Controller.cs" />
+    <Compile Include="Filters\BasicAuthenticationMessageHandler.cs" />
     <Compile Include="Scripts\Controllers\SocialController.cs" />
     <Content Include="App_Code\HtmlExtensions.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />

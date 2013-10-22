@@ -11,7 +11,7 @@ namespace Fitlife.Domain.Concrete
     {
 
         private static IUserRepository repo = new EFUserRepository();
-        public static IUserRepository getRepository() { return repo; }
+        public static IUserRepository getRepository() { return new EFUserRepository(); }
 
         private EFDBContext context = new EFDBContext();
 
@@ -23,6 +23,20 @@ namespace Fitlife.Domain.Concrete
         public bool ValidateUser(User user)
         {
             User dbEntry = context.Users.Where(x => x.Email == user.Email && x.PasswordDigest == user.Password).FirstOrDefault();
+            if (dbEntry != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool ValidateUser(string username, string password)
+        {
+            User dbEntry = context.Users.Where(x => x.Name == username && x.PasswordDigest == password).FirstOrDefault();
+
             if (dbEntry != null)
             {
                 return true;
