@@ -24,7 +24,9 @@ namespace Fitlife.WebUI
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/moment").Include(
-                "~/Scripts/moment.js"));
+                "~/Scripts/moment.js",
+                "~/Scripts/async.js")
+                );
 
             bundles.Add(new ScriptBundle("~/bundles/Boldex").Include(
                 "~/Scripts/Boldex/bootstrap.min.js",

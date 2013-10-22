@@ -3,7 +3,7 @@ namespace Fitlife.Domain.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class first_migrate : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -88,45 +88,59 @@ namespace Fitlife.Domain.Migrations
                         FoodCode = c.Int(nullable: false),
                         ModCode = c.Int(nullable: false),
                         Description = c.String(),
-                        F_CITMLB = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        F_OTHER = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        F_JUICE = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        F_TOTAL = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        V_DRKGR = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        V_REDOR_TOATO = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        V_REDOR_OTHER = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        V_REDOR_TOTAL = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        V_STARCHY_POTATO = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        V_STARCHY_OTHER = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        V_STARCHY_TOTAL = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        V_OTHER = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        V_TOTAL = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        V_LEGUMES = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        G_WHOLE = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        G_REFINED = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        G_TOTAL = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        PF_MEAT = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        PF_CUREDMEAT = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        PF_ORGAN = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        PF_POULT = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        PF_SEAFD_HI = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        PF_SEAFD_LOW = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        PF_MPS_TOTAL = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        PF_EGGS = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        PF_SOY = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        PF_NUTSDS = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        PF_LEGUMES = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        PF_TOTAL = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        D_MILK = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        D_YOGURT = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        D_CHEESE = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        D_TOTAL = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        OILS = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        SOLID_FATS = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        ADD_SUGARS = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        A_DRINKS = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        F_CITMLB = c.String(),
+                        F_OTHER = c.String(),
+                        F_JUICE = c.String(),
+                        F_TOTAL = c.String(),
+                        V_DRKGR = c.String(),
+                        V_REDOR_TOATO = c.String(),
+                        V_REDOR_OTHER = c.String(),
+                        V_REDOR_TOTAL = c.String(),
+                        V_STARCHY_POTATO = c.String(),
+                        V_STARCHY_OTHER = c.String(),
+                        V_STARCHY_TOTAL = c.String(),
+                        V_OTHER = c.String(),
+                        V_TOTAL = c.String(),
+                        V_LEGUMES = c.String(),
+                        G_WHOLE = c.String(),
+                        G_REFINED = c.String(),
+                        G_TOTAL = c.String(),
+                        PF_MEAT = c.String(),
+                        PF_CUREDMEAT = c.String(),
+                        PF_ORGAN = c.String(),
+                        PF_POULT = c.String(),
+                        PF_SEAFD_HI = c.String(),
+                        PF_SEAFD_LOW = c.String(),
+                        PF_MPS_TOTAL = c.String(),
+                        PF_EGGS = c.String(),
+                        PF_SOY = c.String(),
+                        PF_NUTSDS = c.String(),
+                        PF_LEGUMES = c.String(),
+                        PF_TOTAL = c.String(),
+                        D_MILK = c.String(),
+                        D_YOGURT = c.String(),
+                        D_CHEESE = c.String(),
+                        D_TOTAL = c.String(),
+                        OILS = c.String(),
+                        SOLID_FATS = c.String(),
+                        ADD_SUGARS = c.String(),
+                        A_DRINKS = c.String(),
                     })
                 .PrimaryKey(t => t.FPEDID);
+            
+            CreateTable(
+                "dbo.FoodTrackers",
+                c => new
+                    {
+                        FoodTrackerID = c.Int(nullable: false, identity: true),
+                        FoodCode = c.Int(nullable: false),
+                        Amount = c.Int(nullable: false),
+                        PortionCode = c.Int(nullable: false),
+                        SelectedMeals = c.String(),
+                        UserID = c.Int(nullable: false),
+                        TrackDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.FoodTrackerID);
             
             CreateTable(
                 "dbo.MainFoodDes",
@@ -201,6 +215,7 @@ namespace Fitlife.Domain.Migrations
             DropTable("dbo.FoodWeights");
             DropTable("dbo.FNDDSNutVals");
             DropTable("dbo.MainFoodDes");
+            DropTable("dbo.FoodTrackers");
             DropTable("dbo.FPEDs");
             DropTable("dbo.BlogLikes");
             DropTable("dbo.BlogComments");

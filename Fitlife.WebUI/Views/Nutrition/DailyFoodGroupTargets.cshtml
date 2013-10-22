@@ -3,45 +3,37 @@
                         </h4>
                         <table class='table table-striped table-bordered'>
                             <thead>
-                                <th>
-                                </th>
-                                <th>
-                                    | Value
-                                </th>
+                                <th></th>
+                                <!-- ko foreach: foodTracker().FoodGroups -->
+                                <th data-bind="text: name, attr: { style: 'background-color:' + color + ';' }"></th>
+                                <!-- /ko -->
                             </thead>
                             <tbody>
-
+                                <tr>
                                     <td>
                                         Target
                                     </td>
-                                    <td>
-                                    </td>
-                                    <td>
-                                    </td>
-                                    <td>
-                                    </td>
+                                <!-- ko foreach: foodTracker().FoodGroups -->
+                                <td data-bind="text: val + ' ' + unit + '.'">
+                                </td>
+                                <!-- /ko -->
+
                                 </tr>
                                 <tr>
                                     <td>
                                         Eaten
                                     </td>
-                                    <td>
-                                    </td>
-                                    <td>
-                                    </td>
-                                    <td>
-                                    </td>
+                                    <!-- ko foreach: foodTracker().FoodGroups -->
+                                    <td data-bind="text: $parent.foodTracker().TotalFPED(tagname)"></td>
+                                    <!-- /ko -->
                                 </tr>
                                 <tr>
                                     <td>
                                         Status
                                     </td>
-                                    <td>
-                                    </td>
-                                    <td>
-                                    </td>
-                                    <td>
-                                    </td>
+                                    <!-- ko foreach: foodTracker().FoodGroups -->
+                                    <td data-bind="text: (($parent.foodTracker().TotalFPED(tagname)() / val) * 100).toFixed(2) + ' %'"></td>
+                                    <!-- /ko -->
                                 </tr>
                             </tbody>
                         </table>

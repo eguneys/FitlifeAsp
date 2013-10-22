@@ -15,6 +15,7 @@ namespace Fitlife.Domain.Concrete
         public DbSet<BlogComment> BlogComments { get; set; }
         public DbSet<BlogLike> BlogLikes { get; set; }
         public DbSet<FPED> FPEDs { get; set; }
+        public DbSet<FoodTracker> FoodTrackers { get; set; }
 
 
 

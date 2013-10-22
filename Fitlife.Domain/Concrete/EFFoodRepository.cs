@@ -11,8 +11,8 @@ namespace Fitlife.Domain.Concrete
     {
         private EFDBContext context = new EFDBContext();
 
-        private static EFFoodRepository repo = new EFFoodRepository();
-        public static EFFoodRepository getRepository() { return repo; }
+        //private static EFFoodRepository repo = new EFFoodRepository();
+        public static EFFoodRepository getRepository() { return new EFFoodRepository(); }
 
         public IQueryable<Entities.MainFoodDes> Foods
         {

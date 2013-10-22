@@ -69,5 +69,9 @@ namespace Fitlife.Domain.Entities
         public List<PortionDescriptions> Portions { get; set; }
 
         public List<FNDDSNutVal> NutVals { get; set; }
+
+        public int Amount { get; set; }
+        public PortionDescriptions Portion { get; set; }
+        public String SelectedMeals { get; set; }
     }
 }

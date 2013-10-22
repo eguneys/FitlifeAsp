@@ -48,6 +48,7 @@
     <Compile Include="Abstract\IBlogItemRepository.cs" />
     <Compile Include="Abstract\IBodyPhotoRepository.cs" />
     <Compile Include="Abstract\IFoodRepository.cs" />
+    <Compile Include="Abstract\IFoodTrackerRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
     <Compile Include="Concrete\EFBlogItemRepository.cs">
       <SubType>Code</SubType>
@@ -55,22 +56,20 @@
     <Compile Include="Concrete\EFBodyPhotoRepository.cs" />
     <Compile Include="Concrete\EFDBContext.cs" />
     <Compile Include="Concrete\EFFoodRepository.cs" />
+    <Compile Include="Concrete\EFFoodTrackerRepository.cs" />
     <Compile Include="Concrete\EFUserRepository.cs" />
     <Compile Include="Entities\BlogItem.cs" />
     <Compile Include="Entities\BodyPhoto.cs" />
+    <Compile Include="Entities\FoodTracker.cs" />
     <Compile Include="Entities\Fped.cs" />
     <Compile Include="Entities\NutrDef.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Helpers\EntityDataReader.cs" />
     <Compile Include="Helpers\FoodBuilder.cs" />
     <Compile Include="Helpers\FpedBuilder.cs" />
-    <Compile Include="Migrations\201310191849293_first_migrate.cs" />
-    <Compile Include="Migrations\201310191849293_first_migrate.Designer.cs">
-      <DependentUpon>201310191849293_first_migrate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201310191852358_second-migration.cs" />
-    <Compile Include="Migrations\201310191852358_second-migration.Designer.cs">
-      <DependentUpon>201310191852358_second-migration.cs</DependentUpon>
+    <Compile Include="Migrations\201310200712548_initial.cs" />
+    <Compile Include="Migrations\201310200712548_initial.Designer.cs">
+      <DependentUpon>201310200712548_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,11 +79,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201310191849293_first_migrate.resx">
-      <DependentUpon>201310191849293_first_migrate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201310191852358_second-migration.resx">
-      <DependentUpon>201310191852358_second-migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201310200712548_initial.resx">
+      <DependentUpon>201310200712548_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

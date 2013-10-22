@@ -1,0 +1,36 @@
+﻿@model Fitlife.Domain.Entities.FoodTracker
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>FoodTracker</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FoodCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FoodCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Amount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Amount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PortionCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PortionCode)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.FoodTrackerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
