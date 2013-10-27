@@ -1,9 +1,9 @@
-﻿           <h4>
+﻿<div class="panel-heading">
+           <h4 class="panel-title">
                 Daily Limits
             </h4>
-            <ul class='list-group list-group-flush unstyled'>
-            <li class='list-group-item'>
-            <ul class='unstyled'>
+    </div>
+            <ul class='list-unstyled' style="padding: 4px;">
             <li>
             <strong> Empty Calories </strong>
             <span class='label label-default'> /300kcal</span>
@@ -14,7 +14,8 @@
             </li>
                         <li>
                         <div class='progress'>
-                        <div class='bar'  data-bind="attr: { style: 'width:' + foodTracker().PercentNutr('ENERC_KCAL')() + '%' }">
+                        <div class='progress-bar'  data-bind="attr: { style: 'width:' + foodTracker().PercentNutr('ENERC_KCAL')() + '%' }">
+                            <span class="sr-only" data-bind="text: foodTracker().PercentNutr('ENERC_KCAL')() + '%'"></span>
                         </div>
                         </div>
             </li>
@@ -23,34 +24,34 @@
             <li class='list-group-item unstyled'>
             <dl class='dl-horizontal'>
             <dt>
-            Oils: <span class='label' data-bind="        text: foodTracker().TotalFPED('OILS')() + '/' + foodTracker().Limits['OILS'].val"> </span>
+            Oils: <span class='label label-default' data-bind="text: foodTracker().TotalFPED('OILS')() + '/' + foodTracker().Limits['OILS'].val"> </span>
 
             </dt>
             <dd>
             <div class='progress'>
-            <div class='bar'  data-bind="attr: { style: 'width:' + foodTracker().PercentFPED('OILS')() + '%' }">
-            
+            <div class='progress-bar'  data-bind="attr: { style: 'width:' + foodTracker().PercentFPED('OILS')() + '%' }">
+                            <span class="sr-only" data-bind="text: foodTracker().PercentNutr('OILS')() + '%'"></span>
             </div>
             </div>
             </dd>
                         <dt>
-            Saturated Fat: <span class='label' data-bind="text: foodTracker().TotalFPED('SOLID_FATS')() + '/' + foodTracker().Limits['SOLID_FATS'].val">  </span>
+            Saturated Fat: <span class='label label-default' data-bind="text: foodTracker().TotalFPED('SOLID_FATS')() + '/' + foodTracker().Limits['SOLID_FATS'].val">  </span>
             </dt>
             <dd>
             <div class='progress'>
-            <div class='bar' data-bind="attr: { style: 'width:' + foodTracker().PercentFPED('SOLID_FATS')() + '%' }"
+            <div class='progress-bar' data-bind="attr: { style: 'width:' + foodTracker().PercentFPED('SOLID_FATS')() + '%' }"
                 >
-            
+                        <span class="sr-only" data-bind="text: foodTracker().PercentNutr('SOLID_FATS')() + '%'"></span>
             </div>
             </div>
             </dd>
                         <dt>
-            Sodium: <span class='label' data-bind="text: foodTracker().TotalNutr('NA')() + '/' + foodTracker().Limits['NA'].val "> </span>
+            Sodium: <span class='label label-default' data-bind="text: foodTracker().TotalNutr('NA')() + '/' + foodTracker().Limits['NA'].val "> </span>
             </dt>
             <dd>
             <div class='progress'>
-            <div class='bar'  data-bind="attr: { style: 'width:' + foodTracker().PercentNutr('NA')() + '%' }">
-            
+            <div class='progress-bar'  data-bind="attr: { style: 'width:' + foodTracker().PercentNutr('NA')() + '%' }">
+                        <span class="sr-only" data-bind="text: foodTracker().PercentNutr('NA')() + '%'"></span>
             </div>
             </div>
             </dd>

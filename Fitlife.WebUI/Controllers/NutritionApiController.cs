@@ -39,6 +39,17 @@ namespace Fitlife.WebUI.Controllers
             return repository.Foods.Where(x => x.Description.Contains(name)).OrderBy(x => x.Description.Length).Skip((pageNo - 1) * pageLength).Take(pageLength);
         }
 
+        public IEnumerable<MainFoodDes> GetFood(string name, int group,  int pageNo, int pageLength = 20)
+        {
+            if (group == 0) return GetFood(name, pageNo, pageLength);
+            int baseNumber =  10000000;
+
+            int lowerBound = (group) * baseNumber;
+            int upperBound = (group + 1) * baseNumber;
+
+            return repository.Foods.Where(x => x.FoodCode >= lowerBound && x.FoodCode < upperBound &&  x.Description.Contains(name)).OrderBy(x => x.Description.Length).Skip((pageNo - 1) * pageLength).Take(pageLength);
+        }
+
         public int GetFood(string name, string getpageno)
         {
             return repository.Foods.Count(x => x.Description.Contains(name));

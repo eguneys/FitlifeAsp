@@ -1,5 +1,7 @@
-﻿            <h4>
+﻿<div class="panel-heading">
+            <h4 class="panel-title">
                 Food Details</h4>
+    </div>
                 <div data-bind='with: selectedFood().food'>
                 <h3 data-bind='text: Description'>  </h3>
 </div>
@@ -11,7 +13,7 @@
 </form>
 <h4>Choose meal time:</h4>
 <form>
-<ul class='list inline unstyled' data-bind='foreach: foodTracker().mealTimes'>
+<ul class='list inline list-unstyled' data-bind='foreach: foodTracker().mealTimes'>
 <li>
 <label class='checkbox-inline'>
 <input type="checkbox" data-bind="value: $data, checked: $root.selectedFood().selectedmeals" ></input><span data-bind='text: $data'></span>
@@ -77,11 +79,39 @@ Clear
 </tr>
 </thead>
 <tbody>
-<tr>
-<td> Description</td>
-<td></td>
-<td></td>
-</tr>
+    <tr>
+        <td>
+            <dl class="dl-horizontal"  data-bind="foreach: { data: foodTracker().FoodGroups, as: 'fg' }">
+                <span data-bind="visible: $parent.selectedFood().fped(fg.tagname) > 0">
+                <dt>
+                    <span class="label label-primary pull-left" data-bind="attr: { style: 'color:' + fg.color + ';'}, text: fg.name">
+
+                    </span>
+
+                </dt>
+                <dd>
+                    <span data-bind="text: $parent.selectedFood().fped(fg.tagname).toFixed(2)">
+
+                    </span>
+                    <span data-bind="text: fg.unit + '.'"></span>
+                </dd>
+                </span>
+            </dl>
+        </td>
+        <td>
+            <table>
+                <tr>
+                    
+                </tr>
+                <tr>
+
+                </tr>
+                <tr>
+
+                </tr>
+            </table>
+        </td>
+    </tr>
 </tbody>
 </table>
 </div>

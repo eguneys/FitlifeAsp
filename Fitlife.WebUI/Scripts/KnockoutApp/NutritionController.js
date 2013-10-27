@@ -52,7 +52,7 @@ function Pagination(nvm) {
 
     self.goPage = function (page) {
         self.currentPage(page.number);
-        $.getJSON("api/NutritionApi/?name=" + self.parent.foodSelectionInput() + '&pageNo=' + (page.number + 1) + '&pageLength=' + '20', function (data) {
+        $.getJSON("api/NutritionApi/?name=" + self.parent.foodSelectionInput() + '&group=' + self.parent.foodGroupSelection().code + '&pageNo=' + (page.number + 1) + '&pageLength=' + '20', function (data) {
             self.parent.foods.removeAll();
             data.forEach(function (item) { self.parent.foods.push(item); });
         });
@@ -148,12 +148,35 @@ function FoodTracker() {
         });
     };
 
+    self.TotalFPEDForArray = function (array) {
+        var total = 0;
+        array.forEach(function (item) {
+            total += self.TotalFPED(item)() - 0;
+        });
+        return total;
+    }
+
     self.FoodGroups = [
-        { tagname: 'G_TOTAL', val: 6, unit: 'oz', color: '#ffffaa', name: 'Grains' },
-        { tagname: 'V_TOTAL', val: 3, unit: 'oz', color: '#aaffaa', name: 'Vegetables' },
-        { tagname: 'F_TOTAL', val: 6, unit: 'oz', color: '#ffaaaa', name: 'Fruits' },
-        { tagname: 'D_TOTAL', val: 3, unit: 'cup', color: '#aaaaff', name: 'Dairy' },
-        { tagname: 'PF_TOTAL', val: 6, unit: 'oz', color: '#ffaaff', name: 'Protein Foods' }
+        {
+            tagname: 'G_TOTAL', val: 6, unit: 'oz', color: '#ffffaa', name: 'Grains', subgroups: [
+                { tagname: ['G_WHOLE'], name: 'Whole Grains' },
+                { tagname: ['G_REFINED'], name: 'Refined Grains' }
+            ]
+        },
+        {
+            tagname: 'V_TOTAL', val: 3, unit: 'oz', color: '#aaffaa', name: 'Vegetables', subgroups: [
+            ]
+        },
+        { tagname: 'F_TOTAL', val: 6, unit: 'oz', color: '#ffaaaa', name: 'Fruits', subgroups: [
+                        { tagname: ['F_JUICE'], name: 'Fruit Juice'},
+                        { tagname: ['F_OTHER', 'F_CITMLB'], name: 'Whole Fruit' },
+        ]
+        },
+        { tagname: 'D_TOTAL', val: 3, unit: 'cup', color: '#aaaaff', name: 'Dairy', subgroups: [
+                        { tagname: ['D_CHEESE'], name: 'Cheese' },
+                        { tagname: ['D_YOGURT', 'D_MILK'], name: 'Milk & Yogurt' }
+        ]        },
+        { tagname: 'PF_TOTAL', val: 6, unit: 'oz', color: '#ffaaff', name: 'Protein Foods', subgroups: [] }
     ];
 
     self.Limits = {
@@ -295,7 +318,7 @@ function Food(data) {
     self.nutrients = [];
     self.foodgroups = [];
     self.fpeds = [];
-
+    
     self.nutrientsMap = {};
 
     self.fped = function (fg) {
@@ -355,10 +378,10 @@ function Food(data) {
 
 
 
-function FoodGroup(name) {
+function FoodGroup(name, code) {
     var self = this;
     self.name = name;
-    self.amount = ko.observable();
+    self.code = code;
 }
 
 function NutrDefs() {
@@ -397,8 +420,16 @@ function NutritionViewModel() {
     self.foodSelectionInput = ko.observable();
     self.foods = ko.observableArray();
     self.foodGroups = [
-    new FoodGroup("All Foods"),
-    new FoodGroup("Dairy")
+    new FoodGroup("All Foods", 0),
+    new FoodGroup("Milk and milk products", 1),
+    new FoodGroup("Meat, poultry, fish, and mixtues", 2),
+    new FoodGroup("Eggs", 3),
+    new FoodGroup("Legumes, nuts, and seeds", 4),
+    new FoodGroup("Grain Products", 5),
+    new FoodGroup("Fruits", 6),
+    new FoodGroup("Vegetables", 7),
+    new FoodGroup("Fats, Oils, and salad dressings", 8),
+    new FoodGroup("Sugars, sweets, and beverages", 9)
     ];
     self.foodGroupSelection = ko.observable(self.foodGroups[0]);
 
@@ -421,7 +452,7 @@ function NutritionViewModel() {
 
 self.selectFoodGroup = function (fg) {
     self.foodGroupSelection(fg);
-    console.log(self.foodGroupSelection);
+    self.foodSelectionInputChanged();
 }
 
 var delay = (function () {
@@ -439,7 +470,7 @@ self.foodSelectionInputChanged = function () {
 
         self.foodSelectionInput(newval);
         
-        $.getJSON("api/NutritionApi/?name=" + newval + '&pageNo=' + '1' + '&pageLength=' + '20', function (data) {
+        $.getJSON("api/NutritionApi/?name=" + newval + '&group=' + self.foodGroupSelection().code + '&pageNo=' + '1' + '&pageLength=' + '20', function (data) {
             self.foods.removeAll();
             if (data.$values)
                 data = data.$values;

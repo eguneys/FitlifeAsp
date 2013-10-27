@@ -29,7 +29,7 @@ namespace Fitlife.WebUI
                 );
 
             bundles.Add(new ScriptBundle("~/bundles/Boldex").Include(
-                "~/Scripts/Boldex/bootstrap.min.js",
+              //  "~/Scripts/Boldex/bootstrap.min.js",
                 "~/Scripts/Boldex/bootstrap-carousel.js",
                 "~/Scripts/Boldex/carousel/jquery.carouFredSel-{version}-packed.js",
                 "~/Scripts/Boldex/uitotop/easing.js",
@@ -63,6 +63,7 @@ namespace Fitlife.WebUI
                                 "~/Scripts/knockout-{version}.js",
                                 "~/Scripts/KendoUI/kendo.web.min.js",
                                 "~/Scripts/KendoUI/knockout-kendo.min.js",
+                                "~/Scripts/KendoUI/kendo-binding.js",
                                 "~/Scripts/KnockoutApp/*.js"
                 ));
 

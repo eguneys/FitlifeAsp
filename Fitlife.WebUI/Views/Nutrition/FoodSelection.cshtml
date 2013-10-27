@@ -1,5 +1,7 @@
-﻿            <h4>
+﻿<div class="panel-heading">
+            <h4 class="panel-title">
                 Food Selection</h4>
+    </div>
                 <div class='row-fluid'>
                 <div class='btn-group'>
                 <button class='btn' data-bind='text: foodGroupSelection().name'>
@@ -13,9 +15,8 @@
                 </div>
                 </div>
                 <div class='row-fluid'>
-                <div class='span12'>
-                <div class='input-append'>
-                <div class='input-append'>
+                <div class='col-md-12'>
+                <div class='input-group'>
                 <input id='inputfoodselection' class=' form-control' type='text' placeholder='Enter food' 
                 data-bind='value: foodSelectionInput, event: { keyup: foodSelectionInputChanged}'/>
                 <span class='input-group-btn'>
@@ -24,12 +25,12 @@
                 </div>
                 </div>
                 <div class='scrollDiv'>
-                <ul id='listfoodselection' class='list-group unstyled nav nav-pills nav-stacked' data-bind="foreach: { data: foods, as: 'food'}">
-                                <li><a data-bind='text: food.Description, click: $root.selectFood' class='btn-link'> </a></li>
+                <ul id='listfoodselection' class='list-group' data-bind="foreach: { data: foods, as: 'food'}">
+                                <li class="list-group-item"><a data-bind='text: food.Description, click: $root.selectFood' class='btn-link'> </a></li>
                 </ul>
                 </div>
-                <div class="pagination pagination-large">
-                    <ul>
+                <div class="pagination">
+                    <ul class="pagination">
                         <li data-bind="attr: { 'class': foodPagination().hasPrevious }"><a class="btn-link" data-bind="click: foodPagination().pageLeft">&laquo;</a></li>
                         <!-- ko foreach: { data: foodPagination().itemsWatch, as: 'page' } -->
                         <li data-bind="attr: {'class': isCurrentPage}"><a class="btn-link" data-bind="text: page.number + 1, click: function ()  { $parent.foodPagination().goPage(page) }"></a></li>
@@ -37,6 +38,5 @@
                         <li data-bind="attr: {'class': foodPagination().hasNext}"><a class="btn-link" data-bind="click: foodPagination().pageRight">&raquo;</a></li>
                     </ul>
 
-                </div>
                 </div>
                 </div>

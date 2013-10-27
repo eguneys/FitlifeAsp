@@ -11,16 +11,16 @@
 @{ Html.RenderPartial("SuperPageHeader"); }
 <div class='container'>
     <div class='row'>
-        <div class='span12'>
-            <div class='well'>
-                <div class='row-fluid'>
-                    <div class='span3'>
+        <div class='col-md-12'>
+            <div class='well-sm well'>
+                <div class='row'>
+                    <div class='col-md-3'>
                         <div id='calendar' data-bind="kendoCalendar: { value: foodTracker().trackDate, change: foodTracker().dateChange, widget: foodTracker().calendar }"></div>
                     </div>
-                    <div class='span3'>
+                    <div class='col-md-3'>
                     @{ Html.RenderPartial("DailyCalorieLimit"); }
                     </div>
-                    <div class='span6'>
+                    <div class='col-md-6'>
                     @{ Html.RenderPartial("DailyFoodGroupTargets");}
                     </div>
                 </div>
@@ -28,22 +28,47 @@
         </div>
     </div>
     <div class='row'>
-        <div class='span6'>
+        <div class='col-md-6'>
+            <div class="panel panel-info">
         @{Html.RenderPartial("DailyLimits");}
+                </div>
         </div>
-        <div class='span6'>
+        <div class='col-md-6'>
+            <div class="panel panel-info">
         @{Html.RenderPartial("DailySummary");}
+                </div>
         </div>
     </div>
     <div class='row'>
-        <div class='span4'>
-        @{Html.RenderPartial("FoodSelection");}
+        <div class='col-md-4'>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                <ul class="nav nav-pills">
+                    <li class="active"> <a href="#foodselection" data-toggle="tab">Food Selection </a></li>
+                    <li> <a href="#favoritefoods" data-toggle="tab">Favorite Foods</a></li>
+                </ul>
+                    </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="foodselection">
+
+                        @{Html.RenderPartial("FoodSelection");}
+                    </div>
+                    <div class="tab-pane" id="favoritefoods">
+                        @{Html.RenderPartial("FavoriteFoods");}
+                    </div>
+                </div>
+
+            </div>
         </div>
-        <div class='span4' data-bind="visible: selectedFood().food != ''">
-        @{Html.RenderPartial("FoodDetails");}
+        <div class='col-md-4'>
+            <div class="panel panel-info">
+                @{Html.RenderPartial("FoodDetails");}
+            </div>
         </div>
-        <div class='span4'>
+        <div class='col-md-4'>
+            <div class="panel panel-info">
         @{Html.RenderPartial("Meals");}
+                </div>
         </div>
     </div>
 </div>
