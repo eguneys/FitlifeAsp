@@ -40,6 +40,17 @@ namespace Fitlife.WebUI
                 "~/Scripts/Boldex/jquery.isotope.js",
                 "~/Scripts/Boldex/base.js"));
 
+
+            bundles.Add(new ScriptBundle("~/bundles/bizStrap").Include(
+                                "~/Scripts/bizStrap/function.js",
+                                "~/Scripts/bizStrap/jquery.carouFredsel.js",
+                                "~/Scripts/bizStrap/jquery.easy-pie-chart.js",
+                                "~/Scripts/bizStrap/jquery.themepunch1.js",
+                                "~/Scripts/bizStrap/jquery.themepunch2.js",
+                                "~/Scripts/bizStrap/library.js",                              
+                                "~/Scripts/bizStrap/main.js"
+                ));
+
             bundles.Add(new ScriptBundle("~/bundles/BlueImp").Include(
                 "~/Scripts/BlueImp/*.js"
 ));
@@ -82,6 +93,10 @@ namespace Fitlife.WebUI
                 "~/Content/Boldex/prettyPhoto.css",
                 "~/Content/Boldex/base.css"
                                ));
+
+            bundles.Add(new StyleBundle("~/Content/bizStrap").Include(
+                                "~/Content/bizStrap/*.css"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/KendoUI").Include(
                                 "~/Content/KendoUI/kendo.common.min.css",
