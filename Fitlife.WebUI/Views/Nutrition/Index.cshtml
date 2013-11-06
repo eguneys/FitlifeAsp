@@ -12,8 +12,7 @@
 <div class='container'>
     <div class='row'>
         <div class='col-md-12'>
-            <div class='well-sm well'>
-                <div class='row'>
+                <div class='row infograph3'>
                     <div class='col-md-3'>
                         <div id='calendar' data-bind="kendoCalendar: { value: foodTracker().trackDate, change: foodTracker().dateChange, widget: foodTracker().calendar }"></div>
                     </div>
@@ -24,7 +23,6 @@
                     @{ Html.RenderPartial("DailyFoodGroupTargets");}
                     </div>
                 </div>
-            </div>
         </div>
     </div>
     <div class='row'>

@@ -158,33 +158,35 @@ function FoodTracker() {
 
     self.FoodGroups = [
         {
-            tagname: 'G_TOTAL', val: 6, unit: 'oz', color: '#ffffaa', name: 'Grains', subgroups: [
+            tagname: 'G_TOTAL', val: 9, unit: 'oz', color: '#ffffaa', name: 'Grains', subgroups: [
                 { tagname: ['G_WHOLE'], name: 'Whole Grains' },
                 { tagname: ['G_REFINED'], name: 'Refined Grains' }
             ]
         },
         {
-            tagname: 'V_TOTAL', val: 3, unit: 'oz', color: '#aaffaa', name: 'Vegetables', subgroups: [
+            tagname: 'V_TOTAL', val: 3.5, unit: 'cups', color: '#aaffaa', name: 'Vegetables', subgroups: [
             ]
         },
-        { tagname: 'F_TOTAL', val: 6, unit: 'oz', color: '#ffaaaa', name: 'Fruits', subgroups: [
+        { tagname: 'F_TOTAL', val: 2, unit: 'cups', color: '#ffaaaa', name: 'Fruits', subgroups: [
                         { tagname: ['F_JUICE'], name: 'Fruit Juice'},
                         { tagname: ['F_OTHER', 'F_CITMLB'], name: 'Whole Fruit' },
         ]
         },
-        { tagname: 'D_TOTAL', val: 3, unit: 'cup', color: '#aaaaff', name: 'Dairy', subgroups: [
+        { tagname: 'D_TOTAL', val: 3, unit: 'cups', color: '#aaaaff', name: 'Dairy', subgroups: [
                         { tagname: ['D_CHEESE'], name: 'Cheese' },
                         { tagname: ['D_YOGURT', 'D_MILK'], name: 'Milk & Yogurt' }
         ]        },
-        { tagname: 'PF_TOTAL', val: 6, unit: 'oz', color: '#ffaaff', name: 'Protein Foods', subgroups: [] }
+        { tagname: 'PF_TOTAL', val: 6.5, unit: 'oz', color: '#ffaaff', name: 'Protein Foods', subgroups: [] }
     ];
 
     self.Limits = {
-        OILS: { val: 30, unit: 'g', color: '#ffffee' },
-        SOLID_FATS: { val: 10, unit: 'g', color:'#ffffcc' },
-        NA: { val: 230, unit: 'mg', color:'#cccccc' },
-        ENERC_KCAL: { val: 2300, unit: 'kcal', color: '#ffffaa' },
+        OILS: { val: 8, unit: 'tsp', color: '#ffffee' },
+        SOLID_FATS: { val: 29, unit: 'g', color:'#ffffcc' },
+        NA: { val: 2300, unit: 'mg', color:'#cccccc' },
+        ENERC_KCAL: { val: 2600, unit: 'kcal', color: '#ffffaa' },
     };
+
+
 
 
     self.loadMeals = function () {
@@ -288,10 +290,81 @@ function FoodTracker() {
     self.loadMeals();
 }
 
-function FoodStats() {
+function FoodStats(p) {
     var self = this;
 
+    self.parent = p;
 
+    self.targetIdx = function (gender, age) {
+        offset = 0;
+        if (gender == "male") offset = 1;
+        if (age < 3) return 0;
+        else if (age < 9) return 1 + offset;
+        else if (age < 14) return 3 + offset;
+        else if (age < 19) return 5 + offset;
+        else if (age < 31) return 7 + offset;
+        else if (age < 51) return 9 + offset;
+        else return 11 + offset;
+    }
+
+    self.TargetPercent = function (code) {
+        return (self.parent.selectedFoodNutrValue(self.parent.selectedFood().nutrient(code)) / self.Target(code) * 100).toFixed(0);
+    };
+
+    self.Target = function (code, age, gender) {
+        if (!age) {
+            age = self.parent.Profile.Age;
+            gender = self.parent.Profile.Gender;
+        }
+
+        var allnutrients = self.NutritionGroups.mineral;
+        allnutrients = allnutrients.concat(self.NutritionGroups.vitamin);
+        allnutrients = allnutrients.concat(self.NutritionGroups.basic);
+
+        var nutrientgroup = allnutrients.filter(function (item) {
+            return item.val == code;
+        })[0];
+
+        return nutrientgroup.targets[self.targetIdx(gender, age)];
+    };
+
+    self.NutritionGroups = {
+        mineral: [
+        { val: 301, targets: [700, 1000, 1000, 1300, 1300, 1300, 1300, 1000, 1000, 1000, 1000, 1200, 1200] }, // Calcium
+        { val: 306, targets: [3000, 3800, 3800, 4500, 4500, 4700, 4700, 4700, 4700, 4700, 4700, 4700, 4700] },// Potassium
+        { val: 307, targets: [1500, 1900, 1900, 2200, 2200, 2300, 2300, 2300, 2300, 2300, 2300, 2300, 2300] }, // Sodium
+        { val: 312, targets: [340, 440, 440, 700, 700, 890, 890, 900, 900, 900, 900, 900, 900] }, // Copper
+        { val: 303, targets: [7, 10, 10, 8, 8, 15, 11, 18, 8, 18, 8, 8, 8] }, // Iron
+        { val: 304, targets: [80, 130, 130, 240, 240, 360, 410, 310, 400, 320, 420, 320, 420] }, // Magnesium
+        { val: 305, targets: [460, 500, 500, 1250, 1250, 1250, 1250, 700, 700, 700, 700, 700, 700] }, // Phosphorus
+        { val: 317, targets: [20, 30, 30, 40, 40, 55, 55, 55, 55, 55, 55, 55, 55] }, // Selenium
+        { val: 309, targets: [3, 5, 5, 8, 8, 9, 11, 8, 11, 8, 11, 8, 11] }, // Zinc
+        ],
+        vitamin: [
+            { val: 320, targets: [300, 400, 400, 600, 600, 700, 900, 700, 900, 700, 900, 700, 900] }, // VitaminA
+            { val: 415, targets: [0.5, 0.6, 0.6, 1.0, 1.0, 1.2, 1.3, 1.3, 1.3, 1.3, 1.3, 1.5, 1.7] }, // VitaminB6
+            { val: 418, targets: [0.9, 1.2, 1.2, 1.8, 1.8, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4] }, // VitaminB12
+            { val: 401, targets: [15, 25, 25, 45, 45, 65, 75, 75, 90, 75, 90, 75, 90] }, // VitaminC
+            { val: 328, targets: [15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15] }, // VitaminD
+            { val: 323,  targets: [6, 7, 7, 11, 11, 15, 15, 15, 15, 15, 15, 15, 15] },// VitaminE
+            { val: 430,  targets: [30, 55, 55, 60, 60, 75, 75, 90, 120, 90, 120, 90, 120] },// VitaminK
+            { val: 435,  targets: [150, 200, 200, 300, 300, 400, 400, 400, 400, 400, 400, 400, 400] },// Folate
+            { val: 404,  targets: [0.5, 0.6, 0.6, 0.9, 0.9, 1.0, 1.2, 1.1, 1.2, 1.1, 1.2, 1.1, 1.2] },// Thiamin
+            { val: 405,  targets: [0.5, 0.6, 0.6, 0.9, 0.9, 1.0, 1.3, 1.1, 1.3, 1.1, 1.3, 1.1, 1.3] },// Riboflavin
+            { val: 406,  targets: [6, 8, 8, 12, 12, 14, 16, 14, 16, 14, 16, 14, 16] },// Niacin
+            { val: 421,  targets: [200, 250, 250, 375, 375, 400, 550, 425, 550, 425, 550, 425, 550] },// Choline
+        ],
+        basic: [
+            { val: 208, targets: [] }, // Calories
+            { val: 203,  targets: [13, 19, 19, 34, 34, 46, 52, 46, 56, 46, 56, 46, 56] },// Protein
+            { val: 205, targets: [130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130] }, // Carbohydrate
+            { val: 291, targets: [14, 17, 20, 22, 25, 25, 31, 28, 34, 25, 31, 22, 28] }, // Dietary Fiber
+            { val: 204, targets: [] }, // Fat
+            { val: 606, targets: [] }, // Saturated Fat
+            { val: 645, targets: [] }, // Monounsaturated
+            { val: 646, targets: [] },// Polyunsa
+        ]
+    };
 }
 
 
@@ -413,6 +486,26 @@ function NutrDefs() {
     };
 }
 
+function UserProfile(p) {
+    var self = this;
+    self.parent = p;
+
+    self.Age = 0;
+    self.Gender = "male";
+    self.Name = "";
+
+    self.fill = function () {
+        userid = $.cookie('userid');
+        $.getJSON('api/UserApi/?userID=' + userid, function (data) {
+            self.Age = data.Age;
+            self.Gender = data.Gender;
+            self.Name = data.Name;
+        });
+    };
+
+    self.fill();
+}
+
 function NutritionViewModel() {
 
     var self = this;
@@ -437,18 +530,29 @@ function NutritionViewModel() {
 
     self.foodTracker = ko.observable(new FoodTracker());
 
+    self.foodStats = new FoodStats(self);
+
+    self.Profile = new UserProfile(self);
+
     self.foodPagination = ko.observable(new Pagination(self));
 
     self.selectedFoodNutr = function (nutrient) {
+        if (!nutrient) return {};
         return globalNutrDefs.nutrient(nutrient.NutrientCode);
     }
 
-    self.selectedFoodNutrVal = function (nutrient) {
+    self.selectedFoodNutrValue = function (nutrient) {
+        if (!nutrient) return 0;
         value = globalNutrDefs.nutritionAmount(nutrient.NutrientValue, self.selectedFood().portionweight(), self.selectedFood().selectedamount());
+        return value;
+    };
+
+    self.selectedFoodNutrVal = function (nutrient) {
+        if (!nutrient) return 0;
+        value = self.selectedFoodNutrValue(nutrient);
         unit = globalNutrDefs.nutrient(nutrient.NutrientCode).Unit;
         return value + " " + unit;
     };
-
 
 self.selectFoodGroup = function (fg) {
     self.foodGroupSelection(fg);
@@ -500,8 +604,6 @@ self.selectFood = function (food) {
                 food.fpeds = fpeds;
 
                 self.selectedFood(food);
-                
-
             });
         });
 

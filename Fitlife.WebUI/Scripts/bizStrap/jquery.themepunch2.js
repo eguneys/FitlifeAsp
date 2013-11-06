@@ -1,3 +1,8 @@
+jQuery.browser={};(function(){jQuery.browser.msie=false;
+jQuery.browser.version=0;if(navigator.userAgent.match(/MSIE ([0-9]+)\./)){
+jQuery.browser.msie=true;jQuery.browser.version=RegExp.$1;}})();
+
+
 /**************************************************************************
  * jquery.themepunch.revolution.js - jQuery Plugin for kenburn Slider
  * @version: 1.5.1 (24.10.2012)

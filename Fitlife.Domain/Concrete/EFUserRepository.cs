@@ -65,6 +65,7 @@ namespace Fitlife.Domain.Concrete
                     dbEntry.PasswordDigest = user.Password;
                     dbEntry.Photo = user.Photo;
                     dbEntry.Age = user.Age;
+                    dbEntry.Gender = user.Gender;
                 }
             }
             context.SaveChanges();

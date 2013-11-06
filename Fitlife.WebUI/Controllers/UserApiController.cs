@@ -18,6 +18,12 @@ namespace Fitlife.WebUI.Controllers
         {
         }
 
+        public UserSafe GetUser(int userID)
+        {
+             User user = uRepo.Users.Where(x => x.UserID == userID).FirstOrDefault();
+             return new UserSafe(user);
+        }
+
         public void PostUser(User user, string action)
         {
 

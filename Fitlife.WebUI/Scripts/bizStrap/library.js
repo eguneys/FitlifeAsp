@@ -84,7 +84,7 @@ function initProgressBarWithImage(){
 
 function progress_bars(update){
 	if($('.progress_bars').length){
-		$('.progress_bars').not('.visible').each(function(){
+		$('.progress_bars').each(function(){
 			var cur = $(this);
 			
 			cur.css('width', 'auto');
@@ -95,7 +95,7 @@ function progress_bars(update){
             var bg = cur.attr('data-bg');
 			var title = cur.attr('data-title');
 			var value = parseInt(cur.attr('data-value'))/100;
-			if(!value) value = 1;
+			//if(!value) value = 1;
 			
 			color = hexDec(color);
 			

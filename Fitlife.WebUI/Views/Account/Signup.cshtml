@@ -3,7 +3,10 @@
 @{
     ViewBag.Title = "Signup";
 }
-       <div class="container" style='max-width:300px;'>
+<div id="wrapper">
+    <div class="mod row">
+       <div class="container" style='max-width:500px;'>
+           <div class="contact_form">
             <div class="your-logo">
                 <h3><a href="index.html">Your Logo</a></h3>     
             </div>
@@ -11,10 +14,10 @@
             {
                 <legend><h4>Registration</h4></legend>
                 <div class="row-fluid">
-                    <div class="span6">
+                    <div class="col-md-6">
                         <a href="" class="btn btn-primary btn-block"><i class="icon-facebook"></i> Facebook Connect</a>
                     </div>  
-                    <div class="span6">
+                    <div class="col-md-6">
                         <a href="" class="btn btn-info btn-block"><i class="icon-twitter"></i> Twitter Connect</a>
                     </div>    
                 </div>
@@ -23,13 +26,13 @@
                 @Html.PasswordFor(x => x.Password, new { @class = "input-block-level", @placeholder = "Password" })
                 @Html.PasswordFor(x => x.PasswordConfirmation, new { @class = "input-block-level", @placeholder = "Retype Password" })
                 <div class="row-fluid">
-                    <div class="span8">
+                    <div class="col-md-8">
                         <label class="checkbox">
                             <input type="checkbox" value="remember-me"> I agree with <a href="">terms and conditions</a>.
                         </label> 
                     </div> 
-                    <div class="span4">
-                        <button class="btn btn-warning btn-block" type="submit">Register</button>
+                    <div class="col-md-4">
+                        <input class="styler-bg-color" type="submit" value="REGISTER">
                     </div>    
                 </div>
             }
@@ -40,4 +43,7 @@
     action = "Login"
 })</p>
             </div>
+               </div>
         </div> <!-- /container -->
+        </div>
+    </div>

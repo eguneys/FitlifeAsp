@@ -1,27 +1,32 @@
-﻿                        <h4>
-                            Daily Calorie Limit
-                        </h4>
-                        <dl class='dl-horizontal'>
-                            <dt>
-                                <p class='text-left text-muted'>
-                                    Allowance</p>
-                            </dt>
-                            <dd>
-                                <p class='text-left' data-bind="text: 2600"></p>
-
-                            </dd>
-                            <dt>
-                                <p class='text-left text-muted'>
-                                    Eaten</p>
-                            </dt>
-                            <dd>
-                                <p class='text-left' data-bind="text: foodTracker().Calories"></p>
-                            </dd>
-                            <dt>
-                                <p class='text-left text-muted'>
-                                    Remaining</p>
-                            </dt>
-                            <dd>
-                                <p class='text-left' data-bind="text: 2600 - foodTracker().Calories()"></p>
-                            </dd>
-                        </dl>
+﻿<div class="header">
+    <i class="styler_border_color"></i>
+    Daily Calorie Limit
+</div>
+<div class="article_block">
+    <div class="details">
+        <ul class='links'>
+            <li>
+                <div class="name styler_bg_color">
+                    <i class="styler_border_color"></i>
+                    Allowance
+                </div>
+                <div class="desc" data-bind="text: 2600">
+                </div>
+            </li>
+            <li>
+                <div class='name styler_bg_color'>
+                    <i class="styler_border_color"></i>
+                    Eaten
+                </div>
+                <div class="desc" data-bind="text: foodTracker().Calories"></div>
+            </li>
+            <li>
+                <div class='name styler_bg_color'>
+                    <i class="styler_border_color"></i>
+                    Remaining
+                </div>
+                <div class="desc" data-bind="text: 2600 - foodTracker().Calories()"></div>
+            </li>
+        </ul>
+    </div>
+</div>

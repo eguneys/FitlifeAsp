@@ -5,7 +5,7 @@
     if (!navlink.AllowAnonymous && !User.Identity.IsAuthenticated) { continue; }
     <li class='@(navlink.Link == ViewBag.SelectedNav ? "active" : ViewBag.SelectedNav)'>
     
-        <a href="@Url.Action(navlink.Action, navlink.Controller)">
+        <a href="@Url.Action(navlink.Action, navlink.Controller)" class="styler_hover_bg_color styler_active_bg_color styler_hover_color styler_active_color">
             <i class="@navlink.Icon"></i>
             @navlink.Name
         </a>

@@ -202,6 +202,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bizStrap\media.css" />
+    <Content Include="Content\bizStrap\settings.css" />
+    <Content Include="Content\bizStrap\style.css" />
+    <Content Include="Content\bizStrap\styler.css" />
     <Content Include="Content\Boldex\base.css" />
     <Content Include="Content\Boldex\bootstrap-responsive.min.css" />
     <Content Include="Content\Boldex\bootstrap.min.css" />
@@ -301,7 +305,26 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\bizStrap\arrows.png" />
+    <Content Include="Images\bizStrap\apple.jpg" />
+    <Content Include="Images\bizStrap\egg.jpg" />
+    <Content Include="Images\bizStrap\corn.jpg" />
+    <Content Include="Images\bizStrap\coffee.jpg" />
+    <Content Include="Images\bizStrap\meat.jpg" />
+    <Content Include="Images\bizStrap\socials.png" />
+    <Content Include="Images\bizStrap\top_btn.png" />
+    <Content Include="Images\Partners\partner_3.png" />
+    <Content Include="Images\Partners\partner_2.jpg" />
+    <Content Include="Images\Partners\partner_1.jpg" />
+    <Content Include="Images\Partners\partner_4.jpg" />
     <Content Include="Scripts\async.js" />
+    <Content Include="Scripts\bizStrap\function.js" />
+    <Content Include="Scripts\bizStrap\jquery.carouFredsel.js" />
+    <Content Include="Scripts\bizStrap\jquery.easy-pie-chart.js" />
+    <Content Include="Scripts\bizStrap\jquery.themepunch1.js" />
+    <Content Include="Scripts\bizStrap\jquery.themepunch2.js" />
+    <Content Include="Scripts\bizStrap\library.js" />
+    <Content Include="Scripts\bizStrap\main.js" />
     <Content Include="Scripts\BlueImp\jquery.fileupload.js" />
     <Content Include="Scripts\BlueImp\jquery.ui.widget.js" />
     <Content Include="Scripts\BlueImp\main.js" />
@@ -311,6 +334,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Properties\PublishProfiles\cinetpub.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
@@ -322,6 +346,7 @@
     <Content Include="Scripts\KendoUI\kendo-binding.js" />
     <Content Include="Scripts\KendoUI\kendo.web.min.js" />
     <Content Include="Scripts\KendoUI\knockout-kendo.min.js" />
+    <Content Include="Scripts\KnockoutApp\jquery.cookie.js" />
     <Content Include="Scripts\KnockoutApp\timeago.js" />
     <Content Include="Scripts\Boldex\base.js" />
     <Content Include="Scripts\Boldex\bootstrap-carousel.js" />

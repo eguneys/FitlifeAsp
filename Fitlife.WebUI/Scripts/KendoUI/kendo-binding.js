@@ -1,7 +1,8 @@
-﻿google.load("visualization", "1", { packages: ["corechart"] });
+﻿
 
 ko.bindingHandlers.googleChart = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        google.load("visualization", "1", { packages: ["corechart"] });
 
         var value = valueAccessor();
 
@@ -20,8 +21,8 @@ ko.bindingHandlers.googleChart = {
         var FoodGroups = FoodTracker.FoodGroups;
 
 
-        //google.setOnLoadCallback(drawChart);
-        drawChart();
+        google.setOnLoadCallback(drawChart);
+        if (google.visualization) drawChart();
         function drawChart() {
 
 
@@ -65,7 +66,7 @@ ko.bindingHandlers.googleChart = {
             }
             console.log(data);
 
-            var chart = new google.visualization.BarChart(element);
+            var chart = new google.visualization.ColumnChart(element);
             var datatable = new google.visualization.DataTable(
                 data
                 );

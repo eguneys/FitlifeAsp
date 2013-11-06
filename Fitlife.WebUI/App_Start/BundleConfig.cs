@@ -42,13 +42,15 @@ namespace Fitlife.WebUI
 
 
             bundles.Add(new ScriptBundle("~/bundles/bizStrap").Include(
-                                "~/Scripts/bizStrap/function.js",
+
+                                "~/Scripts/bizStrap/jquery.themepunch2.js",
+                                "~/Scripts/bizStrap/jquery.themepunch1.js",
                                 "~/Scripts/bizStrap/jquery.carouFredsel.js",
                                 "~/Scripts/bizStrap/jquery.easy-pie-chart.js",
-                                "~/Scripts/bizStrap/jquery.themepunch1.js",
-                                "~/Scripts/bizStrap/jquery.themepunch2.js",
                                 "~/Scripts/bizStrap/library.js",                              
+                                "~/Scripts/bizStrap/function.js",
                                 "~/Scripts/bizStrap/main.js"
+
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/BlueImp").Include(
@@ -78,32 +80,32 @@ namespace Fitlife.WebUI
                                 "~/Scripts/KnockoutApp/*.js"
                 ));
 
-            bundles.Add(new StyleBundle("~/Content/Site").Include(
+            bundles.Add(new StyleBundle("~/Content/SiteBundle").Include(
                                 "~/Content/Site2.css"
                 ));
 
-            bundles.Add(new StyleBundle("~/Content/fontawesome").Include(
+            bundles.Add(new StyleBundle("~/Content/fontawesomeBundle").Include(
                 "~/Content/font-awesome.min.css"
                 ));
 
           //  bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/Content/boldex").Include(
+            bundles.Add(new StyleBundle("~/Content/boldexBundle").Include(
                 "~/Content/Boldex/ui.totop.css",
                 "~/Content/Boldex/prettyPhoto.css",
                 "~/Content/Boldex/base.css"
                                ));
 
-            bundles.Add(new StyleBundle("~/Content/bizStrap").Include(
+            bundles.Add(new StyleBundle("~/Content/bizStrapBundle").Include(
                                 "~/Content/bizStrap/*.css"
                 ));
 
-            bundles.Add(new StyleBundle("~/Content/KendoUI").Include(
+            bundles.Add(new StyleBundle("~/Content/KendoUIBundle").Include(
                                 "~/Content/KendoUI/kendo.common.min.css",
                                 "~/Content/KendoUI/kendo.default.min.css"
                 ));
 
-            bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
+            bundles.Add(new StyleBundle("~/Content/themes/base/cssBundle").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
                         "~/Content/themes/base/jquery.ui.resizable.css",
                         "~/Content/themes/base/jquery.ui.selectable.css",

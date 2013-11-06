@@ -9,6 +9,15 @@ namespace Fitlife.Domain.Concrete
 {
     public class EFDBContext : DbContext
     {
+        public EFDBContext(): base("smarterasp")
+        {
+        }
+
+        public EFDBContext(string nameOrConnectionString)
+            : base(nameOrConnectionString)
+        {
+        }
+
         public DbSet<User> Users { get; set; }
         public DbSet<BodyPhoto> Photos { get; set; }
         public DbSet<BlogItem> BlogItems { get; set; }

@@ -6,139 +6,165 @@
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
 
-        @Styles.Render("~/Content/themes/base/css")
+        @Styles.Render("~/Content/themes/base/cssBundle")
         @Styles.Render("~/Content/bootstrap/base")
-        @Styles.Render("~/Content/fontawesome")
-        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/fontawesomeBundle")
+        @Styles.Render("~/Content/cssBundle")
+        @*
         @Styles.Render("~/Content/Boldex")
-        @Styles.Render("~/Content/KendoUI")
-        @Styles.Render("~/Content/Site")
+        *@
+        @Styles.Render("~/Content/bizStrapBundle")
+        @Styles.Render("~/Content/KendoUIBundle")
+        @Styles.Render("~/Content/SiteBundle")
         <link href="http://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900|Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic" rel="stylesheet" type="text/css" />
 
         @Scripts.Render("~/bundles/modernizr")
     </head>
-    <body style="padding-top : 70px;">
-           <div class="wrapper">
-            <div class="masthead">
-                <nav class="navbar navbar-inverse navbar-fixed-top">
-                    <div class="navbar-header">
-                            <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-     
-                            <!-- Be sure to leave the brand out there if you want it shown -->
-                            <a class="navbar-brand" href="#">Fitlife</a>
+    <body>
+        
+      <div id="container" class="main">
+            <div id="out">
+                <div id="home_marker"></div>
+                <div id="header">
+                    <div class="inner">
+                     @if (TempData["message"] != null) {   
+                        <!-- start notification bar -->
+                        <div class="notify-bar">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-11 col-xs-11 col-sm-11">
+                                        <!-- enter notification message here -->
+                                        <p>@TempData["message"]</p>
+                                    </div>
+                                    <div class="col-md-1 col-xs-1 col-sm-1"><a href="#" class="notify-close"><i class="icon-remove-sign"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /end notification bar -->
+                     }
+                        <!-- start top grey bar -->
+                        <div class="top">
+                            <div class="container">
+                                <div class="row"> 
+								    <div class="col-md-12 col-xs-12 col-sm-12">                               
+										<div class="contacts_block">
+											<!-- edit social icons here -->
+											<ul class="social_links clearfix">
+												<li><a href="#" class="fb styler_bg_color"></a></li>
+												<li><a href="#" class="tw styler_bg_color"></a></li>
+									<!--
+                                                <li><a href="#" class="pi styler_bg_color"></a></li>
+												<li><a href="#" class="in styler_bg_color"></a></li>
+												<li><a href="#" class="share styler_bg_color"></a></li>
+                                        -->
+											</ul>
+											<!-- edit phone number here -->
+											<div class="phone styler_color">CALL US TOLL FREE <span>866.877.8899</span></div>
+											<div class="clear"></div>
+										</div>
+									</div>
+                                </div>
+                            </div>
+                            <a href="#" class="scrollup"></a>
+                        </div>
+                        <!-- /end top grey bar -->
+                        
+                        <!-- start logo and nav area -->
+                        <div class="bottom">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-2 col-xs-12 col-sm-2">
+                                        <!-- your logo goes here -->
+                                        <a href="#" id="logo"><img src="img/logo.png" alt="" /></a>
+                                    </div>
+                                    <div class="col-md-10 col-xs-12 col-sm-10">
+                                        <div id="top_menu">
+                                            <div class="navbar">                                              
+												<a class="btn navbar-btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+													<span class="menu-btn-name">Menu</span>
+													<span class="icon-bar"></span>
+													<span class="icon-bar"></span>
+													<span class="icon-bar"></span>
+												</a>                                                                              
+												<div class="navbar-collapse">
+													<ul class="nav nav-pills">
+														<!-- navigation menus here -->
+                                                        @{Html.RenderAction("Menu", "Nav");}
+														@{Html.RenderAction("Signin", "Nav");}
+
+													</ul>
+												</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /end logo and nav area -->
+                        
                     </div>
-                            <!-- Everything you want hidden at 940px or less, place within here -->
-                            <div class="navbar-collapse collapse">
-                                <!--
-                                
-                                 .nav, .navbar-search, .navbar-form, etc -->
-                                <ul class="nav navbar-nav">
-                                @{ Html.RenderAction("Menu", "Nav"); }
-                                @{ Html.RenderAction("Signin", "Nav"); }
-                                </ul>
-                            </div><!--/.nav-collapse -->
-                </nav>   
-            </div><!--/.masthead -->
-            <div>
-            @if (TempData["message"] != null)
-            {
-                <div class="alert">
-                @TempData["message"]
-                </div>
-            }                
+                </div>      
+
+
+
+             
             @RenderBody()
+                <div id="empty"></div>
             </div>
-            <footer class="footer">
+      </div>
+
+        
+        <!-- start footer -->
+        <div id="footer">
+            <div class="top">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-3 widget">
-                            <h5>About Us</h5>
-                            <p>We say what we do, we do what we say, and we're looking forward to prove it to you.</p>
-                            <ul class="vcard">
-                                <li>
-                                    <span class="vcard-icon"><i class="icon-home"></i></span>                                                                       
-                                    <span class="vcard-text">20/3 Babor Road, Mohammadpur, Dhaka - 1230</span>
-                                </li>
-                                <li>
-                                    <span class="vcard-icon"><i class="icon-phone"></i></span>                                                                       
-                                    <span class="vcard-text">(123) 456-7890</span>
-                                </li>
-                                <li>
-                                    <span class="vcard-icon"><i class="icon-envelope"></i></span>                                                                       
-                                    <span class="vcard-text">office@example.com</span>
-                                </li>
-                            </ul>                           
-                        </div><!--/ about us -->
-                        <div class="col-md-3 widget">
-                            <h5>Recent Posts</h5>
-                            <ul class="recent-posts">
-                            	<li>    
-                                    <a href="">
-                                        <div class="post-thumb">
-                                            <img src="images/blog/img_1.jpg">
-                                            <span class="overlay"></span>
-                                        </div>
-                                        <span class="post-title">Lorem ipsum dolor sit amet, consectetur adipiscing.</span> 
-                                        <span class="post-date">17 February, 2013</span> 
-                                    </a>                                   
-                                </li>
-  				            	<li>    
-                                    <a href="">
-                                        <div class="post-thumb">
-                                            <img src="images/blog/img_2.jpg">
-                                            <span class="overlay"></span>
-                                        </div>
-                                        <span class="post-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed.</span> 
-                                        <span class="post-date">16 February, 2013</span> 
-                                    </a>                                   
-                                </li>
-                                <li>    
-                                    <a href="">
-                                        <div class="post-thumb">
-                                            <img src="images/blog/img_3.jpg">
-                                            <span class="overlay"></span>
-                                        </div>
-                                        <span class="post-title">Lorem ipsum dolor sit amet.</span> 
-                                        <span class="post-date">15 February, 2013</span>  
-                                    </a>                                   
-                                </li>
-			                </ul>
-                        </div><!--/ recent posts --> 
-                        <div class="col-md-3 widget">
-                            <h5>Recent Tweets</h5>
-                            <div class="tweet"></div>
-                        </div><!--/ recent tweets -->                     
-                        <div class="col-md-3 widget">
-                            <h5>Flickr Photos</h5>
-                            <ul class="flickr"></ul>
-                        </div><!--/ flickr photos -->                        
+                        <div class="col-md-4 col-xs-12 col-sm-4">
+                            <!-- footer logo here -->
+                            <a href="#" class="logo"><img src="img/logo_white.png" alt="" /></a>
+                            <div class="text">
+                                <!-- footer logo text -->
+                                <p>Curabitur sodales ligula in libero. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Pellentesque nibh. </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xs-12 col-sm-4">
+                            <div class="text">
+                                <!-- disclaimer headline -->
+                                <div class="header">DISCLAIMER</div>
+                                <!-- disclaimer text -->
+                                <p>Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Pellentesque nibh.</p>
+                                <p>Curabitur sodales ligula in libero. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Pellentesque nibh. </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xs-12 col-sm-4">
+                            <div class="text">
+                                <!-- newsletter headline -->
+                                <div class="header">NEWSLETTER</div>
+                                <!-- newsletter text -->
+                                <p>Keep up on our always evolving product features and technology. Enter your e-mail and subscribe to our newsletter.</p>
+                            </div>
+                            <!-- newsletter form -->
+                            <div class="subscribe">
+                                <form action="/" method="post">
+                                    <input type="text" placeholder="Email Address" />
+                                    <input type="submit" value="GO" class="styler_bg_color" />
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </footer><!--/.footer -->
-            <section class="socket">
+            </div>
+            <div class="bottom">
                 <div class="container">
                     <div class="row">
-                        <div class="span6">
-                            <p>Copyright © 2013 Boldex. All rights reserved</p>
-                        </div><!--/ copyright -->                        
-                        <div class="social span6">
-                            <ul class="social-list">
-                                <li>Stay Connected</li>                            
-                                <li><a href="#" data-toggle="tooltip" title="Faceboot"><i class="icon-facebook"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" title="Google Plus"><i class="icon-google-plus"></i></a></li>
-                                <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="icon-twitter"></i></a></li>                                
-                                <li><a href="#" data-toggle="tooltip" title="Pinterest"><i class="icon-pinterest"></i></a></li> 
-                                <li><a href="#" data-toggle="tooltip" title="LinkedIn"><i class="icon-linkedin"></i></a></li>                                                       
-                            </ul>     
-                        </div><!--/ social links -->                        
+                        <!-- enter copyright information here -->
+                        <div class="copyrights">© Copyright <a href="http://www.themeleaf.com" title="twitter bootstrap and wordpress themes">ThemeLeaf</a> 2013. All rights reserved.</div>
                     </div>
                 </div>
-            </section><!--/.socket -->
+            </div>
+        </div>
+
+
         </div><!--/.wrapper --> 
         @RenderSection("featured", required: false)
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -147,7 +173,10 @@
         @Scripts.Render("~/bundles/jqueryui")
         @Scripts.Render("~/bundles/bootstrap")
         @Scripts.Render("~/bundles/moment")
+        @*
         @Scripts.Render("~/bundles/Boldex")
+        *@
+        @Scripts.Render("~/bundles/bizStrap")
         @Scripts.Render("~/bundles/knockoutapp")
         @RenderSection("scripts", required: false)
     </body>

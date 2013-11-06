@@ -22,7 +22,7 @@
 </ul>
 <br />
 <div class='btn-group pull-right' style='margin-top: 10px'>
-<button class='btn btn-primary' data-bind='click: $root.addFood'>
+<button class='btn btn-primary' data-bind='click: $root.addFood, enable: $root.selectedFood().selectedmeals().length != 0'>
 Add
 <span class='icon-plus'></span>
 </button>
@@ -55,12 +55,34 @@ Clear
     <th></th>
 </tr>
 </thead>
-<tbody data-bind="foreach: selectedFood().nutrients">
+<tbody>
+<!-- ko foreach: foodStats.NutritionGroups.basic -->
 <tr>
-<td data-bind='text: $parent.selectedFoodNutr($data).Description'>  </td>
-<td data-bind="text: $parent.selectedFoodNutrVal($data)"> </td>
-<td> target</td>
+<td data-bind='text: $parent.selectedFoodNutr($parent.selectedFood().nutrient(val)).Description'>  </td>
+<td data-bind="text: $parent.selectedFoodNutrVal($parent.selectedFood().nutrient(val))"> </td>
+<td data-bind="text: $parent.foodStats.TargetPercent(val)"></td>
 </tr>
+    <!-- /ko -->
+    <tr>
+        <td colspan="3" style="background:#eca537"> Minerals </td>
+    </tr>
+    <!-- ko foreach: foodStats.NutritionGroups.mineral -->
+<tr>
+<td data-bind='text: $parent.selectedFoodNutr($parent.selectedFood().nutrient(val)).Description'>  </td>
+<td data-bind="text: $parent.selectedFoodNutrVal($parent.selectedFood().nutrient(val)) + '%'"> </td>
+<td data-bind="text: $parent.foodStats.TargetPercent(val)"></td>
+</tr>
+    <!-- /ko -->
+    <tr>
+        <td colspan="3" style="background:#d74b4b">Vitamins</td>
+    </tr>
+    <!-- ko foreach: foodStats.NutritionGroups.vitamin -->
+<tr>
+<td data-bind='text: $parent.selectedFoodNutr($parent.selectedFood().nutrient(val)).Description'>  </td>
+<td data-bind="text: $parent.selectedFoodNutrVal($parent.selectedFood().nutrient(val))"> </td>
+<td data-bind="text: $parent.foodStats.TargetPercent(val)"></td>
+</tr>
+    <!-- /ko -->
 </tbody>
 </table>
 </div>

@@ -1,3 +1,5 @@
+.styler_border_color, .styler_hover_border_color:hover, .styler_parent:hover > .styler_hover_border_color, .styler_parent_active.active > .styler_active_border_color, .styler_active_itself_border_color.active, .styler_active_itself_border_color.active + .styler_active_next_border_color {border-color:#0FC5AF !important;} .styler_color, .styler_hover_color:hover, .styler_parent_active.active > .styler_active_color  {color: #0FC5AF !important;} .styler_bg_color, .styler_hover_bg_color:hover, .styler_parent_active.active > .styler_active_bg_color {background-color: #0FC5AF !important;}
+
 #mtp-toggle{
 	width:40px; 
 	height:41px;

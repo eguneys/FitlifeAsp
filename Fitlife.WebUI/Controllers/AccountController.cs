@@ -34,6 +34,7 @@ namespace Fitlife.WebUI.Controllers
                 {
                     user = uRepository.Users.Where(x => x.Email == user.Email).First();
                     FormsAuthentication.SetAuthCookie(user.Name, false);
+                    Response.Cookies.Add(new HttpCookie("userid", user.UserID + ""));
                     Session["user"] = user;
                     if (returnUrl != null)
                         return Redirect(returnUrl);
