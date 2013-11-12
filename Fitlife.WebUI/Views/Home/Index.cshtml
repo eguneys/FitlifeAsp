@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Fitlife.WebUI.Models.HomeViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 @section featured {
@@ -120,69 +122,72 @@
                         <div class="infograph">
                             <sup class="styler_bg_color"></sup>
                             <!-- infographics bar headline -->
-                            <div class="header styler_color">AWESOME INFOGRAPHICS</div>
+                            <div class="header styler_color">HOW IT WORKS</div>
                             <div class="row">
                                 <!-- infographic column 1 -->
                                 <div class="col-md-3 col-xs-3 col-sm-3">
                                     <div class="graph">
                                         <div class="graph_inner">
                                             <!-- infographic column 1 - large number -->
-                                            <div class="large_num styler_color">321</div>
+                                            <div class="large_num styler_color">+70000</div>
                                         </div>
                                     </div>
                                     <div class="desc styler_bg_color">
                                         <i class="styler_border_color"></i>
                                         <!-- infographics column 1 headline -->
-                                        <div class="name">FACT 1</div>
+                                        <div class="name">STEP 1</div>
                                         <!-- infographics column 1 text body -->
-                                        <div class="text">Number of Twitter Bootstrap sites that go live every hour.</div>
+                                        <div class="text">Track your workout and nutrition. Choose from over 70,000 foods. Build muscle, eat healthy, live fit.</div>
                                     </div>
                                 </div>
                                 <!-- infographic column 2 -->
                                 <div class="col-md-3 col-xs-3 col-sm-3">
+                                    <!-- in graph -->
+                                    
                                     <div class="graph">
                                         <div class="graph_inner">
-                                            <!-- infographic column 2 - contrasting icons -->
-                                            <div class="progress_bars_with_image styler_infograph" data-number="8" data-value="5" data-icon="icon-male" data-height="40" data-color="#0eae9b"></div>
-                                            <!-- infographic column 2 - contrasting icons caption -->
-                                            <div class="progress_bars_with_image_title styler_color">5 in every 8</div>
+                                            <!-- infogrphic column 3 progress bars -->
+                                            <div class="progress_bars_block">
+                                                <!-- progress bar caption -->
+                                                <div class="progress_bars_caption styler_color">CALORIES</div>
+                                                <!-- progress bar -->
+                                                <div class="progress_bars horizontal style1 styler_infograph" data-width="220" data-height="15" data-color="#0eae9b" data-title="inner" data-value="75%"></div>
+                                                <!-- progress bar caption -->
+                                                <div class="progress_bars_caption styler_color">GRAINS</div>
+                                                <!-- progress bar -->
+                                                <div class="progress_bars horizontal style1 styler_infograph" data-width="220" data-height="15" data-color="#0eae9b" data-title="inner" data-value="60%"></div>
+                                                <!-- progress bar caption -->
+                                                <div class="progress_bars_caption styler_color">PROTEIN FOODS</div>
+                                                <!-- progress bar -->
+                                                <div class="progress_bars horizontal style1 styler_infograph" data-width="220" data-height="15" data-color="#0eae9b" data-title="inner" data-value="50%"></div>
+                                            </div>
                                         </div>
                                     </div>
+
                                     <div class="desc styler_bg_color">
                                         <i class="styler_border_color"></i>
                                         <!-- infographics column 2 headline -->
-                                        <div class="name">FACT 2</div>
+                                        <div class="name">STEP 2</div>
                                         <!-- infographics column 2 text body -->
-                                        <div class="text">New developers learning Twitter Bootstrap each month.</div>
+                                        <div class="text">Take photos, view progress, stay motivated. View weekly, monthly reports for your trackings. Never quit fit life.</div>
                                     </div>
                                 </div>
                                 <!-- infographic column 3 -->
                                 <div class="col-md-3 col-xs-3 col-sm-3">
                                     <div class="graph">
                                         <div class="graph_inner">
-                                            <!-- infogrphic column 3 progress bars -->
-                                            <div class="progress_bars_block">
-                                                <!-- progress bar caption -->
-                                                <div class="progress_bars_caption styler_color">WEBSITE DESIGN & DEVELOPMENT</div>
-                                                <!-- progress bar -->
-                                                <div class="progress_bars horizontal style1 styler_infograph" data-width="220" data-height="15" data-color="#0eae9b" data-title="inner" data-value="75%"></div>
-                                                <!-- progress bar caption -->
-                                                <div class="progress_bars_caption styler_color">iOS DEVELOPMENT</div>
-                                                <!-- progress bar -->
-                                                <div class="progress_bars horizontal style1 styler_infograph" data-width="220" data-height="15" data-color="#0eae9b" data-title="inner" data-value="60%"></div>
-                                                <!-- progress bar caption -->
-                                                <div class="progress_bars_caption styler_color">INFO GRAPHICS</div>
-                                                <!-- progress bar -->
-                                                <div class="progress_bars horizontal style1 styler_infograph" data-width="220" data-height="15" data-color="#0eae9b" data-title="inner" data-value="50%"></div>
-                                            </div>
+                                            <!-- infographic column 2 - contrasting icons -->
+                                            <div class="progress_bars_with_image styler_infograph" data-number="8" data-value="5" data-icon="icon-male" data-height="40" data-color="#0eae9b"></div>
+                                            <!-- infographic column 2 - contrasting icons caption -->
+                                            <div class="progress_bars_with_image_title styler_color">Followers</div>
                                         </div>
                                     </div>
                                     <div class="desc styler_bg_color">
                                         <i class="styler_border_color"></i>
                                         <!-- infographics column 3 headline -->
-                                        <div class="name">FACT 3</div>
+                                        <div class="name">STEP 3</div>
                                         <!-- infographics column 3 text body -->
-                                        <div class="text">Web developers prefer working with Twitter Bootstrap.</div>
+                                        <div class="text">Share your fitlife activities, in our social platform, or on facebook and twitter. Stay connected with other fit lives.</div>
                                     </div>
                                 </div>
                                 <!-- infographic column 4 -->
@@ -190,15 +195,15 @@
                                     <div class="graph">
                                         <div class="graph_inner">
                                             <!-- infogrphic column 4 pie chart -->
-                                            <div class="easy-pie-chart styler_infograph" data-percent="70" data-trackColor="#6ed1ff" data-color="#0eae9b" data-lineWidth="25" data-size="126" data-cap="butt"></div>
+                                            <div class="easy-pie-chart styler_infograph" data-percent="100" data-trackColor="#6ed1ff" data-color="#0eae9b" data-lineWidth="25" data-size="126" data-cap="butt"></div>
                                         </div>
                                     </div>
                                     <div class="desc styler_bg_color">
                                         <i class="styler_border_color"></i>
                                         <!-- infographics column 4 headline -->
-                                        <div class="name">FACT 4</div>
+                                        <div class="name">STEP 4</div>
                                         <!-- infographics column 4 text body -->
-                                        <div class="text">Percent of Twitter Bootstrap websites created from templates.</div>
+                                        <div class="text">Learn all about body building, workouts, nutrition, motivation, and more..</div>
                                     </div>
                                 </div>
                             </div>
@@ -216,13 +221,15 @@
 										<li>
 											<a href="#" class="photo styler_parent">
 												<!-- portfolio image -->
-												<span class="img"><i class="styler_bg_color"></i><img src="img/img2.jpg" alt="" /></span>
+												<span class="img"><i class="styler_bg_color"></i><img src="images/bizStrap/features/fitlife2.png" alt="" /></span>
 												<span class="text styler_hover_border_color">
 													<i class="styler_border_color"></i>
 													<!-- portfolio item name -->
-													<span class="name">Feature #1</span>
+													<span class="name">GET NUTRITION</span>
 													<!-- portfolio description -->
-													<span class="desc">nutrition tracker</span>
+													<span class="desc">Nutrition Tracker 
+                                                        
+													</span>
 												</span>
 											</a>
 										</li>
@@ -233,9 +240,9 @@
 												<span class="text styler_hover_border_color">
 													<i class="styler_border_color"></i>
 													<!-- portfolio item name -->
-													<span class="name">Feature #2</span>
+													<span class="name">BUILD MUSCLE</span>
 													<!-- portfolio description -->
-													<span class="desc">activity tracker</span>
+													<span class="desc">Activity Tracker </span>
 												</span>
 											</a>
 										</li>
@@ -246,9 +253,9 @@
 												<span class="text styler_hover_border_color">
 													<i class="styler_border_color"></i>
 													<!-- portfolio item name -->
-													<span class="name">Feature #3</span>
+													<span class="name">BE SOCIAL</span>
 													<!-- portfolio description -->
-													<span class="desc">social platform</span>
+													<span class="desc">Social Platform</span>
 												</span>
 											</a>
 										</li>
@@ -259,7 +266,7 @@
 												<span class="text styler_hover_border_color">
 													<i class="styler_border_color"></i>
 													<!-- portfolio item name -->
-													<span class="name">Feature #4</span>
+													<span class="name">LEARN FITNESS</span>
 													<!-- portfolio description -->
 													<span class="desc">Personal Blogs</span>
 												</span>
@@ -378,21 +385,21 @@
                                     <ul class="styled_list styler_infograph" data-type="process_box" data-color="#0FC5AF">
                                         <li>
                                             <!-- box 1 caption -->
-                                            <div class="name styler_color">PLAN</div>
+                                            <div class="name styler_color">DO FITLIFE</div>
                                             <!-- box 1 text -->
-                                            <div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                                            <div class="desc">Build muscle, eat healthy, live fit</div>
                                         </li>
                                         <li>
                                             <!-- box 2 caption -->
-                                            <div class="name styler_color">DEVELOP & TEST</div>
+                                            <div class="name styler_color">DEVELOP FITLIFE</div>
                                             <!-- box 2 text -->
-                                            <div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                                            <div class="desc">Think features, Test&Develop fitlife, be happy</div>
                                         </li>
                                         <li>
                                             <!-- box 3 caption -->
-                                            <div class="name styler_color">IMPLEMENT</div>
+                                            <div class="name styler_color">BE FITLIFE</div>
                                             <!-- box 3 text -->
-                                            <div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                                            <div class="desc">Use Fitlife, Track progress, stay motivated</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -462,13 +469,15 @@
                             <div class="col-md-8 col-xs-12 col-sm-8">
                                 <!-- contact us form -->
                                 <div class="contact_form">
-                                    <form action="/" method="post">
-                                        <input type="text" placeholder="Name" />
-                                        <input type="text" placeholder="Email Address" />
-                                        <input type="text" placeholder="Subject" />
-                                        <textarea placeholder="Message"></textarea>
+                                    @using (Html.BeginForm("ContactUsMail", "Home"))
+                                    {
+                                        @Html.TextBoxFor(x => x.ContactUsMail.Name , new { @placeholder = "Name" })
+                                        @Html.TextBoxFor(x => x.ContactUsMail.Email, new { @placeholder = "Email" })
+                                        @Html.TextBoxFor(x => x.ContactUsMail.Subject, new { @placeholder = "Subject" })
+                                        @Html.TextAreaFor(x => x.ContactUsMail.Message, new { @placeholder = "Message" })
+
                                         <input type="submit" value="SUBMIT" class="styler_bg_color" />							
-                                    </form>
+                                    }
                                 </div>
                             </div>
                             <div class="col-md-4 col-xs-12 col-sm-4">

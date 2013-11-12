@@ -171,6 +171,8 @@
     <Compile Include="Controllers\NutritionApi3Controller.cs" />
     <Compile Include="Controllers\NutritionApi4Controller.cs" />
     <Compile Include="Filters\BasicAuthenticationMessageHandler.cs" />
+    <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Scripts\Controllers\SocialController.cs" />
     <Content Include="App_Code\HtmlExtensions.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
@@ -202,7 +204,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bizStrap\jquery.percentageloader-0.1.css" />
     <Content Include="Content\bizStrap\media.css" />
+    <Content Include="Content\bizStrap\prettyPhoto.css" />
     <Content Include="Content\bizStrap\settings.css" />
     <Content Include="Content\bizStrap\style.css" />
     <Content Include="Content\bizStrap\styler.css" />
@@ -310,6 +314,8 @@
     <Content Include="Images\bizStrap\egg.jpg" />
     <Content Include="Images\bizStrap\corn.jpg" />
     <Content Include="Images\bizStrap\coffee.jpg" />
+    <Content Include="Images\bizStrap\features\fitlife2.png" />
+    <Content Include="Images\bizStrap\fitlife2.png" />
     <Content Include="Images\bizStrap\meat.jpg" />
     <Content Include="Images\bizStrap\socials.png" />
     <Content Include="Images\bizStrap\top_btn.png" />
@@ -321,10 +327,12 @@
     <Content Include="Scripts\bizStrap\function.js" />
     <Content Include="Scripts\bizStrap\jquery.carouFredsel.js" />
     <Content Include="Scripts\bizStrap\jquery.easy-pie-chart.js" />
+    <Content Include="Scripts\KendoUI\jquery.percentageloader-0.1.min.js" />
     <Content Include="Scripts\bizStrap\jquery.themepunch1.js" />
     <Content Include="Scripts\bizStrap\jquery.themepunch2.js" />
     <Content Include="Scripts\bizStrap\library.js" />
     <Content Include="Scripts\bizStrap\main.js" />
+    <Content Include="Scripts\bizStrap\prettyPhoto\jquery.prettyPhoto.js" />
     <Content Include="Scripts\BlueImp\jquery.fileupload.js" />
     <Content Include="Scripts\BlueImp\jquery.ui.widget.js" />
     <Content Include="Scripts\BlueImp\main.js" />
@@ -334,6 +342,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\BebasNeue.otf" />
+    <Content Include="fonts\BebasNeue-webfont.eot" />
+    <Content Include="fonts\BebasNeue-webfont.woff" />
     <None Include="Properties\PublishProfiles\cinetpub.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
@@ -422,6 +433,9 @@
     <Content Include="Views\FoodTracker\Edit.cshtml" />
     <Content Include="Views\FoodTracker\Delete.cshtml" />
     <Content Include="Views\Nutrition\FavoriteFoods.cshtml" />
+    <Content Include="Views\User\EditProfile.cshtml" />
+    <Content Include="Views\Social\PeopleSearch.cshtml" />
+    <Content Include="Views\Social\BlogItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -456,7 +470,6 @@
     <Content Include="Views\Nutrition\FoodDetails.cshtml" />
     <Content Include="Views\Nutrition\Meals.cshtml" />
     <Content Include="Views\Social\SideNav.cshtml" />
-    <Content Include="Views\Social\_SocialLayout.cshtml" />
     <Content Include="Views\Social\Feed.cshtml" />
     <Content Include="Views\Social\Friends.cshtml" />
     <Content Include="Views\User\Index.cshtml" />

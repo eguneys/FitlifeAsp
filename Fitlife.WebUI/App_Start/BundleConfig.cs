@@ -74,6 +74,7 @@ namespace Fitlife.WebUI
 
             bundles.Add(new ScriptBundle("~/bundles/knockoutapp").Include(
                                 "~/Scripts/knockout-{version}.js",
+                                "~/Scripts/KendoUI/jquery.percentageloader-0.1.min.js",
                                 "~/Scripts/KendoUI/kendo.web.min.js",
                                 "~/Scripts/KendoUI/knockout-kendo.min.js",
                                 "~/Scripts/KendoUI/kendo-binding.js",

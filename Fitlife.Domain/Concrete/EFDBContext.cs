@@ -9,7 +9,7 @@ namespace Fitlife.Domain.Concrete
 {
     public class EFDBContext : DbContext
     {
-        public EFDBContext(): base("smarterasp")
+        public EFDBContext(): base()
         {
         }
 
@@ -34,6 +34,7 @@ namespace Fitlife.Domain.Concrete
         public DbSet<PortionDescriptions> PortionDescriptions { get; set; }
         public DbSet<NutrDesc> NutrDesc { get; set; }
 
+        public DbSet<UserProfile> Profiles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

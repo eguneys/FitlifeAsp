@@ -33,7 +33,7 @@ namespace Fitlife.Domain.Migrations
             string basePath = "C:/Users/matizmabel/Documents/Visual Studio 2012/Projects/FitlifeAsp/Fitlife.WebUI/App_Data/";
            
            //FoodBuilder.buildFood(context, basePath);
-           //FpedBuilder.buildFPEDs(basePath);
+           FpedBuilder.buildFPEDs(basePath);
         }
     }
 }

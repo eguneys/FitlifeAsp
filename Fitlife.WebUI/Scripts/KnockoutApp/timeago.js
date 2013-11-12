@@ -194,5 +194,10 @@
 
 
 $(document).ready(function () {
-    $("abbr.timeago").timeago();
+//    $("abbr.timeago").timeago();
 });
+
+
+function doTimeAgo() {
+    $('abbr.timeago').timeago();
+}

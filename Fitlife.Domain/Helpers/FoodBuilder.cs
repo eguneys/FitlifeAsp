@@ -45,6 +45,74 @@ namespace Fitlife.Domain.Helpers
         }
 
 
+        public static void buildNutDescs(string basePath, EFDBContext context)
+        {
+
+            List<List<string>> nutdescs = GetLines(basePath + "NutDesc.txt", RequiredFieldMap["NutDesc.txt"]);
+
+            nutdescs.ForEach(line =>
+            {
+                NutrDesc newVal = new NutrDesc()
+                {
+                    NutrientCode = int.Parse(line[0]),
+                    Description = line[1],
+                    Tagname = line[2],
+                    Unit = line[3]
+                };
+                Console.WriteLine("Adding NutrDesc " + newVal);
+                context.NutrDesc.Add(newVal);
+            });
+
+            context.SaveChanges();
+        }
+
+        public static void buildPortionDescs(string basePath, EFDBContext context)
+        {
+            
+            List<List<string>> foodPortionDesc = GetLines(basePath + "FoodPortionDesc.txt", RequiredFieldMap["FoodPortionDesc.txt"]);
+
+            foodPortionDesc.ForEach(line =>
+            {
+                PortionDescriptions newVal = new PortionDescriptions()
+                {
+                    PortionCode = int.Parse(line[0]),
+                    Description = line[1]
+                };
+                context.PortionDescriptions.Add(newVal);
+            });
+
+
+            context.SaveChanges();
+        }
+
+        public static void buildNutVals(string basePath)
+        {
+            var bulkCopyThis = new List<FNDDSNutVal>();
+
+            List<List<string>> fnddsNutvals = GetLines(basePath + "FNDDSNutVal.txt", RequiredFieldMap["FNDDSNutVal.txt"]);
+
+            fnddsNutvals.ForEach(line =>
+            {
+                FNDDSNutVal newVal = new FNDDSNutVal()
+                {
+                    FoodCode = int.Parse(line[0]),
+                    NutrientCode = int.Parse(line[1]),
+                    NutrientValue = decimal.Parse(line[2])
+                };
+            //    context.FNDDSNutVals.Add(newVal);
+                bulkCopyThis.Add(newVal);
+            });
+
+            string connectionString = GetConnectionString();
+
+            var bulkCopy = new SqlBulkCopy(connectionString);
+            bulkCopy.BulkCopyTimeout = 5000;
+            bulkCopy.DestinationTableName = "FNDDSNutVals";
+
+            bulkCopy.WriteToServer(bulkCopyThis.AsDataReader());
+
+        }
+
         public static void buildFoodWeights(string basePath)
         {
             // TODO BULK LOad this
@@ -113,94 +181,21 @@ namespace Fitlife.Domain.Helpers
 
         public static void buildFood(EFDBContext context, string basePath)
         {
-            buildFoodWeights(basePath);
-            
+            //buildFoodWeights(basePath);
             /*******************************************************/
+            //buildNutDescs(basePath, context);
             /*******************************************************/
+            //buildPortionDescs(basePath, context);
             /*******************************************************/
-
-
-            List<List<string>> nutdescs = GetLines(basePath + "NutDesc.txt", RequiredFieldMap["NutDesc.txt"]);
-
-            nutdescs.ForEach(line =>
-            {
-                NutrDesc newVal = new NutrDesc()
-                {
-                    NutrientCode = int.Parse(line[0]),
-                    Description = line[1],
-                    Tagname = line[2],
-                    Unit = line[3]
-                };
-                Console.WriteLine("Adding NutrDesc " + newVal);
-                context.NutrDesc.Add(newVal);
-            });
-
-            context.SaveChanges();
-
-
+            //buildMainFoods(basePath);
             /*******************************************************/
-            /*******************************************************/
-            /*******************************************************/
-
-            List<List<string>> foodPortionDesc = GetLines(basePath + "FoodPortionDesc.txt", RequiredFieldMap["FoodPortionDesc.txt"]);
-
-            foodPortionDesc.ForEach(line =>
-            {
-                PortionDescriptions newVal = new PortionDescriptions()
-                {
-                    PortionCode = int.Parse(line[0]),
-                    Description = line[1]
-                };
-                context.PortionDescriptions.Add(newVal);
-            });
-
-
-            context.SaveChanges();
-
-
-
-
-            /*******************************************************/
-            /*******************************************************/
-            /*******************************************************/
-
-            buildMainFoods(basePath);
-
-
-            /*******************************************************/
-            /*******************************************************/
-            /*******************************************************/
-
-            var bulkCopyThis = new List<FNDDSNutVal>();
-
-            List<List<string>> fnddsNutvals = GetLines(basePath + "FNDDSNutVal.txt", RequiredFieldMap["FNDDSNutVal.txt"]);
-
-            fnddsNutvals.ForEach(line =>
-            {
-                FNDDSNutVal newVal = new FNDDSNutVal()
-                {
-                    FoodCode = int.Parse(line[0]),
-                    NutrientCode = int.Parse(line[1]),
-                    NutrientValue = decimal.Parse(line[2])
-                };
-            //    context.FNDDSNutVals.Add(newVal);
-                bulkCopyThis.Add(newVal);
-            });
-
-            string connectionString = GetConnectionString();
-
-            var bulkCopy = new SqlBulkCopy(connectionString);
-
-            bulkCopy.DestinationTableName = "FNDDSNutVals";
-
-            bulkCopy.WriteToServer(bulkCopyThis.AsDataReader());
-
-//            context.SaveChanges();
+            buildNutVals(basePath);
         }
 
         private static string GetConnectionString()
         {
-            return "Data Source=CASPER;Initial Catalog=Fitlife.Domain.Concrete.EFDBContext;Integrated Security=True;User ID=eguneys;Password=ipek214";
+            //return "Data Source=CASPER;Initial Catalog=Fitlife.Domain.Concrete.EFDBContext;Integrated Security=True;User ID=eguneys;Password=ipek214";
+            return "Data Source=eguneys.db.12106637.hostedresource.com;Initial Catalog=eguneys;User ID=eguneys;Password=cotton412@COM";
         }
     }
 }

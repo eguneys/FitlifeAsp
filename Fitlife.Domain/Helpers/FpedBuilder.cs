@@ -98,7 +98,8 @@ namespace Fitlife.Domain.Helpers
         
         private static string GetConnectionString()
         {
-            return "Data Source=CASPER;Initial Catalog=Fitlife.Domain.Concrete.EFDBContext;Integrated Security=True;User ID=eguneys;Password=ipek214";
+            //return "Data Source=CASPER;Initial Catalog=Fitlife.Domain.Concrete.EFDBContext;Integrated Security=True;User ID=eguneys;Password=ipek214";
+            return "Data Source=eguneys.db.12106637.hostedresource.com;Initial Catalog=eguneys;User Id=eguneys;Password=cotton412@COM";
         }
     }
 }

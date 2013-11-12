@@ -71,4 +71,37 @@ namespace Fitlife.Domain.Entities
         public virtual ICollection<BodyPhoto> BodyPhotos { get; set; }
 
     }
+
+    public class UserProfile
+    {
+        public UserProfile()
+        {
+            Gender = "male";
+        }
+        public int UserProfileID { get; set; }
+        public int UserID { get; set; }
+
+        public int Weight { get; set; }
+        public int Height { get; set; }
+        public int Age { get; set; }
+        public string Gender { get; set; }
+
+        [Column("PhysicalActivity")]
+        public int PhysicalActivityAsInt { get; set; }
+
+        [NotMapped]
+        public PhysicalActiviyLevel PhysicalActivity
+        {
+            get { return (PhysicalActiviyLevel)this.PhysicalActivityAsInt; }
+            set { this.PhysicalActivityAsInt = (int)value; }
+        }
+    }
+
+    public enum PhysicalActiviyLevel {
+        LittleOrNone = 0,
+        Light = 1,
+        Moderate = 2,
+        Heavy = 3,
+        VeryHeavy = 4
+    };
 }

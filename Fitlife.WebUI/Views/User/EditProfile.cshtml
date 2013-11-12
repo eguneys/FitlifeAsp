@@ -1,0 +1,43 @@
+﻿@model Fitlife.Domain.Entities.UserProfile
+
+
+<div id="wrapper">
+    <div class="mod row">
+        <div class="container">
+            <div class="caption styler_color">Edit Profile</div>
+            <div class="col-md-12 contact_form" style='text-align:left; margin-left:auto; margin-right: auto'">
+
+@using (@Html.BeginForm("PostProfile", "User"))
+{
+    <div class="form-group">
+        <div class="">
+            @Html.LabelFor(x => x.Age)
+            @Html.TextBoxFor(x => x.Age, new { @placeholder = "Age" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="">
+            @Html.LabelFor(x => x.Gender)
+            @Html.DropDownListFor(x => x.Gender, new SelectList(new[] { "male", "female" }))
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="">  
+            @Html.LabelFor(x => x.Weight)
+            @Html.TextBoxFor(x => x.Weight, new { @placeholder="Weight (kg.)" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="">
+            @Html.LabelFor(x => x.Height)
+            @Html.TextBoxFor(x => x.Height, new { @placeholder="Height (cm.)" })
+        </div>
+    </div>
+    <button type="submit" value="Edit" class="btn btn-primary">Edit</button>
+    <a href="@Url.Action("Index", "User")" class="btn btn-default">Cancel</a>
+}    
+                
+            </div>
+        </div>
+    </div>
+</div>

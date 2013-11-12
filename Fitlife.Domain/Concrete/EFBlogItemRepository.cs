@@ -14,7 +14,7 @@ namespace Fitlife.Domain.Concrete
         private static IBlogItemRepository repo = new EFBlogItemRepository();
         public static IBlogItemRepository getRepository()
         {
-            return repo;
+            return new EFBlogItemRepository();
         }
         public IQueryable<BlogItem> BlogItems
         {

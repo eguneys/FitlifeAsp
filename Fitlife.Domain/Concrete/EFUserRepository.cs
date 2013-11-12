@@ -20,6 +20,11 @@ namespace Fitlife.Domain.Concrete
             get { return context.Users; }
         }
 
+        public IQueryable<UserProfile> UserProfiles
+        {
+            get { return context.Profiles; }
+        }
+
         public bool ValidateUser(User user)
         {
             User dbEntry = context.Users.Where(x => x.Email == user.Email && x.PasswordDigest == user.Password).FirstOrDefault();
@@ -70,5 +75,29 @@ namespace Fitlife.Domain.Concrete
             }
             context.SaveChanges();
         }
+
+        public void SaveUserProfile(UserProfile user)
+        {
+            if (user.UserProfileID == 0)
+            {
+                context.Profiles.Add(user);
+            }
+            else
+            {
+                UserProfile dbEntry = context.Profiles.Find(user.UserID);
+                if (dbEntry != null)
+                {
+                    dbEntry.UserID = user.UserID;
+                    dbEntry.Height = user.Height;
+                    dbEntry.Weight = user.Weight;
+                    dbEntry.Age = user.Age;
+                    dbEntry.Gender = user.Gender;
+                    dbEntry.PhysicalActivity = user.PhysicalActivity;
+                }
+            }
+            context.SaveChanges();
+        }
+
+
     }
 }

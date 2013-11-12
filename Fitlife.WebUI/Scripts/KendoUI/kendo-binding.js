@@ -1,4 +1,13 @@
-﻿
+﻿ko.bindingHandlers.percentageLoader = {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        console.log(allBindingsAccessor());
+        var options = allBindingsAccessor().loaderOptions || {};
+        $(element).percentageLoader(options);
+    },
+    update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        
+    }
+};
 
 ko.bindingHandlers.googleChart = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {

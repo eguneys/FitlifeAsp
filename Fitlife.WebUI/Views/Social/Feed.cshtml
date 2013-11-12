@@ -2,71 +2,43 @@
 
 @model Fitlife.WebUI.Models.BlogItemViewModel
 
-@helper UserShouldLikeOrDislike(Fitlife.Domain.Entities.BlogItem item, string TrueResponse, string FalseResponse) {
-    int userId = ((Fitlife.Domain.Entities.User)Session["user"]).UserID;
-    if (item.Likes.Any(x => x.UserID == userId)) {
-        @TrueResponse
-    } else {
-        @FalseResponse
-    }                    
 
-}
-
-@{
-    ViewBag.Title = "Feed";
-    Layout = "~/Views/Social/_SocialLayout.cshtml";
-}
 
 <div class="container">
     <div class="row">
-        <div class="span8">
-            <div class="input-append">
-                @using (Html.BeginForm("SaveBlog", "Social"))  {
-                @Html.TextBoxFor(x => x.newBlog.Body, new { @class= "span4", @placeholder="Share something" })
-
-                <button class="btn btn-primary" type="submit"> Post </button>
+        <div class="col-md-12">
+                @using (Ajax.BeginForm("SaveBlog", "Social", new AjaxOptions()
+                {
+                    UpdateTargetId = "blogItemsContent",
+                    InsertionMode = InsertionMode.InsertBefore
+                }, new
+                {
+                    @class="col-md-8 offset-2"
+                }))
+                {
+                    
+            <div class="input-group input-group-lg">
+                    @Html.TextBoxFor(x => x.newBlog.Body, new { @class = "input-lg form-control", @placeholder = "Share something" })
+                    <span class="input-group-btn">
+                        <button class="btn btn-lg btn-primary" type="submit"> Post </button>
+                    </span>
+                            </div>
                 }
+
             </div>
-        </div>
     </div>
     <div class="row">
-        <div class="span8">
+        <div class="col-md-12">
+
+            <ul class="media-list">
+                            <div id="blogItemsContent">
+
+            </div>
             @foreach (var blogItem in Model.BlogItems)
             {
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="@blogItem.User.Photo" style="height: 100px; width: 100px"  height="100" width="100"/>
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">@blogItem.User.Name</h4>
-                        <p id="raw-date" class="text-muted">@Html.TimeAgo(@blogItem.Date)</p>
-                        <span>@blogItem.Body</span>
-                        <ul class="list inline">
-                            <li><a class="btn-link" data-toggle="collapse" data-target="@String.Format("#{0}comment", blogItem.BlogItemID)"><span class="label">@blogItem.Comments.Count() comments</span> </a></li>
-                            <li><a class="btn-link text-muted"><span class="label">@blogItem.Likes.Count() likes</span></a></li>
-                            <li><a class="btn btn-link btn-success" href='@( Url.Action("SaveBlogLike", "Social", new { blogItem = @blogItem.BlogItemID }))' style='@(UserShouldLikeOrDislike(blogItem, "color:#ddd", ""))'>
-                                @(UserShouldLikeOrDislike(blogItem, "Unlike", "Like"))
-                                <i class="icon-thumbs-up-alt"></i>
-                            </a></li>
-                        </ul>
-                        <hr class="main-divider" />
-                        <div id='@String.Format("{0}comment", blogItem.BlogItemID)'>
-                        @foreach (var blogComment in blogItem.Comments)
-                        {
-                            <div class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="@blogComment.User.Photo" style="height: 50px; width: 50px;" width="50" height="50"/>
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">@blogComment.User.Name</h4>
-                                    <small class="text-muted">@Html.TimeAgo(blogComment.Date)</small>
 
-                                    <p>@blogComment.Body</p>
-                                </div>
-
-                            </div>
-                        }
-                        </div>
+                Html.RenderPartial("BlogItem", blogItem);
+                
                         <div class="media user-comment-form">
                             <a class="pull-left" href="#">
                                 <img class="media-object" src="@Model.CurrentUser.Photo" style="height: 50px; width: 50px;" height="50" width="50"/>
@@ -82,14 +54,11 @@
                             </div>
 
                         </div>
-
-                    </div>
-                </div>
             }
 
-
-        </div>
-                
+            }
+            </ul>
+            
+            </div>
     </div>
-
-</div>
+    </div>

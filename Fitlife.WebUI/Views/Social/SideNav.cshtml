@@ -1,29 +1,40 @@
-﻿<ul class="nav nav-list" id="sidenav">
+﻿@{var ajaxOptions = new AjaxOptions()
+   {
+       UpdateTargetId = "SocialContent"
+   };
+   }   
+
+<ul class="nav nav-list" id="sidenav">
     <li class>
-        @Html.RouteLink("Feed", new {
-                      controller="Social",
-                      action = "Feed"
-                  })
-    </li>
-    <li>
-        @Html.RouteLink("People", new {
-       controller="Social",
-       action = "People"
+        @Ajax.RouteLink("Feed", new
+   {
+       controller = "Social",
+       action = "Feed"
+   }, new AjaxOptions()
+   {
+       UpdateTargetId = "SocialContent",
+       OnSuccess = "doTimeAgo"
    })
     </li>
     <li>
-        @Html.RouteLink("Friends", new
+        @Ajax.RouteLink("People", new {
+       controller="Social",
+       action = "People"
+   }, ajaxOptions)
+    </li>
+    <li>
+        @Ajax.RouteLink("Friends", new
    {
        controller="Social",
        action = "Friends"
-   })</li>
+   }, ajaxOptions)</li>
     <li class="nav-header">Profile </li>
     <li class="divider"></li>
     <li>
-        @Html.RouteLink("Settings", new {
+        @Ajax.RouteLink("Settings", new {
               controller="Social",
               action = "Settings"
-   })       
+   }, ajaxOptions)       
 
     </li>
 </ul>

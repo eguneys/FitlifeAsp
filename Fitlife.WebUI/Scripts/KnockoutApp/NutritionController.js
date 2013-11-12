@@ -486,20 +486,52 @@ function NutrDefs() {
     };
 }
 
+function PhysicalActivity(idx) {
+    var self = this;
+    self.formattedText = ["Little to No Exercise", "Light exercise (1-3 days a week)", "Moderate exercise(3, 5 days a week)", "Heavy exercise(6, 7 days a week)", "Very heavy exercise (twice per day, extra heavy workouts)"];
+    self.coefficients = [1.2, 1.375, 1.55, 1.725, 1.9];
+    self.idx = idx;
+
+    self.coefficient = self.coefficients[self.idx];
+
+    self.prettyPrint = function () {
+        return self.formattedText[self.idx];
+    };
+}
+
 function UserProfile(p) {
     var self = this;
     self.parent = p;
 
     self.Age = 0;
     self.Gender = "male";
+    self.Height = 0;
+    self.Weight = 0;
     self.Name = "";
+    self.PhysicalActivity = new PhysicalActivity(0);
+    self.bmiChanged = ko.observable(0);
+
+    self.BMI = ko.computed(function () {
+        // touch the changed variable
+        self.bmiChanged();
+        if (self.Gender == "male") return 88.362 + (13.397 * self.Weight) + (4.799 * self.Height) + (5.677 * self.Age);
+        else return 447.593 + (9.247 * self.Weight) + (3.098 * self.Height) + (4.330 * self.Age);
+    });
+
+    self.DailyCalories = ko.computed(function () {
+        return (self.BMI() * self.PhysicalActivity.coefficient).toFixed(0);
+    });
 
     self.fill = function () {
         userid = $.cookie('userid');
-        $.getJSON('api/UserApi/?userID=' + userid, function (data) {
+        $.getJSON('api/UserApi/?profileID=' + userid, function (data) {
             self.Age = data.Age;
             self.Gender = data.Gender;
             self.Name = data.Name;
+            self.Height = data.Height;
+            self.Weight = data.Weight;
+            self.PhysicalActivity = new PhysicalActivity(data.PhysicalActivity);
+            self.bmiChanged(1);
         });
     };
 

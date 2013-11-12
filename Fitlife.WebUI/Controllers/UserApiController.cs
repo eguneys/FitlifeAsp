@@ -24,10 +24,22 @@ namespace Fitlife.WebUI.Controllers
              return new UserSafe(user);
         }
 
+        public UserProfile GetUserProfile(int profileID)
+        {
+            UserProfile profile = uRepo.UserProfiles.Where(x => x.UserID == profileID).FirstOrDefault();
+            return profile;
+        }
+
         public void PostUser(User user, string action)
         {
 
             uRepo.SaveUser(user);
+        }
+
+        [HttpPost]
+        public void PostUserProfile(UserProfile profile)
+        {
+            uRepo.SaveUserProfile(profile);
         }
     }
 }

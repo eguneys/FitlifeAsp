@@ -42,18 +42,26 @@ namespace Fitlife.WebUI.Controllers
             return PartialView("Feed", model);
         }
 
-        public ActionResult SaveBlog(BlogItem newBlog)
+        public PartialViewResult SaveBlog(BlogItem newBlog)
         {
             if (ModelState.IsValid)
             {
+
+                newBlog.Comments = new List<BlogComment>();
+                newBlog.Likes = new List<BlogLike>();
+
                 newBlog.Date = DateTime.Now;
                 newBlog.UserID = ((User)Session["user"]).UserID;
                 blogRepo.SaveBlogItem(newBlog);
-                return RedirectToAction("Index", "Social");
+                
+                Fitlife.Domain.Entities.User user = ((Fitlife.Domain.Entities.User)Session["user"]);
+                newBlog.User = user;
+
+                return PartialView("BlogItem", newBlog);
             }
             else
             {
-                return View(newBlog);
+                return PartialView("BlogItem", newBlog);
             }
         }
 
@@ -105,11 +113,11 @@ namespace Fitlife.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult SearchPeople(string search)
+        public PartialViewResult SearchPeople(string search)
         {
             var model = userRepo.Users.Where(x => x.Name.Contains(search)).ToList();
 
-            return View("People", model);
+            return PartialView("PeopleSearch", model);
         }
     }
 }

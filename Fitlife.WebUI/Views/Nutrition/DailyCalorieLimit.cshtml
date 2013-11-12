@@ -10,7 +10,7 @@
                     <i class="styler_border_color"></i>
                     Allowance
                 </div>
-                <div class="desc" data-bind="text: 2600">
+                <div class="desc" data-bind="text: Profile.DailyCalories">
                 </div>
             </li>
             <li>
@@ -25,7 +25,7 @@
                     <i class="styler_border_color"></i>
                     Remaining
                 </div>
-                <div class="desc" data-bind="text: 2600 - foodTracker().Calories()"></div>
+                <div class="desc" data-bind="text: Profile.DailyCalories - foodTracker().Calories()"></div>
             </li>
         </ul>
     </div>

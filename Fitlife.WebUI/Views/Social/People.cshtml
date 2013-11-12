@@ -1,31 +1,19 @@
 ﻿@model IEnumerable<Fitlife.Domain.Entities.User>
 
-@{
-    ViewBag.Title = "People";
-    Layout = "~/Views/Social/_SocialLayout.cshtml";
-}
 <div class="container">
     
     <div class="row">
         <div class="span12">
-            @using (Html.BeginForm("SearchPeople", "Social"))
+            @using (Ajax.BeginForm("SearchPeople", "Social", new AjaxOptions() { UpdateTargetId = "PeopleListContent" }))
             {
-                @Html.Label("Search People");
-                @Html.TextBox("search", "", new { @class = "input-medium search-query", @placeholder = "Search", @id = "peoplesearchbox" });
+                @Html.Label("Search People")
+                @Html.TextBox("search", "", new { @class = "input-medium search-query", @placeholder = "Search", @id = "peoplesearchbox" })
             }
         </div>
     </div>
     <div class="row">
-        <ul class="nav nav-pills nav-stacked">
-        @foreach (var p in Model)
-        {
-                        <li>
-                            <a href='@Url.Action("Index", "User", p)'>
-                                <span>@p.Name</span>                               
-                                <span> @p.Email</span>
-                            </a>
-                        </li>
-        }
-            </ul>
+        <div id="PeopleListContent">
+
+        </div>
     </div>
 </div>

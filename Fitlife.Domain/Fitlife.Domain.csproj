@@ -75,6 +75,14 @@
     <Compile Include="Migrations\201311051740174_add_gender_to_user.Designer.cs">
       <DependentUpon>201311051740174_add_gender_to_user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201311071155121_user_profile_added.cs" />
+    <Compile Include="Migrations\201311071155121_user_profile_added.Designer.cs">
+      <DependentUpon>201311071155121_user_profile_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311101907396_physical_activity_level.cs" />
+    <Compile Include="Migrations\201311101907396_physical_activity_level.Designer.cs">
+      <DependentUpon>201311101907396_physical_activity_level.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -88,6 +96,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201311051740174_add_gender_to_user.resx">
       <DependentUpon>201311051740174_add_gender_to_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311071155121_user_profile_added.resx">
+      <DependentUpon>201311071155121_user_profile_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311101907396_physical_activity_level.resx">
+      <DependentUpon>201311101907396_physical_activity_level.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
