@@ -2,18 +2,19 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <title>@ViewBag.Title</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         @Styles.Render("~/Content/themes/base/cssBundle")
         @Styles.Render("~/Content/bootstrap/base")
         @Styles.Render("~/Content/fontawesomeBundle")
-        @Styles.Render("~/Content/cssBundle")
+
+        @Styles.Render("~/Content/planarBundle");
         @*
         @Styles.Render("~/Content/Boldex")
-        *@
         @Styles.Render("~/Content/bizStrapBundle")
+        *@
         @Styles.Render("~/Content/KendoUIBundle")
         @Styles.Render("~/Content/SiteBundle")
         <link href="http://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900|Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic" rel="stylesheet" type="text/css" />
@@ -22,161 +23,91 @@
     </head>
     <body>
         
-      <div id="container" class="main">
-            <div id="out">
-                <div id="home_marker"></div>
-                <div id="header">
-                    <div class="inner">
-                     @if (TempData["message"] != null) {   
-                        <!-- start notification bar -->
-                        <div class="notify-bar">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-11 col-xs-11 col-sm-11">
-                                        <!-- enter notification message here -->
-                                        <p>@TempData["message"]</p>
-                                    </div>
-                                    <div class="col-md-1 col-xs-1 col-sm-1"><a href="#" class="notify-close"><i class="icon-remove-sign"></i></a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /end notification bar -->
-                     }
-                        <!-- start top grey bar -->
-                        <div class="top">
-                            <div class="container">
-                                <div class="row"> 
-								    <div class="col-md-12 col-xs-12 col-sm-12">                               
-										<div class="contacts_block">
-											<!-- edit social icons here -->
-											<ul class="social_links clearfix">
-												<li><a href="#" class="fb styler_bg_color"></a></li>
-												<li><a href="#" class="tw styler_bg_color"></a></li>
-									<!--
-                                                <li><a href="#" class="pi styler_bg_color"></a></li>
-												<li><a href="#" class="in styler_bg_color"></a></li>
-												<li><a href="#" class="share styler_bg_color"></a></li>
-                                        -->
-											</ul>
-											<!-- edit phone number here -->
-											<div class="phone styler_color">CALL US TOLL FREE <span>866.877.8899</span></div>
-											<div class="clear"></div>
-										</div>
-									</div>
-                                </div>
-                            </div>
-                            <a href="#" class="scrollup"></a>
-                        </div>
-                        <!-- /end top grey bar -->
-                        
-                        <!-- start logo and nav area -->
-                        <div class="bottom">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-2 col-xs-12 col-sm-2">
-                                        <!-- your logo goes here -->
-                                        <a href="#" id="logo"><img src="img/logo.png" alt="" /></a>
-                                    </div>
-                                    <div class="col-md-10 col-xs-12 col-sm-10">
-                                        <div id="top_menu">
-                                            <div class="navbar">                                              
-												<a class="btn navbar-btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-													<span class="menu-btn-name">Menu</span>
-													<span class="icon-bar"></span>
-													<span class="icon-bar"></span>
-													<span class="icon-bar"></span>
-												</a>                                                                              
-												<div class="navbar-collapse">
-													<ul class="nav nav-pills">
-														<!-- navigation menus here -->
-                                                        @{Html.RenderAction("Menu", "Nav");}
-														@{Html.RenderAction("Signin", "Nav");}
-
-													</ul>
-												</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /end logo and nav area -->
-                        
-                    </div>
-                </div>      
-
-
-
-             
-            @RenderBody()
-                <div id="empty"></div>
-            </div>
-      </div>
-
         
-        <!-- start footer -->
-        <div id="footer">
-            <div class="top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4 col-xs-12 col-sm-4">
-                            <!-- footer logo here -->
-                            <a href="#" class="logo"><img src="img/logo_white.png" alt="" /></a>
-                            <div class="text">
-                                <!-- footer logo text -->
-                                <p>Curabitur sodales ligula in libero. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Pellentesque nibh. </p>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-xs-12 col-sm-4">
-                            <div class="text">
-                                <!-- disclaimer headline -->
-                                <div class="header">DISCLAIMER</div>
-                                <!-- disclaimer text -->
-                                <p>Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Pellentesque nibh.</p>
-                                <p>Curabitur sodales ligula in libero. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Pellentesque nibh. </p>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-xs-12 col-sm-4">
-                            <div class="text">
-                                <!-- newsletter headline -->
-                                <div class="header">NEWSLETTER</div>
-                                <!-- newsletter text -->
-                                <p>Keep up on our always evolving product features and technology. Enter your e-mail and subscribe to our newsletter.</p>
-                            </div>
-                            <!-- newsletter form -->
-                            <div class="subscribe">
-                                <form action="/" method="post">
-                                    <input type="text" placeholder="Email Address" />
-                                    <input type="submit" value="GO" class="styler_bg_color" />
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+   		<header>
+           <div class="container">
+            <div class="row">
+        	<div class="col-md-4 col-xs-3"><h1 id="logo"><a href="index.html" title="Fitlife - Nutrition Tracker">Fitlife - Nutrition Tracker</a></h1></div>
+            <nav class="col-md-8 col-xs-9">
+            	<ul id="main-nav" class="sf-menu" >
+                    @{Html.RenderAction("Menu", "Nav");}
+                    @{Html.RenderAction("Signin", "Nav");}
+                </ul>
+            </nav><!-- End Nav -->
+         </div>
+        </div><!-- End container -->
+        </header> <!-- End header -->
+        @RenderBody()
+
+        <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Contacts</h5>
+                    <p>
+                        Our mission is to bring affordable Technology education to people everywhere, in order to help them achieve their dreams and change the world. to bring affordable Technology education to people everywhere, in order to help them achieve their dreams and change the world.
+                    </p>
+                    <ul>
+                        <li><i class="icon-user"></i> Personal trainer Name</li>
+                        <li><i class="icon-phone"></i> Telephone: 41.22.319.36.10 </li>
+                        <li><i class="icon-envelope"></i> Email: <a href="#">info@planar.com </a></li>
+                        <li><i class="icon-skype"></i> Skype name: Planar</li>
+                    </ul>
+                    <ul class="social-bookmarks clearfix">
+                        <li class="linkedin"><a href="#">behance</a></li>
+                        <li class="facebook"><a href="#">facebook</a></li>
+                        <li class="googleplus"><a href="#">googleplus</a></li>
+                        <li class="twitter"><a href="#">twitter</a></li>
+                    </ul>
                 </div>
-            </div>
-            <div class="bottom">
-                <div class="container">
-                    <div class="row">
-                        <!-- enter copyright information here -->
-                        <div class="copyrights">© Copyright <a href="http://www.themeleaf.com" title="twitter bootstrap and wordpress themes">ThemeLeaf</a> 2013. All rights reserved.</div>
-                    </div>
+                <div class="col-md-6">
+                    <h5 class="add_bottom_15">Send Feedback</h5>
+                    <div id="message-friend"></div>
+                    @using (Html.BeginForm("SendFeedbackMail", "Home", FormMethod.Post, new { @id="contactfriend_" })) {
+<!--                    <form method="post" action="assets/send_to_friend.php" id="contactfriend"> -->
+                        <div class="form-bg-1"><input type="text" name="Name" id="Name" class="form-control" placeholder="Your name*"></div>
+                        <div class="form-bg-2"><input type="email" name="Email" id="Email" class="form-control" placeholder="Your email*"></div>
+                        <div class="form-bg-1"><input type="text" name="Subject" id="Subject" class="form-control" placeholder="Subject"></div>
+                        <div class="form-bg-2"><textarea rows="3" name="Message" id="Message" class="form-control" placeholder="Message*"></textarea></div>
+<!--                        <div class="form-bg-1"><input type="text" id="verify_footer" class="form-control" placeholder="Are you human? 3 + 1 ="></div> -->
+                        <input type="submit" id="submit-friend_" value="Submit" class=" button_medium add_top_30">
+                    }
                 </div>
             </div>
         </div>
+        <div id="copy">© 2013 - All Rights Reserved</div>
+        </footer><!-- End footer -->
+ 
+ <div id="toTop">Back to Top</div>  
+ 
 
 
-        </div><!--/.wrapper --> 
+ @Scripts.Render("~/bundles/jquery")
+
+<!-- FLEXSLIDER -->  
+<script defer src="~/Scripts/planar/jquery.flexslider.js"></script> 
+ <script type="text/javascript">
+     /* <![CDATA[ */
+     $(window).load(function () {
+         $('.flexslider').flexslider({
+             animation: "fade"
+         });
+     });
+     /* ]]> */
+</script> 
+
         @RenderSection("featured", required: false)
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-        @Scripts.Render("~/bundles/jquery")
+        
         @Scripts.Render("~/bundles/jqueryval")
         @Scripts.Render("~/bundles/jqueryui")
-        @Scripts.Render("~/bundles/bootstrap")
+        @*@Scripts.Render("~/bundles/bootstrap")*@
         @Scripts.Render("~/bundles/moment")
         @*
         @Scripts.Render("~/bundles/Boldex")
-        *@
         @Scripts.Render("~/bundles/bizStrap")
+        *@
+        @Scripts.Render("~/bundles/planarBundle")
         @Scripts.Render("~/bundles/knockoutapp")
         @RenderSection("scripts", required: false)
     </body>

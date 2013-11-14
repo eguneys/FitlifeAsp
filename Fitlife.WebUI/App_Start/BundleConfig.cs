@@ -9,7 +9,8 @@ namespace Fitlife.WebUI
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/planar/jquery.1.7.2.min.js",
+                        "~/Scripts/jquery.cookie.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
@@ -53,6 +54,18 @@ namespace Fitlife.WebUI
 
                 ));
 
+            bundles.Add(new ScriptBundle("~/bundles/planarBundle").Include(
+                                "~/Scripts/Planar/hoverIntent.js",
+                                "~/Scripts/Planar/superfish.js",
+                                "~/Scripts/Planar/mobile-menu.js",
+                                "~/Scripts/Planar/placeholder.js",                              
+                                "~/Scripts/Planar/inview.js",                              
+                                "~/Scripts/Planar/bootstrap.js",
+                                "~/Scripts/Planar/functions.js",
+                                "~/Scripts/fancybox/source/jquery.fancybox.pack.js?v=2.1.4",
+                                "~/Scripts/fancy_func.js"
+                ));
+
             bundles.Add(new ScriptBundle("~/bundles/BlueImp").Include(
                 "~/Scripts/BlueImp/*.js"
 ));
@@ -86,7 +99,7 @@ namespace Fitlife.WebUI
                 ));
 
             bundles.Add(new StyleBundle("~/Content/fontawesomeBundle").Include(
-                "~/Content/font-awesome.min.css"
+                "~/Content/fontawesome/font-awesome.min.css"
                 ));
 
           //  bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
@@ -99,6 +112,15 @@ namespace Fitlife.WebUI
 
             bundles.Add(new StyleBundle("~/Content/bizStrapBundle").Include(
                                 "~/Content/bizStrap/*.css"
+                ));
+
+            bundles.Add(new StyleBundle("~/Content/planarBundle").Include(
+                                "~/Content/planar/style.css",
+                                "~/Content/planar/menu.css",
+                                "~/Content/planar/socialize-bookmarks.css",
+                                "~/Scripts/planar/fancybox/source/jquery.fancybox.css?v=2.1.4",
+                                "~/Content/planar/animate.css",
+                                "~/Content/planar/flexslider.css"
                 ));
 
             bundles.Add(new StyleBundle("~/Content/KendoUIBundle").Include(

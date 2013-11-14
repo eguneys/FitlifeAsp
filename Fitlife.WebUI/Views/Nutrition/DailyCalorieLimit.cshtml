@@ -1,32 +1,25 @@
 ﻿<div class="header">
-    <i class="styler_border_color"></i>
-    Daily Calorie Limit
 </div>
-<div class="article_block">
     <div class="details">
-        <ul class='links'>
-            <li>
-                <div class="name styler_bg_color">
-                    <i class="styler_border_color"></i>
-                    Allowance
+        <div class='result'>
+            <h2>Daily Calorie Allowance</h2>
+            <div class="desc" data-bind="text: Profile.DailyCalories">
+            </div>
+                <div class="row" id="activietes_detail">
+                    <ul class="text-left">
+                        <li>
+                            <h4>
+                                Eaten
+                                <span data-bind="text: foodTracker().Calories"></span>
+                            </h4>
+                        </li>
+                        <li>
+                            <h4>
+                                Remaining
+                                <span data-bind="text: Profile.DailyCalories() - foodTracker().Calories()"></span>
+                            </h4>
+                        </li>
+                    </ul>
                 </div>
-                <div class="desc" data-bind="text: Profile.DailyCalories">
-                </div>
-            </li>
-            <li>
-                <div class='name styler_bg_color'>
-                    <i class="styler_border_color"></i>
-                    Eaten
-                </div>
-                <div class="desc" data-bind="text: foodTracker().Calories"></div>
-            </li>
-            <li>
-                <div class='name styler_bg_color'>
-                    <i class="styler_border_color"></i>
-                    Remaining
-                </div>
-                <div class="desc" data-bind="text: Profile.DailyCalories - foodTracker().Calories()"></div>
-            </li>
-        </ul>
+        </div>
     </div>
-</div>

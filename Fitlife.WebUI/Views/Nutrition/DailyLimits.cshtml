@@ -1,54 +1,62 @@
 ﻿<div class="panel-heading">
-           <h4 class="panel-title">
+           <h4 class="panel-title title-green">
                 Daily Limits
             </h4>
     </div>
 <ul class='list-unstyled' style="padding: 4px;">
-    <li>
-        <strong>Empty Calories </strong>
-        <span class='label label-default'>/300kcal</span>
-    </li>
-    <li>
-        <strong>Total Calories </strong>
-        <span class='label label-default' data-bind="text: foodTracker().TotalNutr('ENERC_KCAL')() + '/' + foodTracker().Limits['ENERC_KCAL'].val"></span>
-    </li>
-    <li>
-        <div class='progress wide'>
-            <div class='progress-bar' data-bind="attr: { style: 'width:' + foodTracker().PercentNutr('ENERC_KCAL')() + '%' }">
-                <span class="sr-only" data-bind="text: foodTracker().PercentNutr('ENERC_KCAL')() + '%'"></span>
+    <li class='list-group-item'>
+        <div class='progress'>
+            <div class='progress-bar progress-bar-success' data-bind="text: Math.min(foodTracker().PercentNutr('ENERC_KCAL')().toFixed(0), 100) + '%', attr: { style: 'width:' + foodTracker().PercentNutr('ENERC_KCAL')() + '%' }">
             </div>
         </div>
+        <p>
+            <h5>
+                Total Calories:
+                <span class='label label-success' data-bind="text: foodTracker().TotalNutr('ENERC_KCAL')() + '/' + foodTracker().Limits['ENERC_KCAL'].val"></span>
+            </h5>
+        </p>
+        <p>
+            <h6>
+                Empty Calories:
+                <span class='label label-success' data-bind="text: foodTracker().TotalNutr('ENERC_KCAL')() + '/' + foodTracker().Limits['ENERC_KCAL'].val"></span>
+            </h6>
+        </p>
+
 
     </li>
 
 
     <li class='list-group-item unstyled'>
         <dl class='dl-horizontal'>
-            <dt>Oils: <span class='label label-default' data-bind="text: foodTracker().TotalFPED('OILS')() + '/' + foodTracker().Limits['OILS'].val"></span>
-
+            <dt>
+                <p>Oils: <span class='label label-warning' data-bind="text: foodTracker().TotalFPED('OILS')() + '/' + foodTracker().Limits['OILS'].val"></span>
+                    </p>
             </dt>
             <dd>
                 <div class='progress'>
-                    <div class='progress-bar' data-bind="attr: { style: 'width:' + foodTracker().PercentFPED('OILS')() + '%' }">
-                        <span class="sr-only" data-bind="text: foodTracker().PercentNutr('OILS')() + '%'"></span>
+                    <div class='progress-bar progress-bar-warning' data-bind="attr: { style: 'width:' + Math.min(foodTracker().PercentFPED('OILS')(), 100) + '%' }">
+                        <span data-bind="text: foodTracker().PercentFPED('OILS')().toFixed(0) + '%'"></span>
                     </div>
                 </div>
             </dd>
-            <dt>Saturated Fat: <span class='label label-default' data-bind="text: foodTracker().TotalFPED('SOLID_FATS')() + '/' + foodTracker().Limits['SOLID_FATS'].val"></span>
+            <dt>
+                <p>Saturated Fat: <span class='label label-danger' data-bind="text: foodTracker().TotalNutr(606)() + '/' + foodStats.Target(606).toFixed(0)"></span>
+                </p>
             </dt>
             <dd>
                 <div class='progress'>
-                    <div class='progress-bar' data-bind="attr: { style: 'width:' + foodTracker().PercentFPED('SOLID_FATS')() + '%' }">
-                        <span class="sr-only" data-bind="text: foodTracker().PercentNutr('SOLID_FATS')() + '%'"></span>
+                    <div class='progress-bar progress-bar-danger' data-bind="attr: { style: 'width:' + Math.min(foodTracker().TotalNutr(606)() / foodStats.Target(606) * 100, 100) + '%' }">
+                        <span data-bind="text: (foodTracker().TotalNutr(606)() / foodStats.Target(606) * 100).toFixed(0) + '%'"></span>
                     </div>
                 </div>
             </dd>
-            <dt>Sodium: <span class='label label-default' data-bind="text: foodTracker().TotalNutr('NA')() + '/' + foodTracker().Limits['NA'].val "></span>
+            <dt><p>Sodium: <span class='label label-default' data-bind="text: foodTracker().TotalNutr('NA')() + '/' + foodTracker().Limits['NA'].val "></span>
+                </p>
             </dt>
             <dd>
                 <div class='progress'>
-                    <div class='progress-bar' data-bind="attr: { style: 'width:' + foodTracker().PercentNutr('NA')() + '%' }">
-                        <span class="sr-only" data-bind="text: foodTracker().PercentNutr('NA')() + '%'"></span>
+                    <div class='progress-bar progress-bar-default' data-bind="attr: { style: 'width:' + foodTracker().PercentNutr('NA')() + '%' }">
+                        <span data-bind="text: foodTracker().PercentNutr('NA')().toFixed(0) + '%'"></span>
                     </div>
                 </div>
             </dd>

@@ -22,7 +22,7 @@ namespace Fitlife.WebUI.Controllers
                     Link = "Index",
                     Controller = "Home",
                     Action = "Index",
-                    Icon = "icon-home",
+                    Icon = "fa fa-home",
                     AllowAnonymous = true
                 },
                 new NavViewModel () {
@@ -30,7 +30,7 @@ namespace Fitlife.WebUI.Controllers
                     Link = "Progress",
                     Controller = "Progress",
                     Action = "Index",
-                    Icon = "icon-rocket",
+                    Icon = "fa fa-rocket",
                     AllowAnonymous = false
                 },
                 new NavViewModel () {
@@ -38,7 +38,7 @@ namespace Fitlife.WebUI.Controllers
                                         Link = "Nutrition",
                                         Controller = "Nutrition",
                                         Action = "Index",
-                                        Icon = "icon-lemon",
+                                        Icon = "fa fa-lemon-o",
                                         AllowAnonymous = false
                 },
                 new NavViewModel () {
@@ -46,7 +46,7 @@ namespace Fitlife.WebUI.Controllers
                                         Link = "Social",
                                         Controller = "Social",
                                         Action = "Index",
-                                        Icon = "icon-comment",
+                                        Icon = "fa fa-comments-o",
                                         AllowAnonymous = false
                 },
                 //new NavViewModel () {

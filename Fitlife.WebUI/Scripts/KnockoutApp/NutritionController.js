@@ -158,25 +158,25 @@ function FoodTracker() {
 
     self.FoodGroups = [
         {
-            tagname: 'G_TOTAL', val: 9, unit: 'oz', color: '#ffffaa', name: 'Grains', subgroups: [
+            tagname: 'G_TOTAL', val: 9, unit: 'oz', color: '#f0ad4e', name: 'Grains', subgroups: [
                 { tagname: ['G_WHOLE'], name: 'Whole Grains' },
                 { tagname: ['G_REFINED'], name: 'Refined Grains' }
             ]
         },
         {
-            tagname: 'V_TOTAL', val: 3.5, unit: 'cups', color: '#aaffaa', name: 'Vegetables', subgroups: [
+            tagname: 'V_TOTAL', val: 3.5, unit: 'cups', color: '#5cb85c', name: 'Vegetables', subgroups: [
             ]
         },
-        { tagname: 'F_TOTAL', val: 2, unit: 'cups', color: '#ffaaaa', name: 'Fruits', subgroups: [
+        { tagname: 'F_TOTAL', val: 2, unit: 'cups', color: '#d9534f', name: 'Fruits', subgroups: [
                         { tagname: ['F_JUICE'], name: 'Fruit Juice'},
                         { tagname: ['F_OTHER', 'F_CITMLB'], name: 'Whole Fruit' },
         ]
         },
-        { tagname: 'D_TOTAL', val: 3, unit: 'cups', color: '#aaaaff', name: 'Dairy', subgroups: [
+        { tagname: 'D_TOTAL', val: 3, unit: 'cups', color: '#428bca', name: 'Dairy', subgroups: [
                         { tagname: ['D_CHEESE'], name: 'Cheese' },
                         { tagname: ['D_YOGURT', 'D_MILK'], name: 'Milk & Yogurt' }
         ]        },
-        { tagname: 'PF_TOTAL', val: 6.5, unit: 'oz', color: '#ffaaff', name: 'Protein Foods', subgroups: [] }
+        { tagname: 'PF_TOTAL', val: 6.5, unit: 'oz', color: '#f0adf0', name: 'Protein Foods', subgroups: [] }
     ];
 
     self.Limits = {
@@ -317,6 +317,12 @@ function FoodStats(p) {
             gender = self.parent.Profile.Gender;
         }
 
+        if (code == 208) { // Calories
+            return self.parent.Profile.DailyCalories();
+        } else if (code == 606) {
+            return (self.parent.Profile.DailyCalories() * 0.1) / 9;
+        }
+
         var allnutrients = self.NutritionGroups.mineral;
         allnutrients = allnutrients.concat(self.NutritionGroups.vitamin);
         allnutrients = allnutrients.concat(self.NutritionGroups.basic);
@@ -328,6 +334,11 @@ function FoodStats(p) {
         return nutrientgroup.targets[self.targetIdx(gender, age)];
     };
 
+    self.prettyLimit = function (val) {
+        if (isNaN(val)) return "No daily target or limit";
+        else return val + '%';
+    }
+        
     self.NutritionGroups = {
         mineral: [
         { val: 301, targets: [700, 1000, 1000, 1300, 1300, 1300, 1300, 1000, 1000, 1000, 1000, 1200, 1200] }, // Calcium
@@ -560,11 +571,11 @@ function NutritionViewModel() {
 
     self.selectedFood = ko.observable(new Food());
 
-    self.foodTracker = ko.observable(new FoodTracker());
+    self.Profile = new UserProfile(self);
 
     self.foodStats = new FoodStats(self);
 
-    self.Profile = new UserProfile(self);
+    self.foodTracker = ko.observable(new FoodTracker());
 
     self.foodPagination = ko.observable(new Pagination(self));
 

@@ -98,14 +98,14 @@
         {
             foreach (var muscle in muscleGroup)
             {
-            <div class="span3 @muscle.MuscleGroup">
-                <div class="item-container">
-                    <div class="item-pic">
-                        <a href="@muscle.PhotoSource" rel="prettyPhoto[pp_gal]">
-                            <img src="@muscle.PhotoSource">
-                            <span class="overlay"></span>
-                            <span class="item-zoom"><i class="icon-plus"></i></span>
-                        </a>
+            <div class="col-md-3 img-item @muscle.MuscleGroup">
+                <div class="thumbnail">
+                    <div class="img-wrapp">
+                        <div class="img-effect">
+                        </div>
+                            <img class="img-responsive" src="@muscle.PhotoSource">
+                            <div class="img-links"><a href="@muscle.PhotoSource" class="fancybox" title="@muscle.PhotoDescription"></a></div>
+
                     </div>
                     <div class="item-content">
                         <h5><a href="">@Html.TimeAgo(muscle.Date)</a></h5>

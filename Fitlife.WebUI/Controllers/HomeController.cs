@@ -34,6 +34,24 @@ namespace Fitlife.WebUI.Controllers
         }
 
         [HttpPost]
+        public ActionResult SendFeedbackMail(FeedbackMail model)
+        {
+            MailMessage message = new MailMessage();
+
+            message.From = new MailAddress("eguneys@fitlifefree.com");
+            message.To.Add("eguneys@fitlifefree.com");
+
+            message.Subject = model.Subject + " From: " + model.Email;
+            message.Body = model.Message;
+
+            SmtpClient client = new SmtpClient();
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.ServicePoint.MaxIdleTime = 1;
+            client.Send(message);
+            return View("Index");
+        }
+
+        [HttpPost]
         public ActionResult ContactUsMail(HomeViewModel model)
         {
             MailMessage message = new MailMessage();
