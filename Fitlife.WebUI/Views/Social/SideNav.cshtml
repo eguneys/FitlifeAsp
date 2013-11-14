@@ -1,0 +1,40 @@
+﻿@{var ajaxOptions = new AjaxOptions()
+   {
+       UpdateTargetId = "SocialContent"
+   };
+   }   
+
+<ul class="nav nav-list" id="sidenav">
+    <li class>
+        @Ajax.RouteLink("Feed", new
+   {
+       controller = "Social",
+       action = "Feed"
+   }, new AjaxOptions()
+   {
+       UpdateTargetId = "SocialContent",
+       OnSuccess = "doTimeAgo"
+   })
+    </li>
+    <li>
+        @Ajax.RouteLink("People", new {
+       controller="Social",
+       action = "People"
+   }, ajaxOptions)
+    </li>
+    <li>
+        @Ajax.RouteLink("Friends", new
+   {
+       controller="Social",
+       action = "Friends"
+   }, ajaxOptions)</li>
+    <li class="nav-header">Profile </li>
+    <li class="divider"></li>
+    <li>
+        @Ajax.RouteLink("Settings", new {
+              controller="Social",
+              action = "Settings"
+   }, ajaxOptions)       
+
+    </li>
+</ul>

@@ -1,2 +1,151 @@
-﻿            <h4>
+﻿<div class="panel-heading">
+            <h4 class="panel-title">
                 Food Details</h4>
+    </div>
+                <div data-bind='with: selectedFood().food'>
+                <h3 data-bind='text: Description'>  </h3>
+</div>
+<hr />
+<h4>Choose amount</h4>
+<form>
+    <div class="form-bg-2">
+        <div class="styled-select-2">
+            <select class="form-control" data-bind='options: foodTracker().mealAmounts, value: selectedFood().selectedamount'></select>
+        </div>
+    </div>
+    <div class="form-bg-1">
+        <div class="styled-select-2">
+            <select class="form-control" data-bind="options: selectedFood().portiondescs, optionsText: 'Description', value: selectedFood().selectedunit"></select>
+        </div>
+    </div>
+
+</form>
+<h4>Choose meal time</h4>
+<form>
+<ul class='list inline list-unstyled' data-bind='foreach: foodTracker().mealTimes'>
+<li>
+
+<input type="checkbox" data-bind="value: $data, checked: $root.selectedFood().selectedmeals, attr: { id: $data }" >
+<label class='checkbox-inline' data-bind="attr: { for: $data }">
+    <span></span>
+    <strong data-bind='text: $data'></strong>
+</label>
+</li>
+</ul>
+<br />
+<div class='btn-group pull-right' style='margin-top: 10px'>
+<button class='btn btn-primary button_medium' data-bind='click: $root.addFood, enable: $root.selectedFood().selectedmeals().length != 0'>
+Add
+<span class='fa fa-plus'></span>
+</button>
+<button class='btn btn-default button_medium'>
+Clear
+<span class='fa fa-times'></span>
+</button>
+</div>
+    <div class="clearfix"></div>
+</form>
+<hr />
+<ul class='nav nav-tabs'>
+<li class="active">
+<a href='#food-info', data-toggle='tab'> Food Info</a>
+</li>
+<li>
+<a href='#nutrient-info', data-toggle='tab'> Nutrient Info</a>
+</li>
+</ul>
+<div class='tab-content'>
+<div class='tab-pane' id='nutrient-info'>
+<table class='table table-striped table-bordered'>
+<thead>
+<tr>
+<th>
+<strong> Nutrient</strong>
+</th>
+<th><strong>Amount</strong></th>
+<th><strong> % of Daily Target</strong></th>
+    <th></th>
+</tr>
+</thead>
+<tbody>
+<!-- ko foreach: foodStats.NutritionGroups.basic -->
+<tr>
+<td data-bind='text: $parent.selectedFoodNutr($parent.selectedFood().nutrient(val)).Description'>  </td>
+<td data-bind="text: $parent.selectedFoodNutrVal($parent.selectedFood().nutrient(val))"> </td>
+<td data-bind="text: $parent.foodStats.prettyLimit($parent.foodStats.TargetPercent(val))"></td>
+</tr>
+    <!-- /ko -->
+    <tr>
+        <td colspan="3" style="background:#f0ad4e"> Minerals </td>
+    </tr>
+    <!-- ko foreach: foodStats.NutritionGroups.mineral -->
+<tr>
+<td data-bind='text: $parent.selectedFoodNutr($parent.selectedFood().nutrient(val)).Description'>  </td>
+<td data-bind="text: $parent.selectedFoodNutrVal($parent.selectedFood().nutrient(val)) + '%'"> </td>
+<td data-bind="text: $parent.foodStats.prettyLimit($parent.foodStats.TargetPercent(val))"></td>
+</tr>
+    <!-- /ko -->
+    <tr>
+        <td colspan="3" style="background:#d74b4b">Vitamins</td>
+    </tr>
+    <!-- ko foreach: foodStats.NutritionGroups.vitamin -->
+<tr>
+<td data-bind='text: $parent.selectedFoodNutr($parent.selectedFood().nutrient(val)).Description'>  </td>
+<td data-bind="text: $parent.selectedFoodNutrVal($parent.selectedFood().nutrient(val))"> </td>
+<td data-bind="text: $parent.foodStats.prettyLimit($parent.foodStats.TargetPercent(val))"></td>
+</tr>
+    <!-- /ko -->
+</tbody>
+</table>
+</div>
+<div class='tab-pane active' id='food-info'>
+<h3>
+&nbsp;
+<span class='label label-info'><span data-bind="text: selectedFood().nutrval('ENERC_KCAL')"></span> Calories</span>
+</h3>
+<table class='table'>
+<thead>
+<tr>
+<th>
+<strong>Food Groups</strong>
+</th>
+<th><strong style="text-align:left"> Limits </strong></th>
+</tr>
+</thead>
+<tbody>
+    <tr>
+        <td>
+            <dl class="dl-horizontal"  data-bind="foreach: { data: foodTracker().FoodGroups, as: 'fg' }">
+                <span data-bind="visible: $parent.selectedFood().fped(fg.tagname) > 0">
+                <dt>
+                    <span class="label label-primary pull-left" data-bind="attr: { style: 'background-color:' + fg.color + ';'}">
+                        <h4 data-bind="text: fg.name"></h4>
+                    </span>
+
+                </dt>
+                <dd>
+                    <span class="label label-primary" data-bind="text: $parent.selectedFood().fped(fg.tagname).toFixed(2) + fg.unit + '.'">
+                        <h4></h4>
+                    </span>
+                </dd>
+                </span>
+            </dl>
+        </td>
+        <td>
+            <table>
+                <tr>
+                    
+                </tr>
+                <tr>
+
+                </tr>
+                <tr>
+
+                </tr>
+            </table>
+        </td>
+    </tr>
+</tbody>
+</table>
+</div>
+</div>

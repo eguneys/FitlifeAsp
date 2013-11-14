@@ -9,6 +9,10 @@ namespace Fitlife.Domain.Concrete
 {
     public class EFUserRepository : IUserRepository
     {
+
+        private static IUserRepository repo = new EFUserRepository();
+        public static IUserRepository getRepository() { return new EFUserRepository(); }
+
         private EFDBContext context = new EFDBContext();
 
         public IQueryable<User> Users
@@ -16,9 +20,28 @@ namespace Fitlife.Domain.Concrete
             get { return context.Users; }
         }
 
+        public IQueryable<UserProfile> UserProfiles
+        {
+            get { return context.Profiles; }
+        }
+
         public bool ValidateUser(User user)
         {
             User dbEntry = context.Users.Where(x => x.Email == user.Email && x.PasswordDigest == user.Password).FirstOrDefault();
+            if (dbEntry != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool ValidateUser(string username, string password)
+        {
+            User dbEntry = context.Users.Where(x => x.Name == username && x.PasswordDigest == password).FirstOrDefault();
+
             if (dbEntry != null)
             {
                 return true;
@@ -47,9 +70,34 @@ namespace Fitlife.Domain.Concrete
                     dbEntry.PasswordDigest = user.Password;
                     dbEntry.Photo = user.Photo;
                     dbEntry.Age = user.Age;
+                    dbEntry.Gender = user.Gender;
                 }
             }
             context.SaveChanges();
         }
+
+        public void SaveUserProfile(UserProfile user)
+        {
+            if (user.UserProfileID == 0)
+            {
+                context.Profiles.Add(user);
+            }
+            else
+            {
+                UserProfile dbEntry = context.Profiles.Find(user.UserID);
+                if (dbEntry != null)
+                {
+                    dbEntry.UserID = user.UserID;
+                    dbEntry.Height = user.Height;
+                    dbEntry.Weight = user.Weight;
+                    dbEntry.Age = user.Age;
+                    dbEntry.Gender = user.Gender;
+                    dbEntry.PhysicalActivity = user.PhysicalActivity;
+                }
+            }
+            context.SaveChanges();
+        }
+
+
     }
 }

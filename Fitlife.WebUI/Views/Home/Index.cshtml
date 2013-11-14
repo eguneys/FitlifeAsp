@@ -1,311 +1,164 @@
-﻿@{
+﻿@model Fitlife.WebUI.Models.HomeViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 @section featured {
 }
-<section class="welcome container">
-                <div class="content">
-                    <h3>Simple Activity and Nutrition Tracker</h3> 
-                    <p>Track, View, Share your Activity and Nutrition</p>
-                    @Html.RouteLink("Get Started!", new
-                    {
-                        controller = "Account",
-                        action = "Signup"
-                    }, new { @class = "btn btn-large btn-success" })
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                
+                    <div class="flexslider">
+                        <ul class="slides">
+                            <li><img src="images/planar/slider/slide-1.jpg" alt="">
+                            <p class="flex-caption">Fitlife will help you to achieve your goal</p>
+                            </li>
+                            <li><img src="images/planar/slider/slide-2.jpg" alt="">
+                            <p class="flex-caption">Track your activity</p>
+                            </li>
+                            <li>
+                            <img src="images/planar/slider/slide-3.jpg" alt="">
+                            <p class="flex-caption">Track your nutrition</p>
+                            </li>
+                            <li>
+                            <img src="images/planar/slider/slide-4.jpg" alt="">
+                            <p class="flex-caption">Share Your Progress</p>
+                            </li>
+                            <li>
+                            <img src="images/planar/slider/slide-5.jpg" alt="">
+                            <p class="flex-caption">Proper training will make you feel better</p>
+                            </li>
+                        </ul>
+                    </div><!-- End slider -->
+                    
+                </div><!-- End row -->
+            </div><!-- End col-md-12 -->
+            
+            <h3 class="title">GIVE US A LAUNCH BOOST</h3>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <a href="@Url.Action("Signup", "Account")" class="button_large">SIGNUP NOW</a>
                 </div>
-            </section>
-<!--/.welcome -->
-<section class="slider container">
-                <div id="myCarousel" class="carousel slide">
-                    <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                    </ol>
-                    <!-- Carousel items -->
-                    <div class="carousel-inner">
-                        <div class="active item">
-                            <img src="http://i.imgur.com/LsXFH3h.jpg">
-                            <div class="carousel-caption">
-                                <h4>Track Nutrition</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <a href="" class="btn btn-danger btn-mini">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img src="http://i.imgur.com/Un6gkFR.jpg">
-                            <div class="carousel-caption">
-                                <h4>View Progress</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultricies massa ac tortor interdum consequat. Cras ipsum libero, luctus commodo.</p>
-                                <a href="" class="btn btn-danger btn-mini">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img src="http://i.imgur.com/k1LT3GK.jpg">
-                            <div class="carousel-caption">
-                                <h4>Stav Motivated</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fermentum lacinia lacus non mollis. Phasellus.</p>
-                                <a href="" class="btn btn-danger btn-mini">Learn More</a>
-                            </div>
-                        </div>
+            </div>
+
+            
+            <div class="row">
+            
+                <div class="col-md-3 col-sm-6">
+                 <div class="box_calculator">
+                        <a href="daily-calorie-calculator.html">
+                            <i class="fa fa-rocket fa-5x"></i>
+                            <h3>View Progress</h3>
+                            <p>Upload Photos, view daily/weekly progress, always stay motivated. </p>
+                        </a>
+                    </div><!-- End box-calculator -->
+                </div><!-- End col-md-3 -->
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="box_calculator">
+                        <a href="calories-burned-heart-rate.html">
+                            <i class="fa fa-lemon-o fa-5x"></i>
+                        <h3>Track your nutrition</h3>
+                        <p>Search our database with +70,000 foods. See how much calories you take, which food groups you take.</p>
+                        </a>
+                    </div><!-- End box-calculator -->
+                </div><!-- End col-md-3 -->
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="box_calculator">
+                        <a href="calories-burned-calculator.html">
+                            <i class="fa fa-bullseye fa-5x"></i>
+                        <h3>Track your activities</h3>
+                        <p>Create a program, track your workout. See how much calories you burn, how many hours you exercise.</p>
+                        </a>
+                    </div><!-- End box-calculator -->
+                </div><!-- End col-md-3 -->
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="box_calculator">
+                        <a href="bmi-calculator.html">
+                            <i class="fa fa-group fa-5x"></i>
+                        <h3>Share your progress</h3>
+                        <p>Get your fitlife blog, share with the world, follow friends, never quit fitlife.</p>
+                        </a>
+                    </div><!-- End box-calculator -->
+                </div><!-- End col-md-3 -->
+                
+            </div><!-- End row -->
+
+            <h3 class="title">ABOUT FITLIFE</h3>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="title-2"><span>Hello</span> / FITLIFE</h3>
+                    <p>Qui at commune signiferumque. In mel labores moderatius, tantas saperet facilisi quo ut. Vero wisi civibus ea vim. An tota nostro sit, mel ei utinam ancillae, mutat dolores mea et. Homero iriure imperdiet eu mel. Ei enim viderer pri. Sed in eros nobis, te cum invidunt probatus. Mel an aeque efficiendi. Te populo ocurreret reprehendunt usu, sit at purto iudicabit.
+                    </p>
+                    <p>
+                        Qui at commune signiferumque. In mel labores moderatius, tantas saperet facilisi quo ut. Vero wisi civibus ea vim. An tota nostro sit, mel ei utinam ancillae, mutat dolores mea et. Homero iriure imperdiet eu mel. Ei enim viderer pri. Sed in eros nobis, te cum invidunt probatus. Mel an aeque efficiendi. Te populo ocurreret reprehendunt usu, sit at purto iudicabit.
+                    </p>
+                    <p><a href="#" class="button_small">Read more</a></p>
+                </div>
+                
+                <div class="col-md-6">
+                    <h3 class="title-2"><span>Mission</span> / Love training</h3>
+                    <p>
+                        Qui at commune signiferumque. In mel labores moderatius, tantas saperet facilisi quo ut. Vero wisi civibus ea vim. An tota nostro sit, mel ei utinam ancillae, mutat dolores mea et. Homero iriure imperdiet eu mel. Ei enim viderer pri. Sed in eros nobis, te cum invidunt probatus. Mel an aeque efficiendi. Te populo ocurreret reprehendunt usu, sit at purto iudicabit.
+                    </p>
+                    <p>
+                        Qui at commune signiferumque. In mel labores moderatius, tantas saperet facilisi quo ut. Vero wisi civibus ea vim. An tota nostro sit, mel ei utinam ancillae, mutat dolores mea et. Homero iriure imperdiet eu mel. Ei enim viderer pri. Sed in eros nobis, te cum invidunt probatus. Mel an aeque efficiendi. Te populo ocurreret reprehendunt usu, sit at purto iudicabit.
+                    </p>
+                    <p><a href="#" class="button_small">Read more</a></p>
+                </div>
+            </div><!-- End row -->
+            
+            
+            <h3 class="title">RECENT FITLIFE USERS</h3>
+            
+            <div class="row">
+            
+                <div class="col-md-6">
+                    <div class="quote clearfix">
+                        <img src="images/planar/testimonial-1.jpg" class="img-circle" alt="">
+                        <p>
+                             Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam.
+                        </p>
+                        <em>Jhon Doe</em>
                     </div>
-                    <!-- Carousel nav -->
-                    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-                    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-                </div>         
-            </section>
-<!--/.slider -->
-<section class="services container">
-                <div class="row">
-                    <div class="span3">
-                        <a href="" class="well">
-                            <h1><i class="icon-bullhorn orange"></i></h1>
-                            <h5>Clean Design</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum faucibus imperdiet sollicitudin. Pellentesque lobortis neque sed ipsum lacinia a luctus.</p>     
-                        </a>     
-                    </div> 
-                    <div class="span3">
-                        <a href="" class="well">
-                            <h1><i class="icon-desktop lblue"></i></h1>
-                            <h5>Responsive Layout</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum faucibus imperdiet sollicitudin. Pellentesque lobortis neque sed ipsum lacinia a luctus.</p>   
-                        </a>     
-                    </div> 
-                    <div class="span3">
-                        <a href="" class="well">
-                            <h1><i class="icon-beaker red"></i></h1>
-                            <h5>Retina Ready</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum faucibus imperdiet sollicitudin. Pellentesque lobortis neque sed ipsum lacinia a luctus.</p>
-                        </a>     
-                    </div> 
-                    <div class="span3">
-                        <a href="" class="well">
-                            <h1><i class="icon-ok green"></i></h1>
-                            <h5>IE Support</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum faucibus imperdiet sollicitudin. Pellentesque lobortis neque sed ipsum lacinia a luctus.</p>
-                        </a>     
-                    </div> 
-                </div>                    
-            </section>
-<!--/.services -->
-<div class="container">
-    <hr class="main-divider">
-</div>
-<!--/.main-divider -->
-<section class="works container">
-                <div class="row">
-                    <div class="span3 left-box">
-                        <h4 class="section-header"><span>//</span> Recent Works</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut odio eros, a cursus nisl. Nulla auctor aliquam.</p>
-                        <a id="prev3" class="prev1" href="#"><i class="icon-angle-left"></i></a>
-                        <a id="next3" class="next1" href="#"><i class="icon-angle-right"></i></a>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="quote clearfix">
+                        <img src="images/planar/testimonial-2.jpg" class="img-circle" alt="">
+                        <p>
+                             Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam.
+                        </p>
+                        <em>Jhon Doe</em>
                     </div>
-                    <div class="span9">
-                        <div class="row"> 
-                            <div class="carou1">                              
-                                <div class="span3">   
-                                    <div class="item-container">
-                                        <div class="item-pic">
-                                            <a href="images/img_1.jpg" rel="prettyPhoto">
-                                                <img src="images/img_1.jpg">
-                                                <span class="overlay"></span>
-                                                <span class="item-zoom"><i class="icon-plus"></i></span>
-                                            </a>
-                                        </div> 
-                                        <div class="item-content">  
-                                            <h5><a href="">Young Woman</a></h5>  
-                                            <p>Creative / Photography</p>                          
-                                        </div>
-                                    </div>  
-                                </div><!--/ work --> 
-                                <div class="span3">   
-                                    <div class="item-container">
-                                        <div class="item-pic">
-                                            <a href="images/img_5.jpg" rel="prettyPhoto">
-                                                <img src="images/img_5.jpg">
-                                                <span class="overlay"></span>
-                                                <span class="item-zoom"><i class="icon-plus"></i></span>
-                                            </a>
-                                        </div> 
-                                        <div class="item-content">  
-                                            <h5><a href="">Happy Baby</a></h5>  
-                                            <p>Creative / Picture</p>                          
-                                        </div>
-                                    </div>  
-                                </div><!--/ work --> 
-                                <div class="span3">   
-                                    <div class="item-container">
-                                        <div class="item-pic">
-                                            <a href="images/img_6.jpg" rel="prettyPhoto">
-                                                <img src="images/img_6.jpg">
-                                                <span class="overlay"></span>
-                                                <span class="item-zoom"><i class="icon-plus"></i></span>
-                                            </a>
-                                        </div> 
-                                        <div class="item-content">  
-                                            <h5><a href="">Waiting</a></h5>  
-                                            <p>Art / Photography</p>                          
-                                        </div>
-                                    </div>  
-                                </div><!--/ work --> 
-                                <div class="span3">   
-                                    <div class="item-container">
-                                        <div class="item-pic">
-                                            <a href="images/img_7.jpg" rel="prettyPhoto">
-                                                <img src="images/img_7.jpg">
-                                                <span class="overlay"></span>
-                                                <span class="item-zoom"><i class="icon-plus"></i></span>
-                                            </a>
-                                        </div> 
-                                        <div class="item-content">  
-                                            <h5><a href="">True Love</a></h5>  
-                                            <p>Photography / Creative</p>                          
-                                        </div>
-                                    </div>  
-                                </div><!--/ work --> 
-                            </div>
-                        </div>  
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="quote clearfix">
+                        <img src="images/planar/testimonial-3.jpg" class="img-circle" alt="">
+                        <p>
+                             Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam.
+                        </p>
+                        <em>Jhon Doe</em>
                     </div>
-                </div>       
-            </section>
-<!--/.works -->
-<div class="container">
-    <hr class="main-divider">
-</div>
-<!--/.main-divider -->
-<section class="posts container">
-                <div class="row">
-                    <div class="span3 left-box">
-                        <h4 class="section-header"><span>//</span> Recent Posts</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut odio eros, a cursus nisl. Nulla auctor aliquam.</p>
-                        <a id="prev1" class="prev1" href="#"><i class="icon-angle-left"></i></a>
-                        <a id="next1" class="next1" href="#"><i class="icon-angle-right"></i></a>
+                </div>
+                
+                <div class="col-md-6 clearfix">
+                    <div class="quote">
+                        <img src="images/planar/testimonial-4.jpg" class="img-circle" alt="">
+                        <p>
+                             Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam.
+                        </p>
+                        <em>Jhon Doe</em>
                     </div>
-                    <div class="span9">
-                        <div class="row">
-                            <div class="carou2"> 
-                                <div class="span3">   
-                                    <div class="item-container">
-                                        <div class="item-pic">
-                                            <div id="myCarousel1" class="carousel slide">
-                                                <!-- Carousel items -->
-                                                <div class="carousel-inner">
-                                                    <div class="active item"><a href=""><img src="images/img_12.jpg"></a></div>
-                                                    <div class="item"><a href=""><img src="images/img_13.jpg"></a></div>
-                                                    <div class="item"><a href=""><img src="images/img_15.jpg"></a></div>
-                                                </div>
-                                                <!-- Carousel nav -->
-                                                <a class="carousel-control left" href="#myCarousel1" data-slide="prev">&lsaquo;</a>
-                                                <a class="carousel-control right" href="#myCarousel1" data-slide="next">&rsaquo;</a>
-                                            </div>
-                                            <span class="item-zoom"><i class="icon-picture"></i></span>
-                                        </div> 
-                                        <div class="item-content">  
-                                            <h5><a href="">Gallery Post</a></h5>
-                                            <p>December 02, 2012</p>
-                                        </div>
-                                    </div>  
-                                </div><!--/ post -->                                 
-                                <div class="span3">   
-                                    <div class="item-container">                                   
-                                        <div class="item-pic">
-                                            <a href=""><img src="images/img_17.jpg"></a>
-                                            <span class="item-zoom"><i class="icon-camera"></i></span>
-                                        </div> 
-                                        <div class="item-content">  
-                                            <h5><a href="">Awesome Picture</a></h5>
-                                            <p>February 05, 2013</p>
-                                        </div>
-                                    </div>  
-                                </div><!--/ post --> 
-                                <div class="span3">   
-                                    <div class="item-container">                                   
-                                        <div class="item-pic">                                                
-                                            <iframe src="http://player.vimeo.com/video/25708134?title=0&amp;byline=0&amp;portrait=0" width="100" height="64" frameborder="0"></iframe>
-                                            <span class="item-zoom"><i class="icon-play"></i></span>
-                                        </div> 
-                                        <div class="item-content">  
-                                            <h5><a href="">Responsive Video</a></h5>
-                                            <p>March 28, 2013</p>
-                                        </div>
-                                    </div>  
-                                </div><!--/ post -->  
-                                <div class="span3">   
-                                    <div class="item-container">                                   
-                                        <div class="item-pic">
-                                            <a href=""><img src="images/img_16.jpg"></a>
-                                            <span class="item-zoom"><i class="icon-file-alt"></i></span>
-                                        </div> 
-                                        <div class="item-content">  
-                                            <h5><a href="">Standard Post</a></h5>
-                                            <p>August 12, 2013</p>
-                                        </div>
-                                    </div>  
-                                </div><!--/ post -->  
-                            </div>
-                        </div>
-                    </div>     
-                </div>        
-            </section>
-<!--/.posts -->
-<div class="container">
-    <hr class="main-divider">
-</div>
-<!--/.main-divider -->
-<section class="our-clients container">
-                <div class="row">
-                    <div class="span3 left-box">
-                        <h4 class="section-header"><span>//</span> Our Clients</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut odio eros, a cursus nisl. Nulla auctor aliquam.</p>
-                        <a id="prev5" class="prev1" href="#"><i class="icon-angle-left"></i></a>
-                        <a id="next5" class="next1" href="#"><i class="icon-angle-right"></i></a>
-                    </div>
-                    <div class="span9">
-                        <div class="row">
-                            <div class="carou3">
-                                <div class="span3">
-                                    <a href="" class="work-box">
-                                        <img  src="images/partners/partner_1.jpg">
-                                        <span class="overlay"></span> 
-                                    </a> 
-                                    <a href="" class="work-box">
-                                        <img  src="images/partners/partner_2.jpg">  
-                                        <span class="overlay"></span>  
-                                    </a>     
-                                </div>
-                                <div class="span3">
-                                    <a href="" class="work-box">
-                                        <img  src="images/partners/partner_3.jpg"> 
-                                        <span class="overlay"></span>
-                                    </a>    
-                                    <a href="" class="work-box">
-                                        <img  src="images/partners/partner_4.jpg">  
-                                        <span class="overlay"></span>  
-                                    </a>  
-                                </div>
-                                <div class="span3">
-                                    <a href="" class="work-box">
-                                        <img  src="images/partners/partner_5.jpg">  
-                                        <span class="overlay"></span>
-                                    </a>      
-                                    <a href="" class="work-box">
-                                        <img  src="images/partners/partner_6.jpg">  
-                                        <span class="overlay"></span>  
-                                    </a>
-                                </div>
-                                <div class="span3">
-                                    <a href="" class="work-box">
-                                        <img  src="images/partners/partner_1.jpg">  
-                                        <span class="overlay"></span>
-                                    </a>    
-                                    <a href="" class="work-box">
-                                        <img  src="images/partners/partner_2.jpg"> 
-                                        <span class="overlay"></span>   
-                                    </a>  
-                                </div>                                
-                            </div>
-                        </div> 
-                    </div>
-                </div>         
-            </section>
-<!--/.our-clients -->
+                </div>
+                
+            </div><!-- End row -->
+
+        </div><!-- End container -->

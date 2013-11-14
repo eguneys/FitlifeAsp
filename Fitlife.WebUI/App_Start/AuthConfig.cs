@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Web.WebPages.OAuth;
 using Fitlife.WebUI.Models;
+using System.Web.Http;
+using Fitlife.WebUI.Filters;
 
 namespace Fitlife.WebUI
 {
@@ -27,6 +29,10 @@ namespace Fitlife.WebUI
             //    appSecret: "");
 
             //OAuthWebSecurity.RegisterGoogleClient();
+
+            GlobalConfiguration.Configuration.MessageHandlers.Add(
+                new BasicAuthenticationMessageHandler()
+                );
         }
     }
 }

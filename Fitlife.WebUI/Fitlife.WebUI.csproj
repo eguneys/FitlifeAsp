@@ -16,6 +16,10 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,6 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.3.1.7705, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -162,6 +167,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\FoodTrackerController.cs" />
+    <Compile Include="Controllers\NutritionApi3Controller.cs" />
+    <Compile Include="Controllers\NutritionApi4Controller.cs" />
+    <Compile Include="Filters\BasicAuthenticationMessageHandler.cs" />
+    <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
+    <Content Include="App_Code\HtmlExtensions.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -171,20 +183,32 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NavController.cs" />
+    <Compile Include="Controllers\NutritionApi2Controller.cs" />
+    <Compile Include="Controllers\NutritionApiController.cs" />
     <Compile Include="Controllers\NutritionController.cs" />
     <Compile Include="Controllers\ProgressApiController.cs" />
     <Compile Include="Controllers\ProgressController.cs" />
+    <Compile Include="Controllers\SocialController.cs" />
+    <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\CustomAuthAttribute.cs" />
+    <Compile Include="Filters\CurrentUserAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Models\BlogItemViewModel.cs" />
     <Compile Include="Models\BodyPhotoViewModel.cs" />
     <Compile Include="Models\NavViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bizStrap\jquery.percentageloader-0.1.css" />
+    <Content Include="Content\bizStrap\media.css" />
+    <Content Include="Content\bizStrap\prettyPhoto.css" />
+    <Content Include="Content\bizStrap\settings.css" />
+    <Content Include="Content\bizStrap\style.css" />
+    <Content Include="Content\bizStrap\styler.css" />
     <Content Include="Content\Boldex\base.css" />
     <Content Include="Content\Boldex\bootstrap-responsive.min.css" />
     <Content Include="Content\Boldex\bootstrap.min.css" />
@@ -206,14 +230,31 @@
     <Content Include="Content\Boldex\themes\scheme-red.css" />
     <Content Include="Content\Boldex\themes\scheme-wood.css" />
     <Content Include="Content\Boldex\themes\scheme-yellow.css" />
-    <Content Include="Content\bootstrap\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap\bootstrap.css" />
     <Content Include="Content\bootstrap\bootstrap.min.css" />
     <Content Include="Content\font-awesome-ie7.css" />
     <Content Include="Content\font-awesome-ie7.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fontawesome\font-awesome.css" />
+    <Content Include="Content\fontawesome\font-awesome.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\font\fontawesome-webfont.svg" />
+    <Content Include="Content\KendoUI\kendo.common.min.css" />
+    <Content Include="Content\KendoUI\kendo.default.min.css" />
+    <Content Include="Content\Planar\animate.css" />
+    <Content Include="Content\Planar\bootstrap.css" />
+    <Content Include="Content\Planar\bootstrap.min.css" />
+    <Content Include="Content\Planar\color.css" />
+    <Content Include="Content\Planar\flexslider.css" />
+    <Content Include="Content\Planar\menu.css" />
+    <Content Include="Content\Planar\socialize-bookmarks.css" />
+    <Content Include="Content\Planar\style.css" />
+    <Content Include="Content\Site2.css" />
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -236,12 +277,16 @@
     <Content Include="Content\themes\base\jquery.ui.core.css" />
     <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
     <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.css" />
     <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
     <Content Include="Content\themes\base\jquery.ui.resizable.css" />
     <Content Include="Content\themes\base\jquery.ui.selectable.css" />
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -262,17 +307,190 @@
     <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.menu.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.spinner.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\bizStrap\arrows.png" />
+    <Content Include="Images\bizStrap\apple.jpg" />
+    <Content Include="Images\bizStrap\egg.jpg" />
+    <Content Include="Images\bizStrap\corn.jpg" />
+    <Content Include="Images\bizStrap\coffee.jpg" />
+    <Content Include="Images\bizStrap\features\fitlife2.png" />
+    <Content Include="Images\bizStrap\fitlife2.png" />
+    <Content Include="Images\bizStrap\meat.jpg" />
+    <Content Include="Images\bizStrap\socials.png" />
+    <Content Include="Images\bizStrap\top_btn.png" />
+    <Content Include="Images\Partners\partner_3.png" />
+    <Content Include="Images\Partners\partner_2.jpg" />
+    <Content Include="Images\Partners\partner_1.jpg" />
+    <Content Include="Images\Partners\partner_4.jpg" />
+    <Content Include="Images\planar\ajax-loader2.gif" />
+    <Content Include="Images\planar\apple-touch-icon-114x114-precomposed.png" />
+    <Content Include="Images\planar\apple-touch-icon-72x72-precomposed.png" />
+    <Content Include="Images\planar\avatar1.jpg" />
+    <Content Include="Images\planar\avatar2.jpg" />
+    <Content Include="Images\planar\avatar3.jpg" />
+    <Content Include="Images\planar\bg-sub-head.png" />
+    <Content Include="Images\planar\bg.png" />
+    <Content Include="Images\planar\bg_direction_nav.png" />
+    <Content Include="Images\planar\blog-1.jpg" />
+    <Content Include="Images\planar\blog-2.jpg" />
+    <Content Include="Images\planar\blog-3.jpg" />
+    <Content Include="Images\planar\blog\blog-1.jpg" />
+    <Content Include="Images\planar\blog\blog-2.jpg" />
+    <Content Include="Images\planar\blog\blog-3.jpg" />
+    <Content Include="Images\planar\break-content.png" />
+    <Content Include="Images\planar\check_radio_sheet.png" />
+    <Content Include="Images\planar\divider.png" />
+    <Content Include="Images\planar\down_arrow_select.png" />
+    <Content Include="Images\planar\down_arrow_select_2.png" />
+    <Content Include="Images\planar\favicon.ico" />
+    <Content Include="Images\planar\gallery\1.jpg" />
+    <Content Include="Images\planar\gallery\1_small.jpg" />
+    <Content Include="Images\planar\gallery\2.jpg" />
+    <Content Include="Images\planar\gallery\2_small.jpg" />
+    <Content Include="Images\planar\gallery\3.jpg" />
+    <Content Include="Images\planar\gallery\3_small.jpg" />
+    <Content Include="Images\planar\gallery\4.jpg" />
+    <Content Include="Images\planar\gallery\4_small.jpg" />
+    <Content Include="Images\planar\gallery\5.jpg" />
+    <Content Include="Images\planar\gallery\5_small.jpg" />
+    <Content Include="Images\planar\gallery\6.jpg" />
+    <Content Include="Images\planar\gallery\6_small.jpg" />
+    <Content Include="Images\planar\gallery\7.jpg" />
+    <Content Include="Images\planar\gallery\7_small.jpg" />
+    <Content Include="Images\planar\icon-1.png" />
+    <Content Include="Images\planar\icon-2.png" />
+    <Content Include="Images\planar\icon-3.png" />
+    <Content Include="Images\planar\icon-4.png" />
+    <Content Include="Images\planar\logo-mobile.png" />
+    <Content Include="Images\planar\logo.png" />
+    <Content Include="Images\planar\map-marker.png" />
+    <Content Include="Images\planar\minus.png" />
+    <Content Include="Images\planar\pic-1.jpg" />
+    <Content Include="Images\planar\pic-2.jpg" />
+    <Content Include="Images\planar\pic-3.jpg" />
+    <Content Include="Images\planar\pic-4.jpg" />
+    <Content Include="Images\planar\pic-5.jpg" />
+    <Content Include="Images\planar\plus.png" />
+    <Content Include="Images\planar\profile.jpg" />
+    <Content Include="Images\planar\slide-1.jpg" />
+    <Content Include="Images\planar\slider\slide-1.jpg" />
+    <Content Include="Images\planar\slider\slide-2.jpg" />
+    <Content Include="Images\planar\slider\slide-3.jpg" />
+    <Content Include="Images\planar\slider\slide-4.jpg" />
+    <Content Include="Images\planar\slider\slide-5.jpg" />
+    <Content Include="Images\planar\socialize-icons\aim.png" />
+    <Content Include="Images\planar\socialize-icons\apple.png" />
+    <Content Include="Images\planar\socialize-icons\behance.png" />
+    <Content Include="Images\planar\socialize-icons\blogger.png" />
+    <Content Include="Images\planar\socialize-icons\cargo.png" />
+    <Content Include="Images\planar\socialize-icons\delicious.png" />
+    <Content Include="Images\planar\socialize-icons\deviantart.png" />
+    <Content Include="Images\planar\socialize-icons\digg.png" />
+    <Content Include="Images\planar\socialize-icons\dopplr.png" />
+    <Content Include="Images\planar\socialize-icons\dribbble.png" />
+    <Content Include="Images\planar\socialize-icons\ember.png" />
+    <Content Include="Images\planar\socialize-icons\evernote.png" />
+    <Content Include="Images\planar\socialize-icons\facebook.png" />
+    <Content Include="Images\planar\socialize-icons\flickr.png" />
+    <Content Include="Images\planar\socialize-icons\forrst.png" />
+    <Content Include="Images\planar\socialize-icons\github.png" />
+    <Content Include="Images\planar\socialize-icons\google.png" />
+    <Content Include="Images\planar\socialize-icons\googleplus.png" />
+    <Content Include="Images\planar\socialize-icons\gowalla.png" />
+    <Content Include="Images\planar\socialize-icons\grooveshark.png" />
+    <Content Include="Images\planar\socialize-icons\html5.png" />
+    <Content Include="Images\planar\socialize-icons\icloud.png" />
+    <Content Include="Images\planar\socialize-icons\lastfm.png" />
+    <Content Include="Images\planar\socialize-icons\linkedin.png" />
+    <Content Include="Images\planar\socialize-icons\metacafe.png" />
+    <Content Include="Images\planar\socialize-icons\mixx.png" />
+    <Content Include="Images\planar\socialize-icons\myspace.png" />
+    <Content Include="Images\planar\socialize-icons\netvibes.png" />
+    <Content Include="Images\planar\socialize-icons\newsvine.png" />
+    <Content Include="Images\planar\socialize-icons\orkut.png" />
+    <Content Include="Images\planar\socialize-icons\paypal.png" />
+    <Content Include="Images\planar\socialize-icons\picasa.png" />
+    <Content Include="Images\planar\socialize-icons\pinterest.png" />
+    <Content Include="Images\planar\socialize-icons\plurk.png" />
+    <Content Include="Images\planar\socialize-icons\posterous.png" />
+    <Content Include="Images\planar\socialize-icons\reddit.png" />
+    <Content Include="Images\planar\socialize-icons\rss.png" />
+    <Content Include="Images\planar\socialize-icons\skype.png" />
+    <Content Include="Images\planar\socialize-icons\stumbleupon.png" />
+    <Content Include="Images\planar\socialize-icons\technorati.png" />
+    <Content Include="Images\planar\socialize-icons\tumblr.png" />
+    <Content Include="Images\planar\socialize-icons\twitter.png" />
+    <Content Include="Images\planar\socialize-icons\vimeo.png" />
+    <Content Include="Images\planar\socialize-icons\wordpress.png" />
+    <Content Include="Images\planar\socialize-icons\yahoo.png" />
+    <Content Include="Images\planar\socialize-icons\yelp.png" />
+    <Content Include="Images\planar\socialize-icons\youtube.png" />
+    <Content Include="Images\planar\socialize-icons\zerply.png" />
+    <Content Include="Images\planar\socialize-icons\zootool.png" />
+    <Content Include="Images\planar\tag_bg.png" />
+    <Content Include="Images\planar\testimonial-1.jpg" />
+    <Content Include="Images\planar\testimonial-2.jpg" />
+    <Content Include="Images\planar\testimonial-3.jpg" />
+    <Content Include="Images\planar\testimonial-4.jpg" />
+    <Content Include="Images\planar\testimonial-5.jpg" />
+    <Content Include="Images\planar\why-1.png" />
+    <Content Include="Images\planar\why-2.png" />
+    <Content Include="Images\planar\why-3.png" />
+    <Content Include="Images\planar\why-4.png" />
+    <Content Include="Scripts\async.js" />
+    <Content Include="Scripts\bizStrap\function.js" />
+    <Content Include="Scripts\bizStrap\jquery.carouFredsel.js" />
+    <Content Include="Scripts\bizStrap\jquery.easy-pie-chart.js" />
+    <Content Include="Scripts\KendoUI\jquery.percentageloader-0.1.min.js" />
+    <Content Include="Scripts\bizStrap\jquery.themepunch1.js" />
+    <Content Include="Scripts\bizStrap\jquery.themepunch2.js" />
+    <Content Include="Scripts\bizStrap\library.js" />
+    <Content Include="Scripts\bizStrap\main.js" />
+    <Content Include="Scripts\bizStrap\prettyPhoto\jquery.prettyPhoto.js" />
     <Content Include="Scripts\BlueImp\jquery.fileupload.js" />
     <Content Include="Scripts\BlueImp\jquery.ui.widget.js" />
     <Content Include="Scripts\BlueImp\main.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Controllers\SocialController.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\BebasNeue.otf" />
+    <Content Include="fonts\BebasNeue-webfont.eot" />
+    <Content Include="fonts\BebasNeue-webfont.woff" />
+    <Content Include="Images\planar\apple-touch-icon-144x144-precomposed" />
+    <Content Include="Images\planar\socialize-icons\.DS_Store" />
+    <Content Include="Images\planar\blog\.DS_Store" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\cinetpub.pubxml" />
+    <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.0.3.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\KendoUI\kendo-binding.js" />
+    <Content Include="Scripts\KendoUI\kendo.web.min.js" />
+    <Content Include="Scripts\KendoUI\knockout-kendo.min.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\KnockoutApp\timeago.js" />
     <Content Include="Scripts\Boldex\base.js" />
     <Content Include="Scripts\Boldex\bootstrap-carousel.js" />
     <Content Include="Scripts\Boldex\bootstrap.min.js" />
@@ -287,25 +505,62 @@
     <Content Include="Scripts\Boldex\uitotop\easing.js" />
     <Content Include="Scripts\Boldex\uitotop\jquery.ui.totop.js" />
     <Content Include="Scripts\Boldex\uitotop\jquery.ui.totop.min.js" />
-    <Content Include="Scripts\jquery-1.9.1-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
-    <Content Include="Scripts\jquery-ui-1.8.20.js" />
-    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\Controllers\ProgressController.js" />
+    <Content Include="Scripts\ember-1.0.0.debug.js" />
+    <Content Include="Scripts\ember-1.0.0.js" />
+    <Content Include="Scripts\ember-1.0.0.min.js" />
+    <Content Include="Scripts\EmberApp\application.js" />
+    <Content Include="Scripts\EmberApp\router.js" />
+    <Content Include="Scripts\handlebars.js" />
+    <Content Include="Scripts\handlebars.runtime.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-2.1.0.debug.js" />
-    <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\knockout-2.3.0.debug.js" />
+    <Content Include="Scripts\knockout-2.3.0.js" />
+    <Content Include="Scripts\KnockoutApp\NutritionController.js" />
+    <Content Include="Scripts\KnockoutApp\ProgressController.js" />
+    <Content Include="Scripts\KnockoutApp\SocialController.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\moment+langs.js" />
     <Content Include="Scripts\moment+langs.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\Planar\bootstrap.js" />
+    <Content Include="Scripts\Planar\bootstrap.min.js" />
+    <Content Include="Scripts\Planar\fancybox\lib\jquery-1.9.0.min.js" />
+    <Content Include="Scripts\Planar\fancybox\lib\jquery.mousewheel-3.0.6.pack.js" />
+    <Content Include="Scripts\Planar\fancybox\source\blank.gif" />
+    <Content Include="Scripts\Planar\fancybox\source\fancybox_loading.gif" />
+    <Content Include="Scripts\Planar\fancybox\source\fancybox_overlay.png" />
+    <Content Include="Scripts\Planar\fancybox\source\fancybox_sprite.png" />
+    <Content Include="Scripts\Planar\fancybox\source\helpers\fancybox_buttons.png" />
+    <Content Include="Scripts\Planar\fancybox\source\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="Scripts\Planar\fancybox\source\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="Scripts\Planar\fancybox\source\helpers\jquery.fancybox-media.js" />
+    <Content Include="Scripts\Planar\fancybox\source\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="Scripts\Planar\fancybox\source\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="Scripts\Planar\fancybox\source\jquery.fancybox.css" />
+    <Content Include="Scripts\Planar\fancybox\source\jquery.fancybox.js" />
+    <Content Include="Scripts\Planar\fancybox\source\jquery.fancybox.pack.js" />
+    <Content Include="Scripts\Planar\fancy_func.js" />
+    <Content Include="Scripts\Planar\functions.js" />
+    <Content Include="Scripts\Planar\hoverIntent.js" />
+    <Content Include="Scripts\Planar\inview.js" />
+    <Content Include="Scripts\Planar\jquery.1.7.2.min.js" />
+    <Content Include="Scripts\Planar\jquery.fitvids.js" />
+    <Content Include="Scripts\Planar\jquery.flexslider-min.js" />
+    <Content Include="Scripts\Planar\jquery.flexslider.js" />
+    <Content Include="Scripts\Planar\jquery.js" />
+    <Content Include="Scripts\Planar\mapmarker.jquery.js" />
+    <Content Include="Scripts\Planar\mapmarker_func.jquery.js" />
+    <Content Include="Scripts\Planar\mobile-menu.js" />
+    <Content Include="Scripts\Planar\modernizr.custom.17475.js" />
+    <Content Include="Scripts\Planar\placeholder.js" />
+    <Content Include="Scripts\Planar\respond.min.js" />
+    <Content Include="Scripts\Planar\superfish.js" />
+    <Content Include="Scripts\Planar\supersubs.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -336,6 +591,17 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Scripts\jquery-2.0.3.min.map" />
+    <Content Include="Views\Social\Index.cshtml" />
+    <Content Include="Views\FoodTracker\Index.cshtml" />
+    <Content Include="Views\FoodTracker\Details.cshtml" />
+    <Content Include="Views\FoodTracker\Create.cshtml" />
+    <Content Include="Views\FoodTracker\Edit.cshtml" />
+    <Content Include="Views\FoodTracker\Delete.cshtml" />
+    <Content Include="Views\Nutrition\FavoriteFoods.cshtml" />
+    <Content Include="Views\User\EditProfile.cshtml" />
+    <Content Include="Views\Social\PeopleSearch.cshtml" />
+    <Content Include="Views\Social\BlogItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -344,14 +610,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <None Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <None Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\font\fontawesome-webfont.eot" />
-    <Content Include="Content\font\fontawesome-webfont.ttf" />
-    <Content Include="Content\font\fontawesome-webfont.woff" />
-    <Content Include="Content\font\FontAwesome.otf" />
-    <None Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Views\User\List.cshtml" />
     <Content Include="Views\Shared\UserSummary.cshtml" />
     <Content Include="Views\Nav\Menu.cshtml" />
@@ -370,6 +631,11 @@
     <Content Include="Views\Nutrition\FoodSelection.cshtml" />
     <Content Include="Views\Nutrition\FoodDetails.cshtml" />
     <Content Include="Views\Nutrition\Meals.cshtml" />
+    <Content Include="Views\Social\SideNav.cshtml" />
+    <Content Include="Views\Social\Feed.cshtml" />
+    <Content Include="Views\Social\Friends.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Social\People.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fitlife.Domain\Fitlife.Domain.csproj">
@@ -393,7 +659,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>59467</DevelopmentServerPort>
+          <DevelopmentServerPort>64174</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

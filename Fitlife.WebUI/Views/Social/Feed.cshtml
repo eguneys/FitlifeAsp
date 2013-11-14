@@ -1,0 +1,64 @@
+﻿@using Fitlife.WebUI.Helpers
+
+@model Fitlife.WebUI.Models.BlogItemViewModel
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+                @using (Ajax.BeginForm("SaveBlog", "Social", new AjaxOptions()
+                {
+                    UpdateTargetId = "blogItemsContent",
+                    InsertionMode = InsertionMode.InsertBefore
+                }, new
+                {
+                    @class="col-md-8 offset-2"
+                }))
+                {
+                    
+            <div class="input-group input-group-lg">
+                    @Html.TextBoxFor(x => x.newBlog.Body, new { @class = "input-lg form-control", @placeholder = "Share something" })
+                    <span class="input-group-btn">
+                        <button class="btn btn-lg btn-primary" type="submit"> Post </button>
+                    </span>
+                            </div>
+                }
+
+            </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <ul class="media-list">
+                            <div id="blogItemsContent">
+
+            </div>
+            @foreach (var blogItem in Model.BlogItems)
+            {
+
+                Html.RenderPartial("BlogItem", blogItem);
+                
+                        <div class="media user-comment-form">
+                            <a class="pull-left" href="#">
+                                <img class="media-object" src="@Model.CurrentUser.Photo" style="height: 50px; width: 50px;" height="50" width="50"/>
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">Your name</h4>
+
+                                @using (Html.BeginForm("SaveComment", "Social"))
+                                {
+                                    @Html.TextBoxFor(x => x.newComment.Body, new { @class="input-block", @placeholder="Comment here..." })
+                                    @Html.HiddenFor(x => x.newComment.BlogItemID, new { Value = blogItem.BlogItemID })
+                                }
+                            </div>
+
+                        </div>
+            }
+
+            }
+            </ul>
+            
+            </div>
+    </div>
+    </div>

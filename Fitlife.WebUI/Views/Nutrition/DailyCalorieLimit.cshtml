@@ -1,29 +1,25 @@
-﻿                        <h4>
-                            Daily Calorie Limit
-                        </h4>
-                        <dl class='dl-horizontal'>
-                            <dt>
-                                <p class='text-left text-muted'>
-                                    Allowance</p>
-                            </dt>
-                            <dd>
-                                <p class='text-left'>
-                                    2000</p>
-                            </dd>
-                            <dt>
-                                <p class='text-left text-muted'>
-                                    Eaten</p>
-                            </dt>
-                            <dd>
-                                <p class='text-left'>
-                                    1000</p>
-                            </dd>
-                            <dt>
-                                <p class='text-left text-muted'>
-                                    Remaining</p>
-                            </dt>
-                            <dd>
-                                <p class='text-left'>
-                                    1000</p>
-                            </dd>
-                        </dl>
+﻿<div class="header">
+</div>
+    <div class="details">
+        <div class='result'>
+            <h2>Daily Calorie Allowance</h2>
+            <div class="desc" data-bind="text: Profile.DailyCalories">
+            </div>
+                <div class="row" id="activietes_detail">
+                    <ul class="text-left">
+                        <li>
+                            <h4>
+                                Eaten
+                                <span data-bind="text: foodTracker().Calories"></span>
+                            </h4>
+                        </li>
+                        <li>
+                            <h4>
+                                Remaining
+                                <span data-bind="text: Profile.DailyCalories() - foodTracker().Calories()"></span>
+                            </h4>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+    </div>

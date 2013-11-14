@@ -102,10 +102,10 @@ $(".wrapper").fitVids();
 $(window).load(function () {
 // run code
 // cache container
-var $container = $('.portfolio .p-items');
+var containerzz = $('.portfolio .p-items');
 var $filter = $('.portfolio-filter');
 // initialize isotope
-$container.isotope({
+containerzz.isotope({
     // options...
     masonry: {
         columnWidth: 5
@@ -114,7 +114,7 @@ $container.isotope({
 // filter items when filter link is clicked
 $('#filters a').click(function () {
     var selector = $(this).attr('data-filter');
-    $container.isotope({ filter: selector });
+    containerzz.isotope({ filter: selector });
     return false;
 });
 // Filter items when filter link is clicked
@@ -127,7 +127,7 @@ $filter.find('a').click(function () {
 
 // update columnWidth on window resize
 $(window).smartresize(function () {
-    $container.isotope('reLayout');
+    containerzz.isotope('reLayout');
 });
 	
 jQuery('.open-close').click(function() {

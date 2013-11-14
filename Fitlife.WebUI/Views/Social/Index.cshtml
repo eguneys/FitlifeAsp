@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Social";
+    ViewBag.Subtitle = "Share your progress";
+}
+
+<div id="SocialViewContent">
+    @{ Html.RenderPartial("SuperPageHeader"); }
+    <div class="container">
+        <div class="row-fluid">
+
+            <div class="col-md-2 col-xs-2 col-lg-2">
+                @{Html.RenderPartial("SideNav"); };
+            </div>
+            <div class="col-md-10 col-xs-10 col-lg-10">
+                <div id="SocialContent">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -9,8 +9,12 @@ namespace Fitlife.Domain.Abstract
     public interface IUserRepository
     {
         IQueryable<User> Users { get; }
+        IQueryable<UserProfile> UserProfiles { get; }
 
         void SaveUser(User u);
         bool ValidateUser(User u);
+        bool ValidateUser(string username, string pass);
+
+        void SaveUserProfile(UserProfile p);
     }
 }

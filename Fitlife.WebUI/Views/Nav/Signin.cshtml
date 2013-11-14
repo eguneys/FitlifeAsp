@@ -1,10 +1,15 @@
 ﻿@if (User.Identity.IsAuthenticated)
 {
     <li class="dropdown">
-    <a class='dropdown-toggle' data-toggle='dropdown' data-target='#' href='#'> 
-    <i class='icon-person'></i> Account    </a>
+    <a class='dropdown-toggle styler_hover_bg_color styler_active_bg_color styler_hover_color styler_active_color' data-toggle='dropdown' data-target='#' href='#'> 
+    <i class='fa fa-user'></i> @User.Identity.Name   </a>
     <ul class='dropdown-menu'>
-    
+ 
+               <li>
+         
+                   <a href="@Url.Action("Index", "User")"           
+                       class="styler_hover_bg_color styler_active_bg_color styler_hover_color styler_active_color">Profile</a>
+        </li>   
     <li>
     @Html.RouteLink("Signout", new
 {
@@ -12,16 +17,16 @@
     action = "Logout"
 })
 </li>
+ 
 </ul>
 </li>
 }
 else
 {    
 <li>
-    @Html.RouteLink("Signin", new
-{
-    controller = "Account",
-    action = "Login"
-})
+    <a href='@Url.Action("Login", "Account")'>
+    <i class="icon-signin"></i>
+        Signin
+    </a>
 </li>
 }    

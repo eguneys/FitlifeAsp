@@ -1,0 +1,108 @@
+﻿@model Fitlife.WebUI.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Profile";
+    ViewBag.Subtitle = "";
+}
+
+@{Html.RenderPartial("SuperPageHeader");}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <a href="#" class="photo styler_parent">
+											<!-- team member photo -->
+											<span class="img"><i class="styler_bg_color"></i>
+                                                <img class="img-circle style img-responsive" src="@Model.User.Photo" alt="" /></span>
+											<span class="text styler_hover_border_color">
+												<i class="styler_border_color"></i>
+												<!-- team member name -->
+												<span class="name">@Model.User.Name</span>
+												<!-- team member title -->
+												<span class="desc">@Model.User.Email</span>
+											</span>
+            </a>
+            
+            @if (Model.User == Session["user"])
+            {
+                <span class="btn btn-link btn-success fileinput-button">
+                    <i class="icon-gear"></i>
+                    <span>Change Picture </span>
+                    <span id="userphotoprogress"></span>
+                    <input id='fileuploaduserphoto' type='file' name='image' data-url='https://api.imgur.com/3/upload' />
+                </span>
+            }                
+        </div>
+        <div class="col-md-8">
+            <div class="well" id="ProfileContent">
+                @Ajax.ActionLink("Edit Profile", "EditProfile", new {}, new AjaxOptions()
+           {
+               UpdateTargetId = "ProfileContent"
+           }, new
+           {
+               @class="pull-right btn btn-link"
+           })
+                <div class="article_block">
+                    <div class="details">
+                        <ul class="links">
+                            <li>
+                                <div class="name styler_bg_color">
+                                    <i class="styler_border_color"></i>
+                                    Name
+                                </div>
+                                <div class="desc">@Model.User.Name</div>
+                            </li>
+                            <li>
+                                <div class="name styler_bg_color">
+                                    <i class="styler_border_color"></i>
+                                    Age
+                                </div>
+                                <div class="desc">@Model.Profile.Age</div>
+                            </li>
+                            <li>
+                                <div class="name styler_bg_color">
+                                    <i class="styler_border_color"></i>
+                                    Weight
+                                </div>
+                                <div class="desc">@Model.Profile.Weight</div>
+                            </li>
+                            <li>
+                                <div class="name styler_bg_color">
+                                    <i class="styler_border_color"></i>
+                                    Height
+                                </div>
+                                <div class="desc">@Model.Profile.Height</div>
+                            </li>
+                            <li>
+                                <div class="name styler_bg_color">
+                                    <i class="styler_border_color"></i>
+                                    Gender
+                                </div>
+                                <div class="desc">@Model.Profile.Gender</div>
+                            </li>
+                            <li>
+                                <div class="name styler_bg_color">
+                                    <i class="styler_border_color"></i>
+                                    BMI
+                                </div>
+                                <div class="desc">@Model.UserBMI</div>
+                            </li>
+                            <li>
+                                <div class="name styler_bg_color">
+                                    <i class="styler_border_color"></i>
+                                    Daily Calorie Intake
+                                </div>
+                                <div class="desc">@Model.DailyCalorieIntake</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/BlueImp")
+}

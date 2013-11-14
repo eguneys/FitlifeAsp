@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Fitlife.Domain.Entities.User>
+
+
+        <ul class="nav nav-pills nav-stacked">
+        @foreach (var p in Model)
+        {
+                        <li>
+                            <a href='@Url.Action("Index", "User", p)'>
+                                <span>@p.Name</span>                               
+                                <span> @p.Email</span>
+                            </a>
+                        </li>
+        }
+            </ul>

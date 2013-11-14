@@ -26,14 +26,20 @@ namespace Fitlife.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(User user)
+        public ActionResult Login(User user, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 if (uRepository.ValidateUser(user))
                 {
+                    user = uRepository.Users.Where(x => x.Email == user.Email).First();
                     FormsAuthentication.SetAuthCookie(user.Name, false);
-                    return RedirectToAction("Index", "Home");
+                    Response.Cookies.Add(new HttpCookie("userid", user.UserID + ""));
+                    Session["user"] = user;
+                    if (returnUrl != null)
+                        return Redirect(returnUrl);
+                    else
+                        return RedirectToAction("Index", "Home");
                 }
                 else
                 {

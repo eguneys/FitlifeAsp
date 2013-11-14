@@ -3,33 +3,34 @@
 @{
     ViewBag.Title = "Signup";
 }
-       <div class="container" style='max-width:300px;'>
+<div id="wrapper">
+    <div class="container">
+       <div class="row" style='max-width:500px; margin-left: auto; margin-right: auto'>
+           <div class="col-md-12 contact_form">
             <div class="your-logo">
-                <h3><a href="index.html">Your Logo</a></h3>     
+                <h3 class="title"><a href="index.html">Registration</a></h3>     
             </div>
             @using (Html.BeginForm())
             {
-                <legend><h4>Registration</h4></legend>
-                <div class="row-fluid">
-                    <div class="span6">
-                        <a href="" class="btn btn-primary btn-block"><i class="icon-facebook"></i> Facebook Connect</a>
-                    </div>  
-                    <div class="span6">
-                        <a href="" class="btn btn-info btn-block"><i class="icon-twitter"></i> Twitter Connect</a>
-                    </div>    
-                </div>
-                @Html.TextBoxFor(x => x.Name, new { @class = "input-block-level", @placeholder = "Full Name" })
-                @Html.TextBoxFor(x => x.Email, new { @class = "input-block-level", @placeholder = "Email address" })
-                @Html.PasswordFor(x => x.Password, new { @class = "input-block-level", @placeholder = "Password" })
-                @Html.PasswordFor(x => x.PasswordConfirmation, new { @class = "input-block-level", @placeholder = "Retype Password" })
-                <div class="row-fluid">
-                    <div class="span8">
-                        <label class="checkbox">
-                            <input type="checkbox" value="remember-me"> I agree with <a href="">terms and conditions</a>.
-                        </label> 
+                <div class="form-bg-1">
+                @Html.TextBoxFor(x => x.Name, new { @class = "input-block-level form-control", @placeholder = "Full Name*" })
+                    </div>
+                <div class="form-bg-2">
+                @Html.TextBoxFor(x => x.Email, new { @class = "input-block-level form-control", @placeholder = "Email address*" })
+                    </div>
+                <div class="form-bg-1">
+                @Html.PasswordFor(x => x.Password, new { @class = "input-block-level form-control", @placeholder = "Password*" })
+                    </div>
+                <div class="form-bg-2">
+                @Html.PasswordFor(x => x.PasswordConfirmation, new { @class = "input-block-level form-control", @placeholder = "Retype Password*" })
+                    </div>
+                <div class="row">
+                    <div class="col-md-8 form-bg-3">
+                        <input type="checkbox" name="terms" id="terms">
+                        <label for="terms"><span></span> I agree with <a href="">terms and conditions</a>.</label>
                     </div> 
-                    <div class="span4">
-                        <button class="btn btn-warning btn-block" type="submit">Register</button>
+                    <div class="col-md-4">
+                        <input class="button_medium add_top_30" type="submit" value="REGISTER">
                     </div>    
                 </div>
             }
@@ -40,4 +41,7 @@
     action = "Login"
 })</p>
             </div>
+               </div>
         </div> <!-- /container -->
+        </div>
+    </div>

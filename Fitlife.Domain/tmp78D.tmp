@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+  </configSections>
+  <entityFramework>
+    <!--<defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="v11.0" />
+      </parameters>
+    </defaultConnectionFactory>-->
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="Data Source=.\SQLSERVEREXPRESS;Initial Catalog=Fitlife;Integrated Security=True" />
+      </parameters>
+    </defaultConnectionFactory>
+  </entityFramework>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="EntityFramework" culture="neutral" publicKeyToken="b77a5c561934e089" />
+        <codeBase version="4.4.0.0" href="file:///C:/Users/DIXLITTLE/documents/visual studio 2010/Projects/Fitlife.WebUI/packages/EntityFramework.5.0.0/lib/net40/EntityFramework.DLL" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+</configuration>
